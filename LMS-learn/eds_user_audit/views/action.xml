@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="action_audit_logs" model="ir.actions.act_window">
+		<field name="name">Audit Logs</field>
+		<field name="res_model">audit.log</field>
+		<field name="view_mode">list,form</field>
+	</record>
+	
+	<record id="action_audit_logs_detail" model="ir.actions.act_window">
+		<field name="name">Audit Logs Detail</field>
+		<field name="res_model">audit.log.detail</field>
+		<field name="view_mode">list,form</field>
+	</record>	
+	
+	<record id="action_audit_config" model="ir.actions.act_window">
+		<field name="name">Audit Config</field>
+		<field name="res_model">audit.config</field>
+		<field name="view_mode">list,form</field>
+	</record>
+
+	<record id="action_audit_delete" model="ir.actions.act_window">
+		<field name="name">Clear Log</field>
+		<field name="res_model">audit.delete</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+</odoo>

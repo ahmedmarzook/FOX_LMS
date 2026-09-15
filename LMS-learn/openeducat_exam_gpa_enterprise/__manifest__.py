@@ -1,0 +1,31 @@
+{
+    "name": "OpenEduCat Exam GPA Enterprise",
+    "summary": "GPA, credit hours, quality points and transcript reports",
+    "version": "19.0.1.0",
+    "category": "Education",
+    "sequence": 3,
+    "author": "OpenEduCat Inc",
+    "website": "https://www.openeducat.org",
+    "depends": [
+        "openeducat_exam_enterprise",
+        "openeducat_student_progress_enterprise",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/views.xml",
+        "report/report_menu.xml",
+        "report/student_progression_report.xml",
+        "views/grade_points_view.xml",
+        "views/student_progression_view.xml",
+    ],
+    "demo": [
+        "demo/course_inherit.xml",
+        "demo/grade_config.xml",
+        "demo/result_template_inherit.xml",
+    ],
+    'images': ['static/description/icon.png'],
+    "installable": True,
+    "auto_install": False,
+    "application": True,
+    "license": "Other proprietary",
+}

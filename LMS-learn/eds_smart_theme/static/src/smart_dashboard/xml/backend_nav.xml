@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Ported from Odoo Enterprise's web_enterprise.EnterpriseNavBar (not available
+  in this Community project) to Community's own web.NavBar — same root class
+  (o_main_navbar), same xpath target, so this "replace" still applies cleanly.
+-->
+<templates xml:space="preserve">
+  <t t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+    <xpath expr="//nav[hasclass('o_main_navbar')]" position="replace">
+      <nav class="o_main_navbar o_smart_backend_mainnav w-100 flex-column p-0 align-items-stretch border-0 shadow-none"
+        t-ref="nav" data-command-category="disabled" t-att-dir="smartNavState.uiDirection">
+        <div class="smart-backend-nav-shell w-100 d-flex flex-column align-items-stretch">
+          <div class="main-nav smart-backend-main-nav w-100 d-flex align-items-center flex-wrap flex-md-nowrap gap-2 py-0">
+            <div class="smart-backend-nav-toolbar-cluster d-flex align-items-center flex-shrink-0 flex-wrap flex-md-nowrap gap-2 min-w-0">
+              <div class="top-actions-pill d-flex align-items-center flex-shrink-0 flex-wrap gap-1">
+                <div class="topbar__tools d-flex align-items-center flex-shrink-0 flex-wrap gap-1">
+            <button
+              class="icon-button"
+              t-att-class="{ 'is-active': smartNavState.homeMenuOpen }"
+              type="button"
+              t-att-data-action-label="shTitleMainMenu"
+              t-att-aria-label="shTitleMainMenu"
+              t-att-title="shTitleMainMenu"
+              t-on-click.stop="onShToggleHomeMenu">
+              <i class="fa fa-bars" aria-hidden="true"/>
+            </button>
+            <button
+              class="icon-button"
+              type="button"
+              t-att-data-action-label="shTitleHelpCenter"
+              t-att-aria-label="shTitleHelpCenter"
+              t-att-title="shTitleHelpCenter"
+              t-on-click.stop="onShHelpCenter">
+              <i class="fa fa-question-circle" aria-hidden="true"/>
+            </button>
+            <button
+              class="icon-button"
+              type="button"
+              t-att-data-action-label="shAllAppsNavTitle()"
+              t-att-aria-label="shAllAppsNavTitle()"
+              t-att-title="shAllAppsNavTitle()"
+              t-on-click.stop="onShAllApps">
+              <i class="fa fa-th-large" aria-hidden="true"/>
+            </button>
+            <div class="dd-wrap">
+              <button
+                class="icon-button dd-toggle"
+                type="button"
+                t-att-class="{ 'is-active': smartNavState.openDd === 'resources' }"
+                t-att-aria-expanded="smartNavState.openDd === 'resources' ? 'true' : 'false'"
+                t-att-data-action-label="shTitleResources"
+                t-att-aria-label="shTitleResources"
+                t-att-title="shTitleResources"
+                t-on-click.stop="(ev) => this.toggleShDd('resources', ev)">
+                <i class="fa-solid fa-book-open" aria-hidden="true"/>
+              </button>
+              <div class="dd-panel smart-dd" dir="rtl" t-att-class="{ open: smartNavState.openDd === 'resources' }" t-on-click.stop="">
+                <div class="dd-head">
+                  <b t-esc="shTitleResources"/>
+                  <button class="dd-close" type="button" t-on-click.stop="closeShDds">✕</button>
+                </div>
+                <div class="dd-body">
+                  <t t-foreach="shResourcesMenuItems" t-as="item" t-key="item.key">
+                    <button
+                      class="dd-row"
+                      type="button"
+                      t-att-data-action-label="item.label"
+                      t-on-click.stop="(ev) => this.onShResourcesMenuItem(item, ev)"
+                      t-esc="item.label"/>
+                  </t>
+                </div>
+              </div>
+            </div>
+            <div class="o_menu_systray smart-embedded-systray smart-systray-notifications d-flex flex-shrink-0 align-items-center gap-1 border-0 bg-transparent p-0 m-0" role="menu" t-att-aria-label="shTitleNotifications">
+            <t t-foreach="systrayItems" t-as="item" t-key="item.key">
+                <div t-att-data-index="item.index"/>
+                <ErrorHandler onError="error => this.handleItemError(error, item)">
+                  <t t-component="item.Component" t-props="item.props"/>
+                </ErrorHandler>
+              </t>
+            </div>
+            <div class="dd-wrap">
+              <button class="avatar-chip dd-toggle" type="button"
+                t-att-aria-expanded="smartNavState.openDd === 'profile' ? 'true' : 'false'"
+                t-att-data-action-label="shTitleProfile"
+                t-att-title="shTitleProfile"
+                t-on-click.stop="(ev) => this.toggleShDd('profile', ev)">
+                <img class="avatar-chip__img" t-att-src="smartNavState.bootstrap.avatar_url" t-att-alt="shTitleProfile"/>
+              </button>
+              <div class="dd-panel smart-dd" dir="rtl" t-att-class="{ open: smartNavState.openDd === 'profile' }" t-on-click.stop="">
+                <div class="dd-head"><b t-esc="shTitleProfile"/><button class="dd-close" type="button" t-on-click.stop="closeShDds">✕</button></div>
+                <div class="dd-body">
+                  <button class="dd-row" type="button" t-on-click.stop="onShMyProfile" t-esc="shLabelMyProfile"/>
+                  <button class="dd-row" type="button" t-on-click.stop="onShPreferences" t-esc="shLabelPreferences"/>
+                  <button class="dd-row danger" type="button" t-on-click.stop="onShLogout" t-esc="shLabelLogout"/>
+                </div>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            <div class="smart-nav-search-slot d-none d-md-flex flex-grow-1 align-items-center min-w-0">
+              <!-- Keep portal search + default menus both mounted: NavBar's app-icon logic expects t-ref="menuApps" to exist. -->
+              <div
+                class="w-100 d-flex justify-content-center align-items-center"
+                t-att-class="{'d-none': !smartNavState.portalLiveSearch}">
+                <label class="topbar__search topbar__search--portal nav-search nav-search--portal"
+                  t-att-for="smartPortalNavSearchFieldId">
+                  <i class="fa-solid fa-magnifying-glass" aria-hidden="true"/>
+                  <input t-att-id="smartPortalNavSearchFieldId" type="search" class="smart-portal-nav-search"
+                    t-att-placeholder="shPlaceholderSearch" autocomplete="off" t-on-input="onShSmartPortalNavSearchInput" style="direction: rtl;"/>
+                </label>
+              </div>
+              <div
+                class="smart-default-nav-menus d-flex align-items-center w-100 min-w-0 flex-grow-1 gap-2"
+                t-att-class="{'d-none': smartNavState.portalLiveSearch}"
+                t-att-dir="smartNavState.pageDirection">
+                <a href="#" class="o_menu_toggle smart-ent-toggle-inline position-relative"
+                  t-att-class="{'hasImage': currentApp &amp;&amp; currentApp.webIconData}"
+                  accesskey="h" t-ref="menuApps"
+                  t-on-click.prevent="onShMenuAppsClick">
+                  <svg class="o_menu_toggle_icon pe-none" width="14px" height="14px" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                    <g t-foreach="[0, 5, 10]" t-as="Y" t-att-id="'o_menu_toggle_row_' + Y_index" fill="currentColor" t-key="'o_menu_toggle_row_' + Y_index">
+                      <rect t-foreach="[0, 5, 10]" t-as="X" width="3" height="3" t-att-x="X" t-att-y="Y" t-key="'o_menu_toggle_cell_' + X_index"/>
+                    </g>
+                  </svg>
+                  <img
+                    t-if="currentApp &amp;&amp; currentApp.webIconData"
+                    t-att-src="currentApp.webIconData"
+                    class="o_menu_brand_icon d-none d-lg-inline position-absolute start-0 h-100 ps-1 ms-2"
+                    t-att-alt="currentApp.name"
+                    t-ref="appIcon"/>
+                  <span
+                    t-if="currentApp"
+                    t-esc="currentApp.name"
+                    class="o_menu_brand d-flex ms-3 pe-0"/>
+                </a>
+                <t t-if="currentAppSections.length" t-call="web.NavBar.SectionsMenu">
+                  <t t-set="sections" t-value="currentAppSections"/>
+                </t>
+              </div>
+            </div>
+            <t t-if="smartNavState.portalLiveSearch">
+              <header class="topbar smart-backend-topbar flex-shrink-0">
+                <div class="topbar__brand">
+                  <img class="brand-mark" t-att-src="shBrandLogoUrl" alt=""/>
+                </div>
+              </header>
+            </t>
+          </div>
+        </div>
+      </nav>
+    </xpath>
+  </t>
+</templates>

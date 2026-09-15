@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_validation,access_validation,model_validation,base.group_system,1,1,1,1
+access_validation_group,access_validation_group,model_validation_group,base.group_system,1,1,1,1
+access_validation_log,access_validation_log,model_validation_log,base.group_system,1,0,0,1

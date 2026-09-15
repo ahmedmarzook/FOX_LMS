@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="openeducat_open_website_action" model="ir.actions.act_url">
+            <field name="name">Open Website</field>
+            <field name="type">ir.actions.act_url</field>
+            <field name="url">/</field>
+            <field name="target">self</field>
+        </record>
+
+    </data>
+</odoo>

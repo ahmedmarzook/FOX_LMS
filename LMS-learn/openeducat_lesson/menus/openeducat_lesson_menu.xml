@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Root application: visible to Odoo administrators and timetable users -->
+    <menuitem id="menu_op_lesson_root"
+              name="Lesson Planning"
+              action="action_lesson_info"
+              sequence="35"
+              web_icon="openeducat_lesson,static/description/icon.png"
+              groups="base.group_system,openeducat_timetable.group_op_timetable_user,openeducat_timetable.group_op_timetable_manager"/>
+
+    <menuitem id="menu_op_lesson_sub"
+              name="Lessons"
+              sequence="10"
+              parent="menu_op_lesson_root"
+              action="action_lesson_info"
+              groups="base.group_system,openeducat_timetable.group_op_timetable_user,openeducat_timetable.group_op_timetable_manager"/>
+</odoo>

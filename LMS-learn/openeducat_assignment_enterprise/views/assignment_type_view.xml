@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_op_assignment_type_inherited_list_view"
+            model="ir.ui.view">
+        <field name="name">op.assignment.type.inherited.list</field>
+        <field name="model">grading.assignment.type</field>
+        <field name="inherit_id"
+               ref="openeducat_assignment.view_op_assignment_type_list"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="company_id"
+                       groups="base.group_multi_company"
+                       optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_op_assignment_type_inherited_form_view"
+            model="ir.ui.view">
+        <field name="name">op.assignment.type.inherited.form</field>
+        <field name="model">grading.assignment.type</field>
+        <field name="inherit_id"
+               ref="openeducat_assignment.view_op_assignment_type_form"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="company_id"
+                       groups="base.group_multi_company"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

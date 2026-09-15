@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_validation_tree" model="ir.ui.view">
+        <field name="name">validation.tree</field>
+        <field name="model">validation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="model_id"/>
+                <field name="type"/>
+                <field name="on_create"/>
+                <field name="be_write"/>
+                <field name="on_write"/>
+                <field name="on_unlink"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_validation_form" model="ir.ui.view">
+        <field name="name">validation.form</field>
+        <field name="model">validation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_log" type="object" class="oe_stat_button" icon="fa-warning">
+                            <field name="log_count" widget="statinfo" string="Logs" invisible="type == 'raise'"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="group_id"/>
+                            <field name="model_id"/>
+                            <field name="model" invisible="1"/>
+                            <field name="type"/>
+                            <field name="sticky" invisible="type in ['raise', 'confirm']"/>
+                            <field name="valid_from"/>
+                            <field name="valid_to"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="on_create" widget="boolean_toggle"/>
+                            <field name="be_write" widget="boolean_toggle"/>
+                            <field name="on_write" widget="boolean_toggle"/>
+                            <field name="on_unlink" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="group_domain" widget="domain" options="{'model': 'model'}"/>
+                    </group>
+                    <group>
+                        <field name="domain" widget="domain" options="{'model': 'model'}"/>
+                    </group>
+                    <group string="Trigger Condition" col="1">
+                        <field name="condition" nolabel="1" widget="ace" options="{'mode': 'python'}"/>
+                    </group>
+                    <group string="Message" col="1">
+                        <field name="message" nolabel="1"/>
+                    </group>
+                    <group string="Confirm Groups" invisible="type != 'confirm'">
+                        <field name="group_ids" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_validation_search" model="ir.ui.view">
+        <field name="name">validation.search</field>
+        <field name="model">validation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <filter name="raise" string="Raise Warning" domain="[('type','=', 'raise')]"/>
+                <filter name="confirm" string="Confirm Warning" domain="[('type','=', 'confirm')]"/>
+                <filter name="log" string="Log Warning" domain="[('type','=', 'log')]"/>
+                <separator/>
+                <filter name="on_create" string="On Creation" domain="[('on_create','=', True)]"/>
+                <filter name="be_write" string="Before Update" domain="[('be_write','=', True)]"/>
+                <filter name="on_write" string="On Update" domain="[('on_write','=', True)]"/>
+                <filter name="on_unlink" string="On Deletion" domain="[('on_unlink','=', True)]"/>
+                <separator/>
+                <filter name="active" string="Active" domain="[('active','=', True)]"/>
+                <filter name="inactive" string="Inactive" domain="[('active','=', False)]"/>
+                <filter name="group_id" string="Group" context="{'group_by' : 'group_id'}"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

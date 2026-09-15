@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="view_validation_log_tree" model="ir.ui.view">
+		<field name="name">validation.log.tree</field>
+		<field name="model">validation.log</field>
+		<field name="arch" type="xml">
+			<list create="false">
+				<field name="validation_id" />
+				<field name="model_id" />
+				<field name="date" />
+				<field name="user_id" />
+				<field name="reference_title" />
+			</list>
+		</field>
+	</record>
+
+	<record id="view_validation_form_tree" model="ir.ui.view">
+		<field name="name">validation.log.form</field>
+		<field name="model">validation.log</field>
+		<field name="arch" type="xml">
+			<form create="false" edit="false">
+				<sheet>
+					<group>
+						<group>
+							<field name="validation_id" />
+							<field name="model_id" />
+							<field name="res_id" />
+							<field name="reference" widget="reference" string="Record" />
+						</group>
+						<group>
+							<field name="date" />
+							<field name="user_id" />
+							<field name="on_create" />
+							<field name="be_write" />
+							<field name="on_write" />
+							<field name="on_unlink" />
+						</group>
+					</group>
+					<group string="Message">
+						<field name="message" nolabel="1" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+</odoo>

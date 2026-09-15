@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+
+        <!-- EMAIL TEMPLATE: BEFORE DUE -->
+        <record id="email_template_assignment_submission" model="mail.template">
+            <field name="name">Assignment Submission</field>
+            <field name="email_from">{{ user.email or '' }}</field>
+            <field name="subject">Submit Your Assignment</field>
+
+            <field name="email_to">{{ object.student_id.user_id.partner_id.email or '' }}</field>
+            <field name="partner_to">{{ object.student_id.user_id.partner_id.id }}</field>
+
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">{{ object.student_id.user_id.partner_id.lang or 'en_US' }}</field>
+
+            <field name="body_html" type="html">
+                <table style="width:100%; font-family:Arial;">
+                    <tr>
+                        <td>
+                            <p>Dear <strong><t t-out="object.student_id.name or ''"/></strong></p>
+
+                            <p>
+                                Assignment:
+                                <strong><t t-out="object.assignment_id.name or ''"/></strong>
+                            </p>
+
+                            <p>
+                                Due Date:
+                                <strong><t t-out="object.submission_date or ''"/></strong>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- SERVER ACTION -->
+        <record id="assignment_sub_line_action" model="ir.actions.server">
+            <field name="name">Send Assignment Submission Email</field>
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="state">mail_post</field>
+            <field name="template_id" ref="email_template_assignment_submission"/>
+        </record>
+
+        <!-- AUTOMATION BEFORE DUE -->
+        <record id="test_rule_assignment_sub_line" model="base.automation">
+            <field name="name">Assignment Submission Reminder</field>
+            <field name="trigger">on_time</field>
+
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="filter_domain">[('state','!=','accept')]</field>
+
+            <field name="trg_date_id"
+                   search="[('model','=','op.assignment.sub.line'),
+                            ('name','=','submission_date')]"/>
+
+            <field name="trg_date_range">1</field>
+            <field name="trg_date_range_type">day</field>
+        </record>
+
+        <!-- EMAIL TEMPLATE: AFTER DUE -->
+        <record id="email_template_assignment_submission_after" model="mail.template">
+            <field name="name">Assignment Submission Passed</field>
+            <field name="email_from">{{ user.email or '' }}</field>
+            <field name="subject">Assignment Overdue</field>
+
+            <field name="email_to">{{ object.student_id.user_id.partner_id.email or '' }}</field>
+            <field name="partner_to">{{ object.student_id.user_id.partner_id.id }}</field>
+
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">{{ object.student_id.user_id.partner_id.lang or 'en_US' }}</field>
+
+            <field name="body_html" type="html">
+                <p><strong>Overdue Assignment</strong></p>
+
+                <p>
+                    Assignment:
+                    <t t-out="object.assignment_id.name or ''"/>
+                </p>
+
+                <p>
+                    Submission Date:
+                    <t t-out="object.submission_date or ''"/>
+                </p>
+            </field>
+        </record>
+
+        <!-- SERVER ACTION AFTER -->
+        <record id="assignment_sub_line_action_after" model="ir.actions.server">
+            <field name="name">Send Late Submission Email</field>
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="state">mail_post</field>
+            <field name="template_id" ref="email_template_assignment_submission_after"/>
+        </record>
+
+        <!-- AUTOMATION AFTER DUE -->
+        <record id="test_rule_assignment_sub_line_after" model="base.automation">
+            <field name="name">Assignment Submission Overdue</field>
+            <field name="trigger">on_time</field>
+
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="filter_domain">[('state','!=','accept')]</field>
+
+            <field name="trg_date_id"
+                   search="[('model','=','op.assignment.sub.line'),
+                            ('name','=','submission_date')]"/>
+
+            <field name="trg_date_range">1</field>
+            <field name="trg_date_range_type">day</field>
+        </record>
+
+    </data>
+
+</odoo>

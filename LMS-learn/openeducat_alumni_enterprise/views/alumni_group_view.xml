@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="alumni_group_form_view" model="ir.ui.view">
+        <field name="name">alumni.group.form.view</field>
+        <field name="model">op.alumni.group</field>
+        <field name="arch" type="xml">
+            <form string="Alumni Group">
+                <header>
+                    <button name="createforum" type="object" class="oe_highlight"
+                            string="Create Forum" invisible="forum_id"
+                            groups="openeducat_core.group_op_back_office_admin"/>
+                </header>
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            invisible="active"/>
+                    <div class="oe_avatar">
+                        <field name="image" widget="image" nolabel="1" options="{'size': [100, 100]}"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="forum_id"/>
+                            <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                        </group>
+                        <group>
+                            <field name="fees_id"/>
+                            <field name="alumni_fees_amount"/>
+                        </group>
+                    </group>
+                    <separator string="Students"/>
+                    <field name="alumni_student_line">
+                        <list>
+                            <field name="name"/>
+                            <field name="invoice_id" column_invisible="True"/>
+                            <field name="join_date"/>
+                            <field name="number"/>
+                            <field name="state"/>
+                            <button name="get_invoice" type="object"
+                                    invisible="state == 'invoice'"
+                                    class="oe_highlight" string="Create Invoice"
+                                    groups="openeducat_core.group_op_back_office_admin"/>
+                            <button string="View Invoice" invisible="state != 'invoice'" type="object"
+                                    name="action_get_invoice"
+                                    groups="openeducat_core.group_op_back_office_admin"/>
+                        </list>
+                    </field>
+                    <separator string="Description"/>
+                    <field name="description" widget="html"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="alumni_group_list_view" model="ir.ui.view">
+        <field name="name">alumni.group.list.view</field>
+        <field name="model">op.alumni.group</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="alumni_group_search_view" model="ir.ui.view">
+        <field name="name">alumni.group.search.view</field>
+        <field name="model">op.alumni.group</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="op_alumni_group_action" model="ir.actions.act_window">
+        <field name="name">Alumni</field>
+        <field name="res_model">op.alumni.group</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="alumni_group_search_view"/>
+    </record>
+</odoo>

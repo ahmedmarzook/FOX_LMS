@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="openeducat_exam_enterprise.ExamMainDashboard">
+        <div class="o_exam_dashboard p-3">
+            <div t-if="state.loading" class="o_exam_dashboard_state">
+                <i class="fa fa-spinner fa-spin fa-2x"/>
+                <span>Loading exam dashboard...</span>
+            </div>
+            <div t-elif="state.error" class="alert alert-danger" t-esc="state.error"/>
+            <t t-else="">
+                <div class="o_exam_dashboard_cards">
+                    <button class="o_exam_dashboard_card" t-on-click="() => this.openExams()">
+                        <i class="fa fa-tasks"/>
+                        <span>Total Exams</span>
+                        <strong t-esc="state.counts.all_exams"/>
+                    </button>
+                    <button class="o_exam_dashboard_card" t-on-click="() => this.openExams('draft')">
+                        <i class="fa fa-clock-o"/>
+                        <span>Pending Exams</span>
+                        <strong t-esc="state.counts.pending_exams"/>
+                    </button>
+                    <button class="o_exam_dashboard_card" t-on-click="() => this.openExams('done')">
+                        <i class="fa fa-check-square-o"/>
+                        <span>Completed Exams</span>
+                        <strong t-esc="state.counts.done_exams"/>
+                    </button>
+                    <button class="o_exam_dashboard_card" t-on-click="openSessions">
+                        <i class="fa fa-university"/>
+                        <span>Exam Sessions</span>
+                        <strong t-esc="state.counts.all_exams_sessions"/>
+                    </button>
+                </div>
+
+                <div class="o_exam_dashboard_panel">
+                    <h3>Pass Ratio</h3>
+                    <div t-if="state.chart.length" class="o_exam_dashboard_chart">
+                        <div t-foreach="state.chart" t-as="item" t-key="item.name"
+                             class="o_exam_dashboard_bar_column"
+                             t-att-title="item.name + ': ' + item.ratio.toFixed(2) + '%'">
+                            <div class="o_exam_dashboard_bar" t-att-style="barStyle(item)"/>
+                            <small t-esc="item.name"/>
+                            <span t-esc="item.ratio.toFixed(2) + '%'"/>
+                        </div>
+                    </div>
+                    <div t-else="" class="text-muted">No chart data available.</div>
+                </div>
+
+                <div class="o_exam_dashboard_panel">
+                    <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap mb-3">
+                        <h3 class="m-0">Exam Subjects</h3>
+                        <select class="form-select w-auto"
+                                t-att-value="state.selectedSession"
+                                t-on-change="changeSession">
+                            <option t-foreach="state.sessions" t-as="session" t-key="session.id"
+                                    t-att-value="session.id" t-esc="session.name"/>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Exam</th><th>Code</th><th>Subject</th>
+                                    <th>Start</th><th>End</th><th>Min Marks</th><th>Total Marks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="state.subjects" t-as="exam" t-key="exam.id"
+                                    role="button" t-on-click="() => this.openExam(exam)">
+                                    <td t-esc="exam.exam"/><td t-esc="exam.code"/>
+                                    <td t-esc="exam.name"/><td t-esc="exam.start_time"/>
+                                    <td t-esc="exam.end_time"/><td t-esc="exam.min_marks"/>
+                                    <td t-esc="exam.total_marks"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

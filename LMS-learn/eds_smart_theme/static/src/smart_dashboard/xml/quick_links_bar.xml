@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="eds_smart_theme.QuickLinksBar">
+    <div class="quick-links-bar" t-if="displayLinks.length">
+      <div class="ql-header">
+        <div class="ql-title">
+          <div class="ql-title-ic"><i class="fa fa-link"/></div>
+          <span t-esc="props.title"/>
+        </div>
+        <div class="ql-nav">
+          <button type="button" class="ql-nav-btn ql-nav-btn--prev" t-on-click="() => this.qlScroll(-160)" t-att-aria-label="labelPrevious">‹</button>
+          <button type="button" class="ql-nav-btn ql-nav-btn--next" t-on-click="() => this.qlScroll(160)" t-att-aria-label="labelNext">›</button>
+        </div>
+      </div>
+      <div class="ql-track" t-ref="qlTrack">
+        <t t-foreach="displayLinks" t-as="ql" t-key="ql.id">
+          <a t-att-href="ql.href" class="ql-card"
+            t-att-target="linkTarget(ql.href)"
+            t-att-rel="linkRel(ql.href)">
+            <div class="ql-icon msp-ql-grad">
+              <t t-if="ql.icon &amp;&amp; ql.icon.startsWith('fa-')">
+                <i t-att-class="'fa ' + ql.icon" aria-hidden="true"/>
+              </t>
+              <t t-else=""><t t-esc="ql.icon"/></t>
+            </div>
+            <div class="ql-text" t-esc="ql.label"/>
+          </a>
+        </t>
+      </div>
+    </div>
+  </t>
+</templates>

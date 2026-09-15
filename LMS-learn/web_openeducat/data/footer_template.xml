@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="brand_promotion_inherit" inherit_id="web.brand_promotion"
+              name="Brand Promotion">
+        <xpath expr="//div[hasclass('o_brand_promotion')]" position="replace">
+            <div class="pull-right mt-1 mt-md-0 mt-lg-0" t-ignore="true" t-if="not editable">
+                Powered by
+                <a target="_blank" href="https://www.edraksys.com/" class="ms-1">EdrakSys</a>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,29 @@
+<!-- # Part of Odoo Module Developed by Bizople Solutions Pvt. Ltd.
+# See LICENSE file for full copyright and licensing details. -->
+<templates id="template" xml:space="preserve">
+    <t t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="extension" >
+        <xpath expr="//tr[hasclass('o_data_row')]" position="attributes">
+            <attribute name="t-att-resId">record.resId</attribute>
+        </xpath>
+    </t>
+
+    <!-- Odoo 19's internal list-renderer markup drifted enough from the Odoo 17
+         version this used to fully hand-copy (state.columns -> columns,
+         shouldReverseHeader/uniqueRendererClass removed, Dropdown toggler slot
+         renamed to content, onStartResize moved under columnWidths, etc.) that
+         hand-duplicating it was fragile and broke core list views (e.g. Users).
+         Only the two real customizations (the spiffy_list_view CSS hook, see
+         tree_form_split_view.scss, which only styles it as a direct child of
+         .o_content while in split-view mode; adding the class directly onto
+         .o_list_renderer, instead of wrapping it in an extra div, satisfies the
+         same "> .spiffy_list_view" selector, and the split-view container)
+         are added here, without touching any internal markup. -->
+    <t t-inherit="web.ListRenderer" t-name="spiffy_split_view.ListRenderer" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_list_renderer')]" position="attributes">
+            <attribute name="class" add="spiffy_list_view" separator=" "/>
+        </xpath>
+        <xpath expr="//div[hasclass('o_list_renderer')]" position="after">
+            <SplitviewContainer t-if="SplitViewForm.show" t-props="getSplitviewContainerProps()"/>
+        </xpath>
+    </t>
+</templates>

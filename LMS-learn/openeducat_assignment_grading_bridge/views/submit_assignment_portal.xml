@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="portal_submited_assignment_score"
+              inherit_id="openeducat_assignment_enterprise.portal_submited_assignment_list">
+        <xpath expr="//div[@id='attempt']" position="after">
+            <div t-if="assin_id.attempt_type == 'multiple'"
+                 class="col-md-6 mt-2 mb-3">
+                <strong>Grade:</strong>
+                <span t-esc="dict(assin_id._fields['attempt'].selection).get(assin_id.attempt, '')"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

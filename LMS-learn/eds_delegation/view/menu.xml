@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<menuitem id="menu_delegation" action="act_delegation" web_icon="eds_delegation,static/description/icon.png" />
+
+</odoo>

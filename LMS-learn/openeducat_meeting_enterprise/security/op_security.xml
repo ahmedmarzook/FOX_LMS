@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <!-- Odoo 19: op.meeting has no company_id field.
+         The invalid legacy multi-company rule was removed. -->
+</odoo>

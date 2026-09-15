@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form_openeducat_core" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.openeducat.core</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form" position="inside">
+
+                    <app string="OpenEduCat" name="openeducat_core">
+
+                        <block title="Community Modules">
+
+                            <setting string="Activity">
+                                <field name="module_openeducat_activity"/>
+                            </setting>
+
+                            <setting string="Facility">
+                                <field name="module_openeducat_facility"/>
+                            </setting>
+
+                            <setting string="Parent">
+                                <field name="module_openeducat_parent"/>
+                            </setting>
+
+                            <setting string="Assignment">
+                                <field name="module_openeducat_assignment"/>
+                            </setting>
+
+                            <setting string="Classroom">
+                                <field name="module_openeducat_classroom"/>
+                            </setting>
+
+                            <setting string="Fees">
+                                <field name="module_openeducat_fees"/>
+                            </setting>
+
+                            <setting string="Admission">
+                                <field name="module_openeducat_admission"/>
+                            </setting>
+
+                            <setting string="Timetable">
+                                <field name="module_openeducat_timetable"/>
+                            </setting>
+
+                            <setting string="Exam">
+                                <field name="module_openeducat_exam"/>
+                            </setting>
+
+                            <setting string="Library">
+                                <field name="module_openeducat_library"/>
+                            </setting>
+
+                            <setting string="Attendance">
+                                <field name="module_openeducat_attendance"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Enterprise Core">
+
+                            <setting string="Quiz Enterprise">
+                                <field name="module_openeducat_quiz"/>
+                            </setting>
+
+                            <setting string="Discipline Enterprise">
+                                <field name="module_openeducat_discipline"/>
+                            </setting>
+
+                            <setting string="Health Enterprise">
+                                <field name="module_openeducat_health_enterprise"/>
+                            </setting>
+
+                            <setting string="Achievement Enterprise">
+                                <field name="module_openeducat_achievement_enterprise"/>
+                            </setting>
+
+                            <setting string="Activity Enterprise">
+                                <field name="module_openeducat_activity_enterprise"/>
+                            </setting>
+
+                            <setting string="Admission Enterprise">
+                                <field name="module_openeducat_admission_enterprise"/>
+                            </setting>
+
+                            <setting string="Parent Enterprise">
+                                <field name="module_openeducat_parent_enterprise"/>
+                            </setting>
+
+                            <setting string="Classroom Enterprise">
+                                <field name="module_openeducat_classroom_enterprise"/>
+                            </setting>
+
+                            <setting string="Campus Enterprise">
+                                <field name="module_openeducat_campus_enterprise"/>
+                            </setting>
+
+                            <setting string="Facility Enterprise">
+                                <field name="module_openeducat_facility_enterprise"/>
+                            </setting>
+
+                            <setting string="Fees Enterprise">
+                                <field name="module_openeducat_fees_enterprise"/>
+                            </setting>
+
+                            <setting string="Timetable Enterprise">
+                                <field name="module_openeducat_timetable_enterprise"/>
+                            </setting>
+
+                            <setting string="Exam Enterprise">
+                                <field name="module_openeducat_exam_enterprise"/>
+                            </setting>
+
+                            <setting string="Library Enterprise">
+                                <field name="module_openeducat_library_enterprise"/>
+                            </setting>
+
+                            <setting string="Meeting Enterprise">
+                                <field name="module_openeducat_meeting_enterprise"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Alumni / Jobs / Placement">
+
+                            <setting string="Alumni Enterprise">
+                                <field name="module_openeducat_alumni_enterprise"/>
+                            </setting>
+
+                            <setting string="Alumni Blog Enterprise">
+                                <field name="module_openeducat_alumni_blog_enterprise"/>
+                            </setting>
+
+                            <setting string="Alumni Event Enterprise">
+                                <field name="module_openeducat_alumni_event_enterprise"/>
+                            </setting>
+
+                            <setting string="Alumni Job Enterprise">
+                                <field name="module_openeducat_alumni_job_enterprise"/>
+                            </setting>
+
+                            <setting string="Job Enterprise">
+                                <field name="module_openeducat_job_enterprise"/>
+                            </setting>
+
+                            <setting string="Placement Enterprise">
+                                <field name="module_openeducat_placement_enterprise"/>
+                            </setting>
+
+                            <setting string="Placement Job Enterprise">
+                                <field name="module_openeducat_placement_job_enterprise"/>
+                            </setting>
+
+                            <setting string="Scholarship Enterprise">
+                                <field name="module_openeducat_scholarship_enterprise"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Assignment Modules">
+
+                            <setting string="Assignment Enterprise">
+                                <field name="module_openeducat_assignment_enterprise"/>
+                            </setting>
+
+                            <setting string="Assignment Rubrics">
+                                <field name="module_openeducat_assignment_rubrics"/>
+                            </setting>
+
+                            <setting string="Assignment Grading Enterprise">
+                                <field name="module_openeducat_assignment_grading_enterprise"/>
+                            </setting>
+
+                            <setting string="Assignment Grading Bridge">
+                                <field name="module_openeducat_assignment_grading_bridge"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Attendance Modules">
+
+                            <setting string="Attendance Enterprise">
+                                <field name="module_openeducat_attendance_enterprise"/>
+                            </setting>
+
+                            <setting string="Student Attendance Kiosk">
+                                <field name="module_openeducat_student_attendance_enterprise"/>
+                            </setting>
+
+                            <setting string="Attendance Xlsx Report">
+                                <field name="module_openeducat_attendance_report_xlsx"/>
+                            </setting>
+
+                            <setting string="Attendance Face Recognition">
+                                <field name="module_openeducat_attendance_face_recognition"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Fees Modules">
+
+                            <setting string="Fees Plan">
+                                <field name="module_openeducat_fees_plan"/>
+                            </setting>
+
+                            <setting string="Fees Parent Bridge">
+                                <field name="module_openeducat_fees_parent_bridge"/>
+                            </setting>
+
+                            <setting string="Fees On Session">
+                                <field name="module_openeducat_fees_on_session"/>
+                            </setting>
+
+                            <setting string="Fees On Duration">
+                                <field name="module_openeducat_fees_on_duration"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="LMS Modules">
+
+                            <setting string="LMS Enterprise">
+                                <field name="module_openeducat_lms"/>
+                            </setting>
+
+                            <setting string="LMS Blog Enterprise">
+                                <field name="module_openeducat_lms_blog"/>
+                            </setting>
+
+                            <setting string="LMS Forum Enterprise">
+                                <field name="module_openeducat_lms_forum"/>
+                            </setting>
+
+                            <setting string="LMS Gamification Enterprise">
+                                <field name="module_openeducat_lms_gamification"/>
+                            </setting>
+
+                            <setting string="LMS Sale Enterprise">
+                                <field name="module_openeducat_lms_sale"/>
+                            </setting>
+
+                            <setting string="LMS Survey Enterprise">
+                                <field name="module_openeducat_lms_survey"/>
+                            </setting>
+
+                            <setting string="LMS Website">
+                                <field name="module_openeducat_lms_website"/>
+                            </setting>
+
+                            <setting string="LMS Admission">
+                                <field name="module_openeducat_lms_admission"/>
+                            </setting>
+
+                            <setting string="LMS H5P Enterprise">
+                                <field name="module_openeducat_lms_h5p"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Online / Meeting Integrations">
+
+                            <setting string="Bigbluebutton Enterprise">
+                                <field name="module_openeducat_bigbluebutton"/>
+                            </setting>
+
+                            <setting string="Google Meet">
+                                <field name="module_openeducat_googlemeet"/>
+                            </setting>
+
+                            <setting string="Jitsi Enterprise">
+                                <field name="module_openeducat_jitsi_enterprise"/>
+                            </setting>
+
+                            <setting string="Skype Meet">
+                                <field name="module_openeducat_skypemeet"/>
+                            </setting>
+
+                            <setting string="Teams">
+                                <field name="module_openeducat_teams"/>
+                            </setting>
+
+                            <setting string="Zoom">
+                                <field name="module_openeducat_zoom"/>
+                            </setting>
+
+                            <setting string="Online Admission Enterprise">
+                                <field name="module_openeducat_online_admission"/>
+                            </setting>
+
+                            <setting string="Online Appointment Enterprise">
+                                <field name="module_openeducat_online_appointment"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Exam / Quiz / Grading">
+
+                            <setting string="Exam GPA Enterprise">
+                                <field name="module_openeducat_exam_gpa_enterprise"/>
+                            </setting>
+
+                            <setting string="Exam Grading Bridge">
+                                <field name="module_openeducat_exam_grading_bridge"/>
+                            </setting>
+
+                            <setting string="Grading">
+                                <field name="module_openeducat_grading"/>
+                            </setting>
+
+                            <setting string="Quiz Anti Cheating">
+                                <field name="module_openeducat_quiz_anti_cheating"/>
+                            </setting>
+
+                            <setting string="OMR">
+                                <field name="module_openeducat_omr"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Quiz Question Types">
+
+                            <setting string="Quiz Drag Into Text">
+                                <field name="module_openeducat_quiz_drag_into_text"/>
+                            </setting>
+
+                            <setting string="Quiz Match Following">
+                                <field name="module_openeducat_quiz_match_following"/>
+                            </setting>
+
+                            <setting string="Quiz Match Images">
+                                <field name="module_openeducat_quiz_match_images"/>
+                            </setting>
+
+                            <setting string="Quiz Multiple Choice">
+                                <field name="module_openeducat_quiz_multiple_choice"/>
+                            </setting>
+
+                            <setting string="Quiz Numeric">
+                                <field name="module_openeducat_quiz_numeric"/>
+                            </setting>
+
+                            <setting string="Quiz Sort Paragraphs">
+                                <field name="module_openeducat_quiz_sort_paragraphs"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="LMS Interactive Types">
+
+                            <setting string="LMS Interactive Video">
+                                <field name="module_openeducat_lms_interactive_video"/>
+                            </setting>
+
+                            <setting string="LMS Drag Into Text">
+                                <field name="module_openeducat_lms_drag_into_text"/>
+                            </setting>
+
+                            <setting string="LMS Match Following">
+                                <field name="module_openeducat_lms_match_following"/>
+                            </setting>
+
+                            <setting string="LMS Match Images">
+                                <field name="module_openeducat_lms_match_images"/>
+                            </setting>
+
+                            <setting string="LMS Multiple Choice">
+                                <field name="module_openeducat_lms_multiple_choice"/>
+                            </setting>
+
+                            <setting string="LMS Numeric">
+                                <field name="module_openeducat_lms_numeric"/>
+                            </setting>
+
+                            <setting string="LMS Sort Paragraphs">
+                                <field name="module_openeducat_lms_sort_paragraphs"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Live Meeting">
+
+                            <setting string="Live Meeting">
+                                <field name="module_openeducat_live"/>
+                            </setting>
+
+                            <setting string="Live Meeting Assignment">
+                                <field name="module_openeducat_live_assignment"/>
+                            </setting>
+
+                            <setting string="Live Meeting Attendance">
+                                <field name="module_openeducat_live_attendance"/>
+                            </setting>
+
+                            <setting string="Live Meeting Attentiveness">
+                                <field name="module_openeducat_live_attentiveness"/>
+                            </setting>
+
+                        </block>
+
+
+                        <block title="Other Enterprise Modules">
+
+                            <setting string="Transportation Enterprise">
+                                <field name="module_openeducat_transportation_enterprise"/>
+                            </setting>
+
+                            <setting string="Lesson Enterprise">
+                                <field name="module_openeducat_lesson"/>
+                            </setting>
+
+                            <setting string="Skill Enterprise">
+                                <field name="module_openeducat_skill_enterprise"/>
+                            </setting>
+
+                            <setting string="Backend Theme">
+                                <field name="module_openeducat_backend_theme"/>
+                            </setting>
+
+                            <setting string="CRM Enterprise">
+                                <field name="module_openeducat_crm_enterprise"/>
+                            </setting>
+
+                            <setting string="Dashboard KPI">
+                                <field name="module_openeducat_dashboard_kpi"/>
+                            </setting>
+
+                            <setting string="Digital Library">
+                                <field name="module_openeducat_digital_library"/>
+                            </setting>
+
+                            <setting string="Event Enterprise">
+                                <field name="module_openeducat_event_enterprise"/>
+                            </setting>
+
+                            <setting string="Student Progress Enterprise">
+                                <field name="module_openeducat_student_progress_enterprise"/>
+                            </setting>
+
+                            <setting string="Subject Material Allocation">
+                                <field name="module_openeducat_subject_material_allocation"/>
+                            </setting>
+
+                            <setting string="Student Leave">
+                                <field name="module_openeducat_student_leave_enterprise"/>
+                            </setting>
+
+                            <setting string="Notice Board Enterprise">
+                                <field name="module_openeducat_notice_board_enterprise"/>
+                            </setting>
+
+                            <setting string="Skill Assessment Enterprise">
+                                <field name="module_openeducat_student_skill_assessment"/>
+                            </setting>
+
+                            <setting string="Grievance">
+                                <field name="module_openeducat_grievance_enterprise"/>
+                            </setting>
+
+                            <setting string="Secure QR">
+                                <field name="module_openeducat_secure"/>
+                            </setting>
+
+                            <setting string="Mass Subject Registration">
+                                <field name="module_openeducat_mass_subject_registration"/>
+                            </setting>
+
+                            <setting string="Asset Request Enterprise">
+                                <field name="module_openeducat_asset_request_enterprise"/>
+                            </setting>
+
+                        </block>
+
+                    </app>
+
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

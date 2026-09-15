@@ -1,0 +1,180 @@
+/* ═══════════════════════════════════════════════════════
+   03_global_override.css
+   Apply Alexandria font & theme tokens across Odoo UI
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Base Body ── */
+body,
+body.o_web_client {
+    font-family: var(--pt-font) !important;
+    background-color: var(--pt-bg) !important;
+    color: var(--pt-text) !important;
+}
+
+/* ── Force Alexandria font on all views & UI elements ── */
+
+/* All view containers */
+.o_form_view, .o_form_view *,
+.o_list_view, .o_list_view *,
+.o_kanban_view, .o_kanban_view *,
+.o_pivot_view, .o_pivot_view *,
+.o_graph_view, .o_graph_view *,
+.o_calendar_view, .o_calendar_view *,
+.o_activity_view, .o_activity_view *,
+.o_map_view, .o_map_view *,
+.o_cohort_view, .o_cohort_view *,
+.o_dashboard, .o_dashboard * {
+    font-family: var(--pt-font) !important;
+}
+
+/* Form fields, inputs, selects — browsers don't inherit font-family by default */
+input, select, textarea,
+.o_field_widget, .o_field_widget *,
+.o_input, .o_input *,
+.modal, .modal *,
+.dropdown-menu, .dropdown-menu *,
+.tooltip, .popover,
+.o_dialog, .o_dialog * {
+    font-family: var(--pt-font) !important;
+}
+
+/* General text elements (no !important to avoid breaking icon fonts like fa, oi, bi) */
+p, span, div, h1, h2, h3, h4, h5, h6,
+a, button, label, td, th, li, option {
+    font-family: var(--pt-font);
+}
+
+/* ── Restore icon fonts overridden by the wildcard rules above ──
+   FontAwesome (.fa) and Odoo UI Icons (.oi) embed glyphs via their own
+   font files; forcing Alexandria on them turns every icon into a broken □. */
+.fa, .fas, .far, .fab, .fal,
+[class^="fa-"], [class*=" fa-"] {
+    font-family: 'FontAwesome' !important;
+}
+
+.oi,
+[class^="oi-"], [class*=" oi-"] {
+    font-family: 'odoo_ui_icons' !important;
+}
+
+/* ── Hide default Odoo navbar (replaced by custom topbar) ── */
+header.o_navbar,
+.o_main_navbar {
+    display: none !important;
+}
+
+/* Remove reserved space for the navbar */
+.o_web_client { padding-top: 0 !important; }
+
+/* Hide overflow avatars from systray */
+.o_menu_systray .o_user_avatar,
+.o_menu_systray .o_burger_menu_avatar,
+.o_mobile_menu_toggle .o_burger_menu_avatar {
+    display: none !important;
+}
+
+/* The mobile menu toggle's default avatar image is hidden above (redundant with
+   our own topbar avatar), which left the button with nothing visible at all —
+   draw a hamburger/menu icon in its place instead. */
+.o_mobile_menu_toggle {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    min-height: 34px;
+}
+.o_mobile_menu_toggle::before {
+    font-family: FontAwesome !important;
+    content: "\f0c9" !important;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--pt-topbar-text, #fff);
+}
+
+/* ── Action Manager ── */
+.o_action_manager {
+    background: var(--pt-bg) !important;
+}
+
+/* ── Control Panel ── */
+.o_control_panel {
+    background: var(--pt-surface) !important;
+    border-bottom: 1px solid var(--pt-border-light) !important;
+    font-family: var(--pt-font) !important;
+    min-height: unset !important;
+    padding: 8px 16px !important;
+    margin-bottom: 0 !important;
+}
+
+.o_control_panel .o_cp_top {
+    min-height: unset !important;
+    padding: 4px 0 !important;
+    align-items: center !important;
+}
+
+.o_control_panel .o_cp_bottom:empty,
+.o_control_panel .o_cp_bottom:not(:has(*)) {
+    display: none !important;
+}
+
+.o_control_panel .o_cp_bottom {
+    min-height: unset !important;
+    padding: 0 !important;
+}
+
+/* Statusbar flush with control panel */
+.o_form_view .o_form_statusbar {
+    border-top: none !important;
+    margin-top: 0 !important;
+}
+
+.o_form_view .o_content {
+    gap: 0 !important;
+    margin-top: 0 !important;
+}
+
+.o_form_view .o_form_statusbar + * { margin-top: 0 !important; }
+
+/* Breadcrumb */
+.o_control_panel .breadcrumb {
+    font-family: var(--pt-font) !important;
+}
+
+.o_control_panel .breadcrumb-item a,
+.o_control_panel .breadcrumb-item.active {
+    color: var(--pt-text-2) !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+}
+
+/* ── Home Menu ── */
+.o_home_menu {
+    background: var(--pt-bg) !important;
+    font-family: var(--pt-font) !important;
+}
+
+.o_app_icon .o_app_name {
+    font-family: var(--pt-font) !important;
+    color: var(--pt-text) !important;
+}
+
+/* ── Search Panel ── */
+.o_search_panel {
+    background: var(--pt-surface) !important;
+    border-left: 1px solid var(--pt-border) !important;
+    font-family: var(--pt-font) !important;
+}
+
+/* ── User Menu Dropdown ── */
+.o_user_menu .dropdown-menu {
+    font-family: var(--pt-font) !important;
+    border: 1px solid var(--pt-border) !important;
+    box-shadow: var(--pt-shadow-md) !important;
+    border-radius: var(--pt-radius-sm) !important;
+}
+
+/* ── Debug Menu ── */
+.o_debug_manager .dropdown-menu {
+    font-family: var(--pt-font) !important;
+}

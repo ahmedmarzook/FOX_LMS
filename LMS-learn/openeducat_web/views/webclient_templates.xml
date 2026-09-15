@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="db_registration" name="Register Database">
+        <t t-call="website.layout">
+
+            <div id="wrap" class="oe_structure">
+                <section class="container my-5">
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7 col-md-9 col-sm-12">
+
+                            <div class="text-center mb-4">
+                                <h2>Instance Registration</h2>
+                            </div>
+
+                            <form class="form" action="/db_register" method="post">
+
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                <div id="register_instance_key" t-if="not hash_allow">
+
+                                    <div class="alert alert-warning" role="alert" t-if="invalid_instance">
+                                        Invalid Instance Key!
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="instance_key">
+                                                    Instance Key *
+                                                </label>
+
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="instance_key"
+                                                       name="instance_key"
+                                                       required="required"
+                                                       autofocus="autofocus"
+                                                       autocapitalize="off"/>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">
+                                                Get Instance Hash Key
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div id="register_instance_hash_key" t-if="hash_allow">
+
+                                    <div class="alert alert-warning" role="alert" t-if="invalid_hash">
+                                        Instance key and Instance Hash key mismatch!
+                                    </div>
+
+                                    <div class="alert alert-success" role="alert" t-if="not invalid_hash">
+                                        Check your mail! OpenEduCat Instance Hash key has been sent successfully.
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="instance_hash_key">
+                                                    Instance Hash Key *
+                                                </label>
+
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="instance_hash_key"
+                                                       name="instance_hash_key"
+                                                       required="required"
+                                                       autofocus="autofocus"
+                                                       autocapitalize="off"/>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">
+                                                Register Instance Hash Key
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

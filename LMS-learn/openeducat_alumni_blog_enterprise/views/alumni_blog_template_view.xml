@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="blog_post_detail" name="Blog Post Detail"
+              inherit_id="openeducat_alumni_enterprise.alumni_group" priority="20">
+        <xpath expr="//section[@id='alumni_event_blog_view']/div/div" position="inside">
+            <div class="col-12 py-5" t-if="blogpost">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0">Our Blogs</h3>
+                    <a class="text-secondary" href="/blog">View All</a>
+                </div>
+                <div class="row g-4">
+                    <t t-foreach="blogpost" t-as="post">
+                        <div class="col-12 col-lg-6">
+                            <article class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex gap-3">
+                                        <div class="text-center border-end pe-3 flex-shrink-0">
+                                            <div class="fs-4 fw-bold" t-field="post.post_date"
+                                                 t-options='{"format": "d"}'/>
+                                            <div class="text-muted" t-field="post.post_date"
+                                                 t-options='{"format": "MMMM"}'/>
+                                        </div>
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <h4 class="h5 mb-2 text-truncate">
+                                                <a t-att-href="post.website_url" t-field="post.name"/>
+                                            </h4>
+                                            <div class="small text-muted mb-2">
+                                                <span>In </span>
+                                                <a t-att-href="post.blog_id.website_url"
+                                                   t-field="post.blog_id.name"/>
+                                            </div>
+                                            <div class="mb-2" t-if="post.tag_ids">
+                                                <t t-foreach="post.tag_ids" t-as="one_tag">
+                                                    <span class="badge text-bg-primary me-1"
+                                                          t-out="one_tag.name"/>
+                                                </t>
+                                            </div>
+                                            <p class="text-muted mb-0"
+                                               t-out="post.website_meta_description or ''"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

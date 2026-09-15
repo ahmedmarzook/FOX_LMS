@@ -1,0 +1,542 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* oi_delegation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-04 01:35+0000\n"
+"PO-Revision-Date: 2024-12-04 01:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: oi_delegation
+#: model:mail.template,body_html:eds_delegation.email_template_delegation
+msgid ""
+"\n"
+"<p>\n"
+"<b>Dear ${ctx.get('delegator')}</b>,\n"
+"</p>\n"
+"<br>\n"
+"<p>\n"
+"This email is to inform you that during this period \n"
+"${object.date_from} to ${object.date_to}, \n"
+"you have been delegated the following role/s: ${ctx.get('roles')}.\n"
+"</p>    \n"
+"<p>\n"
+"<b>Best regards,</b>\n"
+"</p>  \n"
+"\n"
+"\t\t\t   \n"
+"\n"
+"\t\t"
+msgstr ""
+"<p>\n"
+"<b>عزيزي ${ctx.get('delegator')</b>،\n"
+"</p>\n"
+"<br>\n"
+"<p>\n"
+"تم إرسال هذا البريد الإلكتروني لإعلامك بأنه خلال هذه الفترة من \n"
+"${object.date_from} إلى ${object.date_to}، \n"
+"تم تفويضك بالدور/الأدوار التالية: ${ctx.get('roles')}.\n"
+"</p>\n"
+"<p>\n"
+"<b>مع أطيب التحيات،</b>\n"
+"</p>"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_users__groups_count
+msgid "# Groups"
+msgstr "عدد المجموعات "
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_res_groups
+msgid "Access Groups"
+msgstr "مجموعات الوصول"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__isactive
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__active
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_search
+msgid "Active"
+msgstr "نشط"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_users__delegation_ids
+msgid "Active Delegation"
+msgstr "الوفد النشط"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_users__active_groups_ids
+msgid "Active Groups"
+msgstr "المجموعات النشطة"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_users__active_groups_count
+msgid "Active Groups Count"
+msgstr "عدد المجموعات النشطة"
+
+#. module: oi_delegation
+#: model:res.groups,name:eds_delegation.delegation_admin
+msgid "Administrator"
+msgstr "مدير"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__one_employee
+msgid "All Roles to one employee"
+msgstr "جميع الأدوار لموظف واحد"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__one_employee
+msgid "All role to one employee"
+msgstr "كل الأدوار لموظف واحد"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_groups__allow_delegation
+msgid "Allow Delegation"
+msgstr "السماح بالتفويض"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_groups__allow_multiple_delegation
+msgid "Allow Multiple Delegation"
+msgstr "السماح بتفويضات متعددة"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_groups__restricted_access
+msgid "Allow in Restricted Access"
+msgstr "السماح بالوصول المقيد"
+
+#. module: oi_delegation
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_default
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_read
+msgid "Assigned Roles"
+msgstr "الأدوار المخصصة"
+
+#. module: oi_delegation
+#: model:ir.actions.server,name:eds_delegation.cron_clear_access_cache_ir_actions_server
+msgid "Clear Access Cache"
+msgstr "مسح الوصول المؤقت"
+
+#. module: oi_delegation
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_default
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_search
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: oi_delegation
+#: model:ir.model.fields.selection,name:eds_delegation.selection__delegation__state__confirmed
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__create_uid
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__create_date
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__employee_id
+msgid "Delegated Employee"
+msgstr "الموظف المفوض"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__user_id
+#: model:ir.model.fields,field_description:eds_delegation.field_res_users__delegated_user_ids
+msgid "Delegated User"
+msgstr "المستخدم المفوض"
+
+#. module: oi_delegation
+#: model:ir.actions.act_window,name:eds_delegation.act_delegation
+#: model:ir.model,name:eds_delegation.model_delegation
+#: model:ir.module.category,description:eds_delegation.module_category_delegation
+#: model:ir.module.category,name:eds_delegation.module_category_delegation
+#: model:ir.ui.menu,name:eds_delegation.menu_delegation
+msgid "Delegation"
+msgstr "تفويض"
+
+#. module: oi_delegation
+#: model:mail.template,name:eds_delegation.email_template_delegation
+msgid "Delegation Assigned"
+msgstr "تم تعيين الوفد"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_groups__delegation_template_ids
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_groups_form
+msgid "Delegation Email Templates"
+msgstr "قوالب البريد الإلكتروني للوفود"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_mail_template__delegation_group_ids
+#: model_terms:ir.ui.view,arch_db:eds_delegation.email_template_form
+msgid "Delegation Groups"
+msgstr "مجموعات الوفود"
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_delegation_line
+msgid "Delegation Line"
+msgstr "خط الوفد"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__delegation_id
+msgid "Delegation Number"
+msgstr "رقم التفويض"
+
+#. module: oi_delegation
+#: model:mail.template,subject:eds_delegation.email_template_delegation
+msgid "Delegation from ${object.employee_id.name}"
+msgstr "تفويض من ${object.employee_id.name}"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__delegator_id
+msgid "Delegator"
+msgstr "المفوض"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__delegator_user_id
+#: model:ir.model.fields,field_description:eds_delegation.field_res_users__delegator_user_ids
+msgid "Delegator User"
+msgstr "المستخدم المفوض"
+
+#. module: oi_delegation
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form
+msgid "Discard"
+msgstr "تجاهل"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__display_name
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__display_name
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_groups_form
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: oi_delegation
+#: model:ir.model.fields.selection,name:eds_delegation.selection__delegation__state__draft
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: oi_delegation
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_read
+msgid "Duration"
+msgstr "المدة"
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_mail_template
+msgid "Email Templates"
+msgstr "قوالب البريد الإلكتروني "
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__delegateTo_employee_id
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__employee_id
+#: model:res.groups,name:eds_delegation.delegation_employee
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_search
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: oi_delegation
+#: model:res.groups,name:eds_delegation.delegation_manager
+msgid "Employee Manager"
+msgstr "مدير الموظفين"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation.py:0
+#, python-format
+msgid "Employee should linked with user"
+msgstr "يجب ربط الموظف بالمستخدم"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__empty
+msgid "Empty"
+msgstr "فارغ"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__date_from
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__date_from
+msgid "From Date"
+msgstr "من تاريخ"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation.py:0
+#, python-format
+msgid "From Date > To Date"
+msgstr "من التاريخ > إلى التاريخ"
+
+#. module: oi_delegation
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_users__has_delegation
+msgid "Has Delegation"
+msgstr "لديه تفويض"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__id
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__write_uid
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__write_date
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__lines
+msgid "Lines"
+msgstr "البنود"
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_ir_ui_menu
+msgid "Menu"
+msgstr "القائمة"
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_ir_model_access
+msgid "Model Access"
+msgstr "الوصول للكائن"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_res_groups__name2
+msgid "Name2"
+msgstr "الاسم2"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/ir_model_access.py:0
+#, python-format
+msgid "No group currently allows this operation."
+msgstr "لا تسمح أي مجموعة حاليًا بهذه العملية."
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation.py:0
+#, python-format
+msgid "No roles assigned"
+msgstr "لا توجد ادوار معينه"
+
+#. module: oi_delegation
+#: model:ir.model.fields,help:eds_delegation.field_res_users__groups_count
+msgid "Number of groups that apply to the current user"
+msgstr "عدد المجموعات التي تنطبق على المستخدم الحالي "
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__old_id
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__old_id
+msgid "Old ID"
+msgstr "الهوية القديمة"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation.py:0
+#, python-format
+msgid "Only draft can be deleted"
+msgstr "يمكن حذف المسودة فقط"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/ir_model_access.py:0
+#, python-format
+msgid "Operation:"
+msgstr "عملية:"
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_mail_mail
+msgid "Outgoing Mails"
+msgstr "الرسائل الصادرة"
+
+#. module: oi_delegation
+#: model:ir.model.fields,help:eds_delegation.field_delegation__user_id
+#: model:ir.model.fields,help:eds_delegation.field_delegation_line__delegator_user_id
+#: model:ir.model.fields,help:eds_delegation.field_delegation_line__user_id
+msgid "Related user name for the resource to manage its access."
+msgstr "اسم المستخدم المرتبط بالمورد لإدارة وصوله."
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__name
+msgid "Request Number"
+msgstr "رقم الطلب"
+
+#. module: oi_delegation
+#: model:ir.model.constraint,message:eds_delegation.constraint_delegation_name_uk
+msgid "Request Number should be unique"
+msgstr "يجب ان يكون رقم الطلب فريدا"
+
+#. module: oi_delegation
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_default
+msgid "Revoke"
+msgstr "الغاء"
+
+#. module: oi_delegation
+#: model:ir.model.fields.selection,name:eds_delegation.selection__delegation__state__revoked
+msgid "Revoked"
+msgstr "ملغي"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__group_id
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__group_id_display
+msgid "Role"
+msgstr "الصلاحية"
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_ir_rule
+msgid "Rule"
+msgstr "قاعدة السجل "
+
+#. module: oi_delegation
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form
+msgid "Save"
+msgstr "حفظ"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/ir_model_access.py:0
+#, python-format
+msgid ""
+"Sorry, you are not allowed to access documents of type '%(document_kind)s' "
+"(%(document_model)s)."
+msgstr ""
+"عذراً، لا يُسمح لك بالوصول إلى المستندات من نوع '%(document_kind)s' "
+"(%(document_model)s)."
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/ir_model_access.py:0
+#, python-format
+msgid ""
+"Sorry, you are not allowed to create documents of type '%(document_kind)s' "
+"(%(document_model)s)."
+msgstr ""
+"عذراً، لا يُسمح لك بإنشاء مستندات من النوع '%(document_kind)s' "
+"(%(document_model)s)."
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/ir_model_access.py:0
+#, python-format
+msgid ""
+"Sorry, you are not allowed to delete documents of type '%(document_kind)s' "
+"(%(document_model)s)."
+msgstr ""
+"عذراً، لا يُسمح لك بحذف المستندات من نوع '%(document_kind)s' "
+"(%(document_model)s)."
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/ir_model_access.py:0
+#, python-format
+msgid ""
+"Sorry, you are not allowed to modify documents of type '%(document_kind)s' "
+"(%(document_model)s)."
+msgstr ""
+"عذراً، لا يُسمح لك بتعديل المستندات من نوع '%(document_kind)s' "
+"(%(document_model)s)."
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__state
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__state
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__stop_receiving_notification
+msgid "Stop Receiving Notifications"
+msgstr "إيقاف تلقي الإشعارات"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation_line.py:0
+#, python-format
+msgid "The delegator should not been able to delegate himself"
+msgstr "المفوّض لا ينبغي ان يكون قادرا علي تفويض نفسه"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/ir_model_access.py:0
+#, python-format
+msgid ""
+"This operation is allowed for the groups:\n"
+"%(groups_list)s"
+msgstr ""
+"هذه العملية مسموح بها للمجموعات:\n"
+"%(groups_list)s"
+
+#. module: oi_delegation
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__date_to
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation_line__date_to
+msgid "To Date"
+msgstr "إلى تاريخ"
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_res_users
+#: model:ir.model.fields,field_description:eds_delegation.field_delegation__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/ir_model_access.py:0
+#, python-format
+msgid "User:"
+msgstr "المستخدم.:"
+
+#. module: oi_delegation
+#: model:ir.model,name:eds_delegation.model_ir_ui_view
+msgid "View"
+msgstr "أداة العرض"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation.py:0
+#, python-format
+msgid "You cannot revoke a delegation with old date"
+msgstr "لا يمكنك إلغاء تفويض بتاريخ قديم"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation.py:0
+#, python-format
+msgid "You cannot submit a delegation with old date"
+msgstr "لا يمكنك إرسال وفد بتاريخ قديم"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation.py:0
+#, python-format
+msgid "You cannot submit overlapped delegation for %s"
+msgstr "لا يمكنك إرسال تفويض متزامن مع التفويض ل %s"
+
+#. module: oi_delegation
+#: model_terms:ir.ui.view,arch_db:eds_delegation.view_delegation_form
+msgid "or"
+msgstr "أو"
+
+#. module: oi_delegation
+#. odoo-python
+#: code:addons/oi_delegation/models/delegation.py:0
+#, python-format
+msgid "the delegator should not been able to delegate himself"
+msgstr "المفوّض لا ينبغي ان يكون قادرا علي تفويض نفسه"

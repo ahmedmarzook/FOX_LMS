@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_op_scholarship_type_list" model="ir.ui.view">
+        <field name="name">op.scholarship.type.list</field>
+        <field name="model">op.scholarship.type</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <list>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="name"/>
+                <field name="amount" widget="monetary"/>
+                <field name="company_id"
+                       groups="base.group_multi_company"
+                       optional="show"/>
+                <field name="active" widget="boolean_toggle" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_scholarship_type_form" model="ir.ui.view">
+        <field name="name">op.scholarship.type.form</field>
+        <field name="model">op.scholarship.type</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="Scholarship Type">
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon"
+                            title="Archived"
+                            bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="amount" widget="monetary"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="company_id"
+                               groups="base.group_multi_company"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_scholarship_type_search" model="ir.ui.view">
+        <field name="name">op.scholarship.type.search</field>
+        <field name="model">op.scholarship.type</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search string="Scholarship Type">
+                <field name="name"/>
+                <field name="amount"/>
+                <filter string="Archived"
+                        name="inactive"
+                        domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter string="Company"
+                        name="group_by_company"
+                        domain="[]"
+                        context="{'group_by': 'company_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_op_scholarship_type_view">
+        <field name="name">Scholarship Types</field>
+        <field name="res_model">op.scholarship.type</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_scholarship_type_search"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_op_scholarship_type_view_form">
+        <field name="act_window_id" ref="act_open_op_scholarship_type_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_op_scholarship_type_form"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_op_scholarship_type_view_list">
+        <field name="act_window_id" ref="act_open_op_scholarship_type_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_op_scholarship_type_list"/>
+    </record>
+</odoo>

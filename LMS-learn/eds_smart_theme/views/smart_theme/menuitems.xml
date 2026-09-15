@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- # Part of Odoo Module Developed by Bizople Solutions Pvt. Ltd.
+# See LICENSE file for full copyright and licensing details. -->
+<odoo>
+	<data>
+		<menuitem id="back_config_main" name="Backend Theme" sequence="1"
+			web_icon="eds_smart_theme,static/src/smart/images/backend_theme_icon.png" groups="base.user_admin" />
+
+		<menuitem id="menu_backend_config" name="Backend Config"
+			parent="eds_smart_theme.back_config_main" action="action_backend_config" sequence="80" />
+
+		<record id="action_theme_configurator" model="ir.actions.client">
+			<field name="name">Theme Settings</field>
+			<field name="tag">eds_smart_theme_configurator</field>
+		</record>
+
+		<menuitem id="menu_theme_configurator" name="Theme Settings"
+			parent="base.menu_administration" action="action_theme_configurator"
+			sequence="9" groups="base.group_user"/>
+
+		<menuitem id="bizople_backend_theme_configuration_mainmenu" name="Smart Configuration"
+			parent="base.menu_administration" sequence="10"/>
+
+
+<!--        <menuitem id="spiffy_documentation_menu" parent="bizople_backend_theme_configuration_mainmenu" -->
+<!--			name="Smart Documentation" sequence="1" action="action_spiffy_documentation"/>-->
+
+		<menuitem  action="eds_smart_theme.action_spiffy_app_group" 
+			id="spiffy_app_group" 
+			parent="bizople_backend_theme_configuration_mainmenu" 
+			sequence="2"/>
+
+		<menuitem action="eds_smart_theme.change_menu_icon_action" id="change_menu_icon_menu" 
+			parent="bizople_backend_theme_configuration_mainmenu" sequence="5"/>
+
+		<menuitem action="eds_smart_theme.act_open_pwa_shortcuts_view" id="pwa_shortcuts_view_tree_menuitem" 
+			parent="bizople_backend_theme_configuration_mainmenu" sequence="5"/>
+
+	</data>
+</odoo>

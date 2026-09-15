@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_op_facility_sub"
+                  name="Facilities"
+                  parent="openeducat_core.menu_op_school_config"
+                  sequence="90"
+                  action="act_open_op_facility_view"/>
+
+    </data>
+</odoo>

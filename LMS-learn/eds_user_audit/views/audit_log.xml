@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="view_audit_log_form" model="ir.ui.view">
+		<field name="name">audit.log.form</field>
+		<field name="model">audit.log</field>
+		<field name="arch" type="xml">
+			<form create="false" edit="false">
+				<sheet>
+					<group>
+						<group>
+							<field name="model_id" />
+							<field name="record_id" />
+							<field name="reference" widget="reference" />
+						</group>
+						<group>
+							<field name="type" />
+							<field name="user_id" />
+							<field name="date" />
+							<field name="action_id" />
+							<field name="menu_ids" widget="many2many_tags" />
+						</group>
+					</group>
+					<group string="Details">
+						<field name="detail_ids" nolabel="0" string="">
+							<list editable="top">
+								<field name="field_name" />
+								<field name="old_value_display" />
+								<field name="new_value_display" />
+							</list>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="view_audit_log_tree" model="ir.ui.view">
+		<field name="name">audit.log.tree</field>
+		<field name="model">audit.log</field>
+		<field name="arch" type="xml">
+			<list create="false" edit="false">
+				<field name="model_id" />
+				<field name="record_id" />
+				<field name="name" />
+				<field name="user_id" />
+				<field name="type" />
+				<field name="date" />
+			</list>
+		</field>
+	</record>
+
+	<record id="view_audit_log_search" model="ir.ui.view">
+		<field name="name">audit.log.search</field>
+		<field name="model">audit.log</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="model_id" />
+				<field name="record_id" />
+				<field name="user_id" />
+				<filter name="read" string="Read" domain="[('type','=', 1)]" />
+				<filter name="create" string="Create" domain="[('type','=', 2)]" />				
+				<filter name="write" string="Write" domain="[('type','=', 3)]" />
+				<filter name="delete" string="Delete" domain="[('type','=', 4)]" />
+				<filter name="user_id" string="User" context="{'group_by' : 'user_id'}" />
+				<filter name="model_id" string="Object" context="{'group_by' : 'model_id'}" />
+			</search>
+		</field>
+	</record>
+
+</odoo>

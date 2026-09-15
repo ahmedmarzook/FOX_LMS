@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Course List View -->
+        <record id="view_op_course_tree" model="ir.ui.view">
+            <field name="name">op.course.list</field>
+            <field name="model">op.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="Courses">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="evaluation_type"/>
+                    <field name="parent_id"/>
+                    <field name="min_unit_load" optional="hide"/>
+                    <field name="max_unit_load" optional="hide"/>
+                    <field name="subject_ids" widget="many2many_tags"/>
+                    <field name="department_id"
+                           groups="openeducat_core.group_multi_department"
+                           optional="hide"/>
+                    <field name="active" optional="hide"/>
+                </list>
+            </field>
+        </record>
+
+
+        <!-- Course Form View -->
+        <record id="view_op_course_form" model="ir.ui.view">
+            <field name="name">op.course.form</field>
+            <field name="model">op.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Course">
+
+                    <sheet>
+
+                        <div name="button_box" class="oe_button_box"/>
+
+                        <field name="active" invisible="1"/>
+
+                        <widget name="web_ribbon"
+                                title="Archived"
+                                bg_color="text-bg-danger"
+                                invisible="active"/>
+
+                        <group string="Course Information">
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="code" required="1"/>
+                                <field name="evaluation_type"/>
+                                <field name="department_id"
+                                       groups="openeducat_core.group_multi_department"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                            </group>
+
+                            <group>
+                                <field name="parent_id"
+                                       options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                <field name="min_unit_load"/>
+                                <field name="max_unit_load"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Subjects" name="subject">
+                                <field name="subject_ids"
+                                       widget="many2many_tags"
+                                       readonly="1"
+                                       options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+
+                    <!-- Odoo 19 Chatter -->
+                    <chatter/>
+
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Course Search View -->
+        <record id="view_op_course_search" model="ir.ui.view">
+            <field name="name">op.course.search</field>
+            <field name="model">op.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Courses">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="parent_id"/>
+                    <field name="department_id"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Course Pivot View -->
+        <record id="view_op_course_pivot" model="ir.ui.view">
+            <field name="name">op.course.pivot</field>
+            <field name="model">op.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Courses">
+                    <field name="parent_id" type="row"/>
+                    <field name="evaluation_type" type="col"/>
+                    <field name="min_unit_load" type="measure"/>
+                    <field name="max_unit_load" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <!-- Course Action -->
+        <record model="ir.actions.act_window" id="act_open_op_course_view">
+            <field name="name">Courses</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.course</field>
+            <field name="view_mode">list,form,pivot</field>
+            <field name="search_view_id" ref="view_op_course_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="target">current</field>
+        </record>
+
+
+        <!-- Course Action List -->
+        <record model="ir.actions.act_window.view" id="act_open_op_course_view_tree">
+            <field name="act_window_id" ref="act_open_op_course_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_course_tree"/>
+        </record>
+
+
+        <!-- Course Action Form -->
+        <record model="ir.actions.act_window.view" id="act_open_op_course_view_form">
+            <field name="act_window_id" ref="act_open_op_course_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_course_form"/>
+        </record>
+
+
+        <!-- Course Action Pivot -->
+        <record model="ir.actions.act_window.view" id="act_open_op_course_view_pivot">
+            <field name="act_window_id" ref="act_open_op_course_view"/>
+            <field name="sequence" eval="30"/>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_op_course_pivot"/>
+        </record>
+
+    </data>
+</odoo>

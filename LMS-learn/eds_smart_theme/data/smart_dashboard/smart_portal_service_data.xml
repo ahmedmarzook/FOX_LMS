@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--
+    Original Mawhiba data had 82 smart.portal.service.item records, each
+    with a view_id ref= into one of ~80 external Mawhiba-only service modules
+    (jes_*, mawhiba_*, service_*, etc.) that don't exist in this project — every
+    one of those refs would fail to resolve at data-load time. None of the 82
+    reference a module present here (hr/hr_holidays/hr_skills/mail/portal/base/
+    web or any openeducat_*/eds_* module), so all 82 were dropped rather than
+    ported. The 3 category records (self, HR ports finance) still load from
+    smart_portal_service_category_data.xml as empty tabs — an admin can add
+    real service.item records (Settings > Smart Portal > Self-service items)
+    once this project's own workflow/approval modules exist.
+  -->
+  <data noupdate="1">
+  </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="openeducat_live_attentiveness.Systray">
+        <div t-if="visible" class="d-flex align-items-center">
+            <span class="px-2"
+                  title="Attentiveness tracking is active"
+                  aria-label="Attentiveness tracking is active">
+                <i class="fa fa-eye"/>
+            </span>
+            <button type="button"
+                    class="btn btn-link px-2"
+                    title="End live meeting and finalize report"
+                    aria-label="End live meeting and finalize report"
+                    t-on-click="endMeeting"
+                    t-att-disabled="state.ending">
+                <i t-att-class="state.ending ? 'fa fa-spinner fa-spin' : 'fa fa-stop-circle'"/>
+            </button>
+        </div>
+    </t>
+</templates>

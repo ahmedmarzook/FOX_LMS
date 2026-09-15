@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data>
+
+        <record id="activity_smart_button" model="ir.ui.view">
+            <field name="name">activity.smart.buttons</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+            <field name="priority" eval="5"/>
+
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                                name="get_activity"
+                                class="oe_stat_button"
+                                icon="fa-book">
+
+                            <field name="activity_count"
+                                   widget="statinfo"
+                                   string="Activity"/>
+
+                        </button>
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>

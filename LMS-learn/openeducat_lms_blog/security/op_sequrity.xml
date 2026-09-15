@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="blog_post_lms_rule" model="ir.rule">
+        <field name="name">LMS Blog Posts: enrolled users and instructors</field>
+        <field name="model_id" ref="website_blog.model_blog_post"/>
+        <field name="groups" eval="[(4, ref('openeducat_lms.group_op_lms_user'))]"/>
+        <field name="domain_force">['|', '|', ('course_id', '=', False), ('course_id.enrollment_user_ids', 'in', [user.id]), ('course_id.user_id', '=', user.id)]</field>
+    </record>
+</odoo>

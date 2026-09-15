@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_calendar_online_meeting_attendance" model="ir.ui.view">
+        <field name="name">calendar.online.meeting.attendance</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id"
+               ref="openeducat_live.view_calendar_online_meeting_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='openeducat_live_meeting']/group"
+                   position="inside">
+                <group string="Attendance">
+                    <field name="register_id"/>
+                    <field name="sheet_id"
+                           domain="[('register_id', '=', register_id)]"
+                           options="{'no_create': True}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

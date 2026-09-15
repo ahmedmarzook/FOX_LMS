@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <function model="backend.config" name="_migrate_default_theme_color"/>
+        <function model="backend.config" name="_migrate_default_font_family"/>
+    </data>
+</odoo>

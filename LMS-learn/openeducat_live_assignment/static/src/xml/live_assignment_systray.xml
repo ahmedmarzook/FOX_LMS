@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="openeducat_live_assignment.LiveAssignmentSystray">
+        <div t-if="isDiscussPage"
+             class="o_live_assignment_systray d-flex align-items-center">
+            <button type="button"
+                    class="btn btn-link o-no-caret px-2"
+                    title="Create Assignment from Live Meeting"
+                    aria-label="Create Assignment from Live Meeting"
+                    t-on-click="createAssignment">
+                <i class="fa fa-tasks"/>
+            </button>
+        </div>
+    </t>
+</templates>

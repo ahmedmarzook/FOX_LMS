@@ -1,0 +1,32 @@
+<!-- # Part of Odoo Module Developed by Bizople Solutions Pvt. Ltd.
+# See LICENSE file for full copyright and licensing details. -->
+<templates id="template" xml:space="preserve">
+    <t t-name="eds_smart_theme.icon_button">
+        <span t-attf-class="fa fa-#{icon} align-middle" t-att-title="label" />
+        <span class="d-none d-xl-inline" t-esc="label" />
+    </t>
+    <t t-name="eds_smart_theme.MenuStatusbarButtons">
+        <div class="dropdown">
+            <button
+                class="o_statusbar_buttons_dropdown btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+            >
+                <t t-call="eds_smart_theme.icon_button">
+                    <t t-set="icon" t-value="'cogs'" />
+                    <t t-set="label">Quick actions</t>
+                </t>
+            </button>
+        </div>
+    </t>
+    <!-- The four t-extend/t-jquery blocks that used to live here (targeting the
+         legacy FormView.buttons/KanbanView.buttons/ListView.buttons/
+         CalendarView.navigation_buttons jQuery-widget templates) were removed:
+         that legacy templating mechanism no longer exists in Odoo 19 (those views
+         are now OWL components), and a nameless t-extend without a matching modern
+         target broke QWeb template compilation for the entire assets_web bundle,
+         blanking the whole backend. Re-adding icon+label decoration on standard
+         CRUD buttons would need a fresh OWL-based patch, not a port of this. -->
+</templates>

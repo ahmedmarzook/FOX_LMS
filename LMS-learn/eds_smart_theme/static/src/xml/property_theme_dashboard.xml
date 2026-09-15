@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<!-- ══════════════════════════════════════
+     DONUT CHART
+     ══════════════════════════════════════ -->
+<t t-name="eds_smart_theme.DonutChart">
+    <div class="pt-donut-wrap">
+        <canvas t-ref="canvas"
+            t-att-width="props.size || 160"
+            t-att-height="props.size || 160"
+            class="pt-donut-canvas"/>
+    </div>
+</t>
+
+<!-- ══════════════════════════════════════
+     MAIN DASHBOARD
+     ══════════════════════════════════════ -->
+<t t-name="eds_smart_theme.Dashboard">
+<div class="pt-dashboard" dir="rtl">
+
+    <!-- Loading -->
+    <t t-if="state.loading">
+        <div class="pt-loading">
+            <div class="pt-spinner-ring"/>
+        </div>
+    </t>
+
+    <div class="pt-body">
+
+        <!-- ══ HEADER BANNER ══ -->
+        <div class="pt-header-banner pt-anim">
+            <div class="pt-banner-actions">
+                <button class="pt-action-pill" t-on-click="goContracts">
+                    <i class="fa fa-plus"/> عقد جديد
+                </button>
+                <button class="pt-action-pill pt-action-pill-outline" t-on-click="_loadData">
+                    <i class="fa fa-refresh"/> تحديث
+                </button>
+            </div>
+            <div class="pt-banner-content">
+                <div class="pt-banner-text">
+                    <div class="pt-banner-greeting">مرحباً،</div>
+                    <div class="pt-banner-name" t-esc="state.user.name"/>
+                    <div class="pt-banner-meta">
+                        <span class="pt-banner-tag"><i class="fa fa-file-text"/> <t t-esc="state.kpis.activeContracts"/> عقد نشط</span>
+                        <span class="pt-banner-tag"><i class="fa fa-building"/> <t t-esc="state.kpis.totalProperties"/> عقار</span>
+                        <span class="pt-banner-tag"><i class="fa fa-briefcase"/> <t t-esc="state.user.role"/></span>
+                    </div>
+                </div>
+                <div class="pt-banner-avatar">
+                    <i class="fa fa-user-circle"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ ALERTS ══ -->
+        <t t-if="state.kpis.expiringContracts > 0 or state.kpis.bouncedCheques > 0 or state.kpis.overdueAmount > 0">
+            <div class="pt-alerts-strip pt-anim">
+                <t t-if="state.kpis.bouncedCheques > 0">
+                    <div class="pt-alert-chip pt-alert-red" t-on-click="goCheques">
+                        <i class="fa fa-exclamation-circle"/>
+                        <span><strong t-esc="state.kpis.bouncedCheques"/> شيك مرتجع</span>
+                    </div>
+                </t>
+                <t t-if="state.kpis.overdueAmount > 0">
+                    <div class="pt-alert-chip pt-alert-orange" t-on-click="goInvoices">
+                        <i class="fa fa-money"/>
+                        <span>متأخرات: <strong><t t-esc="fmt(state.kpis.overdueAmount)"/> ريال</strong></span>
+                    </div>
+                </t>
+                <t t-if="state.kpis.expiringContracts > 0">
+                    <div class="pt-alert-chip pt-alert-yellow" t-on-click="goContracts">
+                        <i class="fa fa-clock-o"/>
+                        <span><t t-esc="state.kpis.expiringContracts"/> عقد ينتهي خلال 90 يوم</span>
+                    </div>
+                </t>
+            </div>
+        </t>
+
+        <!-- ══ KPI GRID ══ -->
+        <div class="pt-kpi-grid pt-anim">
+
+            <div class="pt-kpi-card pt-kpi-purple" t-on-click="goInvoices">
+                <div class="pt-kpi-icon-wrap"><i class="fa fa-money"/></div>
+                <div class="pt-kpi-body">
+                    <div class="pt-kpi-val"><t t-esc="fmt(state.kpis.monthlyRevenue)"/><span class="pt-kpi-unit"> ريال</span></div>
+                    <div class="pt-kpi-lbl">الإيراد الشهري</div>
+                </div>
+                <div class="pt-kpi-sparkline pt-spark-purple"/>
+            </div>
+
+            <div class="pt-kpi-card pt-kpi-teal" t-on-click="goUnits">
+                <div class="pt-kpi-icon-wrap"><i class="fa fa-key"/></div>
+                <div class="pt-kpi-body">
+                    <div class="pt-kpi-val"><t t-esc="state.kpis.rentedUnits"/><span class="pt-kpi-unit"> وحدة</span></div>
+                    <div class="pt-kpi-lbl">الوحدات المؤجرة</div>
+                </div>
+                <div class="pt-kpi-sparkline pt-spark-teal"/>
+            </div>
+
+            <div class="pt-kpi-card pt-kpi-blue" t-on-click="goUnits">
+                <div class="pt-kpi-icon-wrap"><i class="fa fa-home"/></div>
+                <div class="pt-kpi-body">
+                    <div class="pt-kpi-val"><t t-esc="state.kpis.availableUnits"/><span class="pt-kpi-unit"> وحدة</span></div>
+                    <div class="pt-kpi-lbl">وحدات متاحة</div>
+                </div>
+                <div class="pt-kpi-sparkline pt-spark-blue"/>
+            </div>
+
+            <div class="pt-kpi-card pt-kpi-indigo" t-on-click="goProperties">
+                <div class="pt-kpi-icon-wrap"><i class="fa fa-pie-chart"/></div>
+                <div class="pt-kpi-body">
+                    <div class="pt-kpi-val"><t t-esc="state.kpis.occupancyRate"/><span class="pt-kpi-unit">%</span></div>
+                    <div class="pt-kpi-lbl">نسبة الإشغال</div>
+                </div>
+                <div class="pt-kpi-progress">
+                    <div class="pt-kpi-progress-fill" t-attf-style="width:{{state.kpis.occupancyRate}}%"/>
+                </div>
+            </div>
+
+            <div class="pt-kpi-card pt-kpi-orange" t-on-click="goCheques">
+                <div class="pt-kpi-icon-wrap"><i class="fa fa-bank"/></div>
+                <div class="pt-kpi-body">
+                    <div class="pt-kpi-val"><t t-esc="state.kpis.pendingCheques"/></div>
+                    <div class="pt-kpi-lbl">شيكات معلقة</div>
+                </div>
+                <t t-if="state.kpis.bouncedCheques > 0">
+                    <div class="pt-kpi-badge-warn"><t t-esc="state.kpis.bouncedCheques"/> مرتجع</div>
+                </t>
+            </div>
+
+            <div class="pt-kpi-card pt-kpi-red" t-on-click="goContracts">
+                <div class="pt-kpi-icon-wrap"><i class="fa fa-clock-o"/></div>
+                <div class="pt-kpi-body">
+                    <div class="pt-kpi-val"><t t-esc="state.kpis.expiringContracts"/></div>
+                    <div class="pt-kpi-lbl">تنتهي خلال 90 يوم</div>
+                </div>
+                <div class="pt-kpi-sparkline pt-spark-red"/>
+            </div>
+
+            <div class="pt-kpi-card pt-kpi-green" t-on-click="goContracts">
+                <div class="pt-kpi-icon-wrap"><i class="fa fa-file-text"/></div>
+                <div class="pt-kpi-body">
+                    <div class="pt-kpi-val"><t t-esc="state.kpis.activeContracts"/></div>
+                    <div class="pt-kpi-lbl">العقود النشطة</div>
+                </div>
+                <div class="pt-kpi-sparkline pt-spark-green"/>
+            </div>
+
+            <div class="pt-kpi-card pt-kpi-navy" t-on-click="goProperties">
+                <div class="pt-kpi-icon-wrap"><i class="fa fa-building"/></div>
+                <div class="pt-kpi-body">
+                    <div class="pt-kpi-val"><t t-esc="state.kpis.totalProperties"/></div>
+                    <div class="pt-kpi-lbl">إجمالي العقارات</div>
+                </div>
+                <div class="pt-kpi-sparkline pt-spark-navy"/>
+            </div>
+
+        </div>
+
+        <!-- ══ MAIN CONTENT ROW ══ -->
+        <div class="pt-main-row pt-anim">
+
+            <!-- جدول العقود والشيكات -->
+            <div class="pt-table-card">
+                <div class="pt-card-header">
+                    <h3 class="pt-card-title">
+                        <i class="fa fa-list-alt"/> سجل العقود والشيكات
+                    </h3>
+                    <div class="pt-tab-group">
+                        <button t-attf-class="pt-tab #{state.activeTab === 'active' ? 'active' : ''}"
+                                t-on-click="() => this.setTab('active')">
+                            <span class="pt-dot" style="background:#6C5CE7"/>
+                            العقود النشطة
+                        </button>
+                        <button t-attf-class="pt-tab #{state.activeTab === 'pending' ? 'active' : ''}"
+                                t-on-click="() => this.setTab('pending')">
+                            <span class="pt-dot" style="background:#F9A825"/>
+                            تنتهي قريباً
+                        </button>
+                        <button t-attf-class="pt-tab #{state.activeTab === 'done' ? 'active' : ''}"
+                                t-on-click="() => this.setTab('done')">
+                            <span class="pt-dot" style="background:#00B894"/>
+                            الشيكات
+                        </button>
+                    </div>
+                    <button class="pt-link-btn" t-on-click="goContracts">
+                        عرض الكل <i class="fa fa-arrow-left"/>
+                    </button>
+                </div>
+
+                <!-- Contracts -->
+                <t t-if="state.activeTab === 'active' or state.activeTab === 'pending'">
+                    <div class="pt-table-wrap">
+                        <table class="pt-table">
+                            <thead>
+                                <tr>
+                                    <th>رقم العقد</th>
+                                    <th>المستأجر</th>
+                                    <th>الوحدة</th>
+                                    <th>تاريخ الانتهاء</th>
+                                    <th>الإيجار السنوي</th>
+                                    <th>الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="filteredContracts" t-as="c" t-key="c.id">
+                                    <tr class="pt-table-row" t-on-click="() => this.openContract(c.id)">
+                                        <td class="pt-td-num" t-esc="c.name"/>
+                                        <td>
+                                            <div class="pt-submitter">
+                                                <div class="pt-submitter-avatar" t-esc="initials(c.tenant_id[1])"/>
+                                                <span t-esc="c.tenant_id[1]"/>
+                                            </div>
+                                        </td>
+                                        <td class="pt-td-muted" t-esc="c.unit_id[1]"/>
+                                        <td class="pt-td-date" t-esc="fmtDate(c.end_date)"/>
+                                        <td class="pt-td-money">
+                                            <t t-esc="fmt(c.annual_rent)"/> <small>ريال/سنة</small>
+                                        </td>
+                                        <td>
+                                            <span t-attf-class="pt-badge #{stateBadge(c.state)}"
+                                                  t-esc="stateLabel(c.state)"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-if="filteredContracts.length === 0">
+                                    <tr><td colspan="6">
+                                        <div class="pt-empty"><i class="fa fa-file-text"/><p>لا توجد عقود</p></div>
+                                    </td></tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+
+                <!-- Cheques -->
+                <t t-if="state.activeTab === 'done'">
+                    <div class="pt-table-wrap">
+                        <table class="pt-table">
+                            <thead>
+                                <tr>
+                                    <th>رقم الشيك</th>
+                                    <th>المستأجر</th>
+                                    <th>البنك</th>
+                                    <th>تاريخ الاستحقاق</th>
+                                    <th>المبلغ</th>
+                                    <th>الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="filteredCheques" t-as="ch" t-key="ch.id">
+                                    <tr class="pt-table-row" t-on-click="() => this.openCheque(ch.id)">
+                                        <td class="pt-td-num" t-esc="ch.name"/>
+                                        <td>
+                                            <div class="pt-submitter">
+                                                <div class="pt-submitter-avatar" t-esc="initials(ch.tenant_id[1])"/>
+                                                <span t-esc="ch.tenant_id[1]"/>
+                                            </div>
+                                        </td>
+                                        <td class="pt-td-muted" t-esc="(ch.bank_id and ch.bank_id[1]) || '-'"/>
+                                        <td class="pt-td-date" t-esc="fmtDate(ch.due_date)"/>
+                                        <td class="pt-td-money">
+                                            <t t-esc="fmt(ch.amount)"/> <small>ريال</small>
+                                        </td>
+                                        <td>
+                                            <span t-attf-class="pt-badge #{chequeBadge(ch.state)}"
+                                                  t-esc="chequeLabel(ch.state)"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-if="filteredCheques.length === 0">
+                                    <tr><td colspan="6">
+                                        <div class="pt-empty"><i class="fa fa-bank"/><p>لا توجد شيكات</p></div>
+                                    </td></tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </div>
+
+            <!-- sidebar: donut + quicklinks -->
+            <div class="pt-sidebar">
+
+                <!-- توزيع الوحدات -->
+                <div class="pt-stats-card">
+                    <div class="pt-card-header">
+                        <h3 class="pt-card-title"><i class="fa fa-pie-chart"/> توزيع الوحدات</h3>
+                    </div>
+                    <div class="pt-donut-section">
+                        <PtDonutChart segments="state.donutSegments" size="160"/>
+                        <div class="pt-donut-legend">
+                            <t t-foreach="state.donutSegments" t-as="seg" t-key="seg.label">
+                                <div class="pt-legend-row">
+                                    <span class="pt-legend-dot" t-attf-style="background:{{seg.color}}"/>
+                                    <span class="pt-legend-name" t-esc="seg.label"/>
+                                    <span class="pt-legend-pct" t-esc="seg.value + ' وحدة'"/>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="pt-quicklinks-card">
+                    <div class="pt-card-header">
+                        <h3 class="pt-card-title"><i class="fa fa-bolt"/> إجراءات سريعة</h3>
+                    </div>
+                    <div class="pt-ql-grid">
+                        <t t-foreach="state.quickLinks" t-as="ql" t-key="ql.label">
+                            <button class="pt-ql-btn" t-on-click="() => this.go(ql.action)">
+                                <div class="pt-ql-icon"
+                                     t-attf-style="background:linear-gradient(135deg,{{ql.color}},{{ql.color}}99)">
+                                    <i t-attf-class="fa {{ql.icon}}"/>
+                                </div>
+                                <span class="pt-ql-label" t-esc="ql.label"/>
+                            </button>
+                        </t>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</t>
+
+</templates>

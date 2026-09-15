@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="snippet_id" inherit_id="website.snippets">
+        <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+            <t t-snippet="web_openeducat.slider" string="OpenEduCat Slider" group="intro"
+               t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+            <t t-snippet="web_openeducat.about-us" string="OpenEduCat About Us" group="content"
+               t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+            <t t-snippet="web_openeducat.ourcourse" string="OpenEduCat Courses" group="catalog"
+               t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+            <t t-snippet="web_openeducat.achievement" string="OpenEduCat Achievement" group="content"
+               t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+            <t t-snippet="web_openeducat.teacher" string="OpenEduCat Teachers" group="people"
+               t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+            <t t-snippet="web_openeducat.event" string="OpenEduCat Events" group="content"
+               t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+            <t t-snippet="web_openeducat.newsfeed" string="OpenEduCat Newsfeed" group="content"
+               t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+            <t t-snippet="web_openeducat.footer" string="OpenEduCat Footer" group="content"
+               t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+        </xpath>
+    </template>
+</odoo>

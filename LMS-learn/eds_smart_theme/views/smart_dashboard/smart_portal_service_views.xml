@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_smart_portal_service_item_tree" model="ir.ui.view">
+        <field name="name">smart.portal.service.item.tree</field>
+        <field name="model">smart.portal.service.item</field>
+        <field name="arch" type="xml">
+            <list string="Services" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="active"/>
+                <field name="name"/>
+                <field name="view_id"/>
+                <field name="link_url"/>
+                <field name="category_id" column_invisible="context.get('default_category_id')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_smart_portal_service_category_tree" model="ir.ui.view">
+        <field name="name">smart.portal.service.category.tree</field>
+        <field name="model">smart.portal.service.category</field>
+        <field name="arch" type="xml">
+            <list string="Service categories">
+                <field name="sequence" widget="handle"/>
+                <field name="active"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="item_count"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_smart_portal_service_category_form" model="ir.ui.view">
+        <field name="name">smart.portal.service.category.form</field>
+        <field name="model">smart.portal.service.category</field>
+        <field name="arch" type="xml">
+            <form string="Service category">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="active"/>
+                            <field name="sequence"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="item_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Services" name="services">
+                            <field name="item_ids" context="{'default_category_id': id}">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="active"/>
+                                    <field name="name"/>
+                                    <field name="view_id"/>
+                                    <field name="link_url"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_smart_portal_service_item_form" model="ir.ui.view">
+        <field name="name">smart.portal.service.item.form</field>
+        <field name="model">smart.portal.service.item</field>
+        <field name="arch" type="xml">
+            <form string="Service">
+                <sheet>
+                    <group>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="category_id"/>
+                        <field name="name"/>
+                        <field name="view_id"/>
+                        <field name="link_url" placeholder="https://example.com (optional when Open view is set)"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_smart_portal_service_category" model="ir.actions.act_window">
+        <field name="name">Self-service categories</field>
+        <field name="res_model">smart.portal.service.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create categories (tabs) and services shown on the Smart Portal dashboard.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_smart_portal_service_item" model="ir.actions.act_window">
+        <field name="name">Self-service items</field>
+        <field name="res_model">smart.portal.service.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add services for each category tab. Set Open view to launch an Odoo screen, or Link for external URLs.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_smart_portal_service_categories"
+              name="Self-service categories"
+              parent="menu_smart_portal_root"
+              action="action_smart_portal_service_category"
+              sequence="20"/>
+    <menuitem id="menu_smart_portal_service_items"
+              name="Self-service items"
+              parent="menu_smart_portal_root"
+              action="action_smart_portal_service_item"
+              sequence="25"/>
+</odoo>

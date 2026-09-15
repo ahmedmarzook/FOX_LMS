@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="StudentAttendanceKioskMode">
+        <div class="o_student_attendance_kiosk_mode_container o_home_menu_background">
+            <span class="o_student_attendance_kiosk_backdrop"/>
+            <div class="o_student_attendance_clock text-center">
+                <t t-esc="state.clock"/>
+            </div>
+            <div class="o_student_attendance_kiosk_mode">
+                <h1>
+                    <small>Welcome to</small>
+                    <t t-esc="state.companyName"/>
+                </h1>
+                <img t-att-src="state.companyImageUrl"
+                     alt="Company Logo"
+                     class="o_student_attendance_kiosk_company_image"/>
+                <div class="row o_student_attendance_kiosk_welcome_row">
+                    <div class="col-sm-5">
+                        <img class="img img-fluid d-block mx-auto"
+                             src="/openeducat_student_attendance_enterprise/static/src/img/barcode.png"
+                             alt="Barcode"/>
+                        <h5 class="mt-2 mb-0 text-muted">Scan your badge</h5>
+                    </div>
+                    <div class="col-sm-2"><h3><i>or</i></h3></div>
+                    <div class="col-sm-5">
+                        <button class="o_student_attendance_button_students btn btn-primary"
+                                t-on-click="selectStudent">
+                            Select Student
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="StudentAttendanceKioskConfirm">
+        <div class="o_student_attendance_kiosk_mode_container o_home_menu_background">
+            <span class="o_student_attendance_kiosk_backdrop"/>
+            <div class="o_student_attendance_clock text-center">
+                <t t-esc="state.clock"/>
+            </div>
+            <div class="o_student_attendance_kiosk_mode">
+                <button class="btn btn-secondary mb-3" t-on-click="goBack">
+                    Go back
+                </button>
+                <t t-if="state.studentId">
+                    <div class="o_student_attendance_user_badge o_home_menu_background">
+                        <img class="img rounded-circle"
+                             t-att-src="'/web/image?model=op.student&amp;field=image_1920&amp;id=' + state.studentId"
+                             t-att-title="state.studentName"
+                             t-att-alt="state.studentName"/>
+                    </div>
+                    <h1><t t-esc="state.studentName"/></h1>
+
+                    <t t-if="sheetEntries.length">
+                        <h3>Attendance Sheets</h3>
+                        <div class="row">
+                            <t t-foreach="sheetEntries" t-as="sheet" t-key="sheet[0]">
+                                <div class="col p-2 border mb-2">
+                                    <label class="form-check-label">
+                                        <input type="radio"
+                                               class="mx-2"
+                                               name="attendance_sheets"
+                                               t-att-value="sheet[0]"
+                                               t-att-checked="Number(sheet[0]) === state.selectedAttendanceId"
+                                               t-on-change="selectAttendance"/>
+                                        <t t-esc="sheet[1]"/>
+                                    </label>
+                                </div>
+                            </t>
+                        </div>
+                        <input class="o_student_attendance_PINbox text-center form-control my-3"
+                               type="password"
+                               t-att-value="state.pin"
+                               readonly="readonly"/>
+                        <div class="row">
+                            <t t-foreach="[1,2,3,4,5,6,7,8,9]" t-as="digit" t-key="digit">
+                                <div class="col-4 mb-2">
+                                    <button class="btn btn-secondary btn-lg w-100"
+                                            t-on-click="() => this.addDigit(digit)">
+                                        <t t-esc="digit"/>
+                                    </button>
+                                </div>
+                            </t>
+                            <div class="col-4 mb-2">
+                                <button class="btn btn-warning btn-lg w-100"
+                                        t-on-click="clearPin">C</button>
+                            </div>
+                            <div class="col-4 mb-2">
+                                <button class="btn btn-secondary btn-lg w-100"
+                                        t-on-click="() => this.addDigit(0)">0</button>
+                            </div>
+                            <div class="col-4 mb-2">
+                                <button class="btn btn-primary btn-lg w-100"
+                                        t-on-click="confirm">OK</button>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <h3>No open Attendance Sheet. Please contact the administrator.</h3>
+                    </t>
+                </t>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="StudentAttendanceGreetingMessage">
+        <div class="o_student_attendance_kiosk_mode_container o_home_menu_background">
+            <span class="o_student_attendance_kiosk_backdrop"/>
+            <div class="o_student_attendance_clock text-center">
+                <t t-esc="state.clock"/>
+            </div>
+            <div class="o_student_attendance_kiosk_mode">
+                <t t-if="state.attendance">
+                    <h1>Welcome <t t-esc="state.studentName"/>!</h1>
+                    <h2><t t-esc="state.message"/></h2>
+                    <div class="alert alert-info">
+                        Signed in successfully.
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="alert alert-warning">
+                        Invalid request. Please return to the main menu.
+                    </div>
+                </t>
+                <button class="btn btn-primary btn-lg" t-on-click="dismiss">OK</button>
+            </div>
+        </div>
+    </t>
+</templates>

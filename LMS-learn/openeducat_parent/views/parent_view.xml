@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Student Form: Parents Smart Button -->
+        <record model="ir.ui.view" id="parent_student_form_view">
+            <field name="name">op.student.form.parent.inherit</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+            <field name="priority" eval="12"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button"
+                            type="object"
+                            name="get_parent"
+                            icon="fa-users">
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">Parents</span>
+                        </div>
+                    </button>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <!-- Parent List View -->
+        <record id="view_op_parent_list" model="ir.ui.view">
+            <field name="name">op.parent.list</field>
+            <field name="model">op.parent</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="Parents">
+                    <field name="name"/>
+                    <field name="mobile"/>
+                    <field name="relationship_id"/>
+                    <field name="user_id"/>
+                    <field name="student_ids" widget="many2many_tags"/>
+                    <field name="active" optional="hide"/>
+                </list>
+            </field>
+        </record>
+
+
+        <!-- Parent Form View -->
+        <record id="view_op_parent_form" model="ir.ui.view">
+            <field name="name">op.parent.form</field>
+            <field name="model">op.parent</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Parent">
+
+                    <header>
+                        <button type="object"
+                                name="create_parent_user"
+                                string="Create Parent User"
+                                groups="openeducat_core.group_op_back_office_admin"
+                                class="oe_highlight"
+                                invisible="user_id"/>
+                    </header>
+
+                    <sheet>
+
+                        <field name="active" invisible="1"/>
+
+                        <widget name="web_ribbon"
+                                title="Archived"
+                                bg_color="text-bg-danger"
+                                invisible="active"/>
+
+                        <group string="Parent Basic Data">
+                            <group>
+                                <field name="name"
+                                       string="Parent Name"
+                                       placeholder="Parent Name"
+                                       required="1"/>
+                                <field name="mobile"
+                                       placeholder="Mobile Number"/>
+                            </group>
+
+                            <group>
+                                <field name="relationship_id"
+                                       string="Relation with Student"
+                                       required="1"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="user_id"
+                                       readonly="1"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Students" name="students_page">
+                                <field name="student_ids"
+                                       widget="many2many_tags"
+                                       placeholder="Select related students"
+                                       options="{'no_create': True, 'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Parent Search View -->
+        <record id="view_op_parent_search" model="ir.ui.view">
+            <field name="name">op.parent.search</field>
+            <field name="model">op.parent</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Parents">
+                    <field name="name"/>
+                    <field name="mobile"/>
+                    <field name="student_ids"/>
+                    <field name="relationship_id"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Parent Action -->
+        <record model="ir.actions.act_window" id="act_open_op_parent_view">
+            <field name="name">Parents</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.parent</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_op_parent_search"/>
+            <field name="target">current</field>
+        </record>
+
+
+        <!-- Parent Action List -->
+        <record model="ir.actions.act_window.view" id="act_open_op_parent_view_list">
+            <field name="act_window_id" ref="act_open_op_parent_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_parent_list"/>
+        </record>
+
+
+        <!-- Parent Action Form -->
+        <record model="ir.actions.act_window.view" id="act_open_op_parent_view_form">
+            <field name="act_window_id" ref="act_open_op_parent_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_parent_form"/>
+        </record>
+
+    </data>
+</odoo>

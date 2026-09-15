@@ -1,0 +1,1334 @@
+/* ═══════════════════════════════════════════════════════
+   04_odoo_components.css
+   إعادة تصميم مكونات Odoo بالثيم الجديد
+   ═══════════════════════════════════════════════════════ */
+
+/* ════════════════════════
+   BUTTONS
+   ════════════════════════ */
+.btn {
+    font-family: var(--pt-font) !important;
+    font-weight: 600 !important;
+    border-radius: var(--pt-radius-pill) !important;
+    transition: all 0.25s var(--pt-ease) !important;
+    letter-spacing: 0.2px !important;
+}
+
+.btn-primary {
+    background: var(--pt-grad-main) !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(67, 97, 238, 0.25) !important;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background: var(--pt-grad-purple) !important;
+    box-shadow: 0 4px 14px rgba(67, 97, 238, 0.35) !important;
+    color: white !important;
+}
+
+.btn-secondary {
+    background: var(--pt-surface) !important;
+    border: 1.5px solid var(--pt-border) !important;
+    color: var(--pt-text-2) !important;
+}
+
+.btn-secondary:hover {
+    background: var(--pt-surface-2) !important;
+    border-color: var(--pt-purple-light) !important;
+    color: var(--pt-purple) !important;
+}
+
+.btn-danger {
+    background: var(--pt-grad-red) !important;
+    border: none !important;
+    color: white !important;
+}
+
+.btn-success {
+    background: var(--pt-grad-green) !important;
+    border: none !important;
+    color: white !important;
+}
+
+.btn-warning {
+    background: var(--pt-grad-orange) !important;
+    border: none !important;
+    color: white !important;
+}
+
+.btn-info {
+    background: var(--pt-grad-blue) !important;
+    border: none !important;
+    color: white !important;
+}
+
+/* ════════════════════════
+   FORM VIEW
+   ════════════════════════ */
+.o_form_view {
+    background: var(--pt-bg) !important;
+    font-family: var(--pt-font) !important;
+}
+
+.o_form_view .o_form_sheet_bg {
+    background: var(--pt-bg) !important;
+    /* top:0 keeps content flush with statusbar; sides/bottom 16px */
+    padding: 0 16px 16px !important;
+    /* Allow sheet_bg to shrink freely as chatter expands */
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+}
+
+.o_form_view .o_form_sheet {
+    background: var(--pt-surface) !important;
+    border-radius: var(--pt-radius) !important;
+    border: 1px solid var(--pt-border-light) !important;
+    box-shadow: var(--pt-shadow) !important;
+    padding: 28px !important;
+    /* Fill the sheet_bg so it tracks chatter resize */
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Form labels */
+.o_form_view .o_field_label,
+.o_form_view .o_form_label {
+    font-weight: 600 !important;
+    color: var(--pt-text-2) !important;
+    font-size: 16px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+}
+
+/* Group headers */
+.o_form_view .o_group .o_form_label {
+    color: var(--pt-text-muted) !important;
+    font-size: 15px !important;
+}
+
+/* Field values */
+.o_form_view .o_field_widget {
+    color: var(--pt-text) !important;
+    font-weight: 500 !important;
+}
+
+/* Inputs */
+.o_form_view input.o_field_widget,
+.o_form_view textarea.o_field_widget,
+.o_form_view select.o_field_widget,
+.o_form_view .o_field_widget input,
+.o_form_view .o_field_widget textarea {
+    border: 1.5px solid var(--pt-border) !important;
+    border-radius: var(--pt-radius-xs) !important;
+    background: var(--pt-surface-2) !important;
+    color: var(--pt-text) !important;
+    padding: 8px 12px !important;
+    transition: border-color 0.2s !important;
+}
+
+.o_form_view input.o_field_widget:focus,
+.o_form_view .o_field_widget input:focus {
+    border-color: var(--pt-purple) !important;
+    background: var(--pt-surface) !important;
+    box-shadow: 0 0 0 3px var(--pt-purple-bg) !important;
+    outline: none !important;
+}
+
+/* Status Bar — Odoo default */
+
+/* Notebook tabs */
+.o_form_view .o_notebook .nav-tabs {
+    border-bottom: 2px solid var(--pt-border) !important;
+    background: transparent !important;
+    padding: 0 !important;
+    gap: 4px !important;
+}
+
+.o_form_view .o_notebook .nav-tabs .nav-link {
+    color: var(--pt-text-muted) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 10px 16px !important;
+    position: relative !important;
+    transition: color 0.2s !important;
+}
+
+.o_form_view .o_notebook .nav-tabs .nav-link::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -2px !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 2px !important;
+    background: var(--pt-grad-main) !important;
+    border-radius: 2px 2px 0 0 !important;
+    transform: scaleX(0) !important;
+    transition: transform 0.25s var(--pt-ease) !important;
+}
+
+.o_form_view .o_notebook .nav-tabs .nav-link.active {
+    color: var(--pt-purple) !important;
+    background: transparent !important;
+}
+
+.o_form_view .o_notebook .nav-tabs .nav-link.active::after {
+    transform: scaleX(1) !important;
+}
+
+/* Chatter */
+.o_form_view .o_chatter {
+    background: var(--pt-surface) !important;
+    border-radius: var(--pt-radius) !important;
+    border: 1px solid var(--pt-border-light) !important;
+    margin-top: 16px !important;
+}
+
+/* Stat / Smart buttons — supports both Odoo 16 (.oe_button_box) and Odoo 17+ (.o-form-buttonbox) */
+.o_form_view .oe_button_box .oe_stat_button,
+.o_form_view .o-form-buttonbox .oe_stat_button {
+    --o-stat-button-color: var(--pt-purple) !important;   /* icon colour consumed by Odoo core */
+    border-radius: var(--pt-radius-sm) !important;
+    border: 1.5px solid var(--pt-border) !important;
+    background: var(--pt-surface-2) !important;
+    transition: all 0.2s !important;
+}
+
+.o_form_view .oe_button_box .oe_stat_button:hover,
+.o_form_view .o-form-buttonbox .oe_stat_button:hover {
+    --o-stat-button-color: var(--pt-purple) !important;
+    background: var(--pt-purple-bg) !important;
+    border-color: var(--pt-purple-light) !important;
+    color: var(--pt-purple) !important;
+    box-shadow: var(--pt-shadow-sm) !important;
+}
+
+/* Smart button icon (.o_button_icon = FontAwesome or Odoo icon inside stat button) */
+.o_form_view .oe_button_box .oe_stat_button .o_button_icon,
+.o_form_view .o-form-buttonbox .oe_stat_button .o_button_icon {
+    color: var(--pt-purple) !important;
+    font-size: 1.5em !important;
+}
+
+.o_form_view .oe_button_box .oe_stat_button .o_stat_value,
+.o_form_view .o-form-buttonbox .oe_stat_button .o_stat_value {
+    color: var(--pt-purple) !important;
+    font-weight: 800 !important;
+    font-size: 16px !important;
+}
+
+/* ── Action menu button (gear / cog in control panel) ── */
+.o_cp_action_menus .btn {
+    border-radius: var(--pt-radius-pill) !important;
+    border: 1.5px solid var(--pt-border) !important;
+    background: var(--pt-surface) !important;
+    color: var(--pt-text-2) !important;
+    font-weight: 600 !important;
+    transition: all 0.2s var(--pt-ease) !important;
+}
+
+.o_cp_action_menus .btn:hover {
+    background: var(--pt-purple-bg) !important;
+    border-color: var(--pt-purple-light) !important;
+    color: var(--pt-purple) !important;
+    box-shadow: var(--pt-shadow-sm) !important;
+}
+
+.o_cp_action_menus .btn .fa {
+    color: inherit !important;
+}
+
+/* ════════════════════════
+   LIST VIEW
+   ════════════════════════ */
+.o_list_view {
+    background: var(--pt-surface) !important;
+    border-radius: var(--pt-radius) !important;
+    border: 1px solid var(--pt-border-light) !important;
+    box-shadow: var(--pt-shadow) !important;
+    overflow: hidden !important;
+    font-family: var(--pt-font) !important;
+}
+
+.o_list_view thead th {
+    background: var(--pt-surface-2) !important;
+    color: var(--pt-text-muted) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border-bottom: 2px solid var(--pt-border) !important;
+    padding: 12px 16px !important;
+}
+
+.o_list_view tbody tr {
+    border-bottom: 1px solid var(--pt-border-light) !important;
+    transition: background 0.15s !important;
+}
+
+.o_list_view tbody tr:hover {
+    background: var(--pt-surface-2) !important;
+}
+
+.o_list_view tbody td {
+    padding: 12px 16px !important;
+    color: var(--pt-text-2) !important;
+    font-size: 15px !important;
+}
+
+/* ════════════════════════
+   KANBAN VIEW
+   ════════════════════════ */
+.o_kanban_view {
+    background: var(--pt-bg) !important;
+    font-family: var(--pt-font) !important;
+}
+
+.o_kanban_card {
+    background: var(--pt-surface) !important;
+    border-radius: var(--pt-radius-sm) !important;
+    border: 1px solid var(--pt-border-light) !important;
+    box-shadow: var(--pt-shadow-sm) !important;
+    transition: all 0.25s var(--pt-ease) !important;
+}
+
+.o_kanban_card:hover {
+    box-shadow: var(--pt-shadow-md) !important;
+    border-color: var(--pt-border) !important;
+}
+
+.o_kanban_group_header {
+    background: transparent !important;
+    font-family: var(--pt-font) !important;
+    font-weight: 700 !important;
+    color: var(--pt-text-2) !important;
+}
+
+/* ════════════════════════
+   BADGES
+   ════════════════════════ */
+.badge {
+    font-family: var(--pt-font) !important;
+    border-radius: var(--pt-radius-pill) !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 3px 10px !important;
+}
+
+.badge.bg-success, .badge.text-bg-success {
+    background: rgba(0, 184, 148, 0.15) !important;
+    color: #00B894 !important;
+}
+
+.badge.bg-warning, .badge.text-bg-warning {
+    background: rgba(249, 168, 37, 0.15) !important;
+    color: #F9A825 !important;
+}
+
+.badge.bg-danger, .badge.text-bg-danger {
+    background: rgba(255, 118, 117, 0.15) !important;
+    color: #FF7675 !important;
+}
+
+.badge.bg-info, .badge.text-bg-info {
+    background: rgba(74, 144, 217, 0.15) !important;
+    color: #4A90D9 !important;
+}
+
+.badge.bg-primary, .badge.text-bg-primary {
+    background: rgba(108, 92, 231, 0.15) !important;
+    color: var(--pt-purple) !important;
+}
+
+.badge.bg-secondary, .badge.text-bg-secondary {
+    background: var(--pt-surface-3) !important;
+    color: var(--pt-text-muted) !important;
+}
+
+/* ════════════════════════
+   MODALS & DIALOGS
+   ════════════════════════ */
+.modal-content,
+.o_dialog .modal-content {
+    border-radius: var(--pt-radius) !important;
+    border: none !important;
+    box-shadow: var(--pt-shadow-lg) !important;
+    font-family: var(--pt-font) !important;
+}
+
+.modal-header {
+    background: var(--pt-surface-2) !important;
+    border-bottom: 1px solid var(--pt-border) !important;
+    border-radius: var(--pt-radius) var(--pt-radius) 0 0 !important;
+    padding: 16px 24px !important;
+}
+
+.modal-title {
+    font-weight: 700 !important;
+    color: var(--pt-text) !important;
+    font-size: 18px !important;
+}
+
+.modal-body {
+    padding: 24px !important;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--pt-border) !important;
+    padding: 16px 24px !important;
+    background: var(--pt-surface-2) !important;
+    border-radius: 0 0 var(--pt-radius) var(--pt-radius) !important;
+}
+
+/* ════════════════════════
+   DROPDOWN MENUS
+   ════════════════════════ */
+.dropdown-menu {
+    border: 1px solid var(--pt-border) !important;
+    border-radius: var(--pt-radius-sm) !important;
+    box-shadow: var(--pt-shadow-md) !important;
+    font-family: var(--pt-font) !important;
+    padding: 6px !important;
+}
+
+.dropdown-item {
+    border-radius: var(--pt-radius-xs) !important;
+    color: var(--pt-text-2) !important;
+    font-weight: 500 !important;
+    padding: 8px 12px !important;
+    transition: all 0.15s !important;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background: var(--pt-purple-bg) !important;
+    color: var(--pt-purple) !important;
+}
+
+/* ════════════════════════
+   ALERTS
+   ════════════════════════ */
+.alert {
+    border-radius: var(--pt-radius-sm) !important;
+    border: none !important;
+    font-family: var(--pt-font) !important;
+    font-weight: 500 !important;
+}
+
+.alert-success {
+    background: rgba(0, 184, 148, 0.1) !important;
+    color: #00B894 !important;
+}
+
+.alert-warning {
+    background: rgba(249, 168, 37, 0.12) !important;
+    color: #E65100 !important;
+}
+
+.alert-danger {
+    background: rgba(255, 118, 117, 0.12) !important;
+    color: #C62828 !important;
+}
+
+.alert-info {
+    background: rgba(108, 92, 231, 0.1) !important;
+    color: var(--pt-purple) !important;
+}
+
+/* ════════════════════════
+   PAGINATION
+   ════════════════════════ */
+.o_pager {
+    font-family: var(--pt-font) !important;
+}
+
+.o_pager_value {
+    color: var(--pt-text-2) !important;
+    font-weight: 600 !important;
+}
+
+/* ════════════════════════
+   SEARCH BAR
+   ════════════════════════ */
+.o_searchview {
+    border-radius: var(--pt-radius-pill) !important;
+    border: 1.5px solid var(--pt-border) !important;
+    background: var(--pt-surface) !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+.o_searchview:focus-within {
+    border-color: var(--pt-purple) !important;
+    box-shadow: 0 0 0 3px var(--pt-purple-bg) !important;
+}
+
+.o_searchview input {
+    font-family: var(--pt-font) !important;
+    color: var(--pt-text) !important;
+    background: transparent !important;
+}
+
+.o_searchview .o_searchview_facet {
+    background: var(--pt-purple-bg) !important;
+    color: var(--pt-purple) !important;
+    border-radius: var(--pt-radius-pill) !important;
+    border: 1px solid rgba(108,92,231,0.2) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}
+
+/* ════════════════════════════════════════════
+   SEARCH BAR — أيقونة الفلتر (التطبيقات) + أيقونة الحذف
+   ════════════════════════════════════════════ */
+
+/* ── إخفاء أيقونة البحث (🔍) داخل الشريط ── */
+.o_searchview .o_searchview_input_container .fa-search,
+.o_searchview .fa-search,
+.o_searchview [class*="search"] > .fa-search,
+.o_cp_searchview .fa-search,
+.o_searchview .o_searchview_input_container > span.fa-search,
+.o_searchview button.o_searchview_input > .fa-search,
+.o_searchview > .o_searchview_input_container .fa-search {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+}
+
+/* إخفاء أي زر يحتوي فقط على fa-search */
+.o_searchview button:has(> .fa-search):not(.o_searchview_dropdown_toggler),
+.o_searchview span:has(> .fa-search) {
+    display: none !important;
+}
+
+/* ── تنسيق زر السهم (dropdown toggler) يسار الشريط ── */
+.o_searchview .o_searchview_dropdown_toggler,
+.o_searchview .o_dropdown_button,
+.o_searchview .o_searchview_input_container .o_searchview_dropdown_toggler {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    border-radius: 50% !important;
+    background: rgba(67, 97, 238, 0.12) !important;
+    border: 1.5px solid rgba(67, 97, 238, 0.30) !important;
+    color: var(--pt-primary-lt) !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 5px !important;
+    flex-shrink: 0 !important;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.07) !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* استبدال السهم بأيقونة فلتر أجمل */
+.o_searchview .o_searchview_dropdown_toggler .fa-caret-down,
+.o_searchview .o_dropdown_button .fa-caret-down,
+.o_searchview .o_searchview_dropdown_toggler .fa,
+.o_searchview .o_dropdown_button .fa,
+.o_searchview .o_searchview_dropdown_toggler i,
+.o_searchview .o_dropdown_button i {
+    font-size: 14px !important;
+    color: var(--pt-primary-lt) !important;
+    line-height: 1 !important;
+    transition: transform 0.2s ease, color 0.2s !important;
+}
+
+/* استبدال fa-caret-down بأيقونة فلتر (قمع) */
+.o_searchview .o_searchview_dropdown_toggler .fa-caret-down::before,
+.o_searchview .o_dropdown_button .fa-caret-down::before {
+    content: "\f0b0" !important; /* fa-filter */
+    font-size: 13px !important;
+}
+
+.o_searchview .o_searchview_dropdown_toggler:hover,
+.o_searchview .o_dropdown_button:hover {
+    background: rgba(67, 97, 238, 0.20) !important;
+    color: #ffffff !important;
+    border-color: rgba(67, 97, 238, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.12) !important;
+}
+
+.o_searchview .o_searchview_dropdown_toggler:hover .fa,
+.o_searchview .o_dropdown_button:hover .fa,
+.o_searchview .o_searchview_dropdown_toggler:hover i,
+.o_searchview .o_dropdown_button:hover i {
+    color: #ffffff !important;
+}
+
+/* ── أيقونة X (حذف) داخل الـ facet ── */
+.o_searchview .o_facet_remove,
+.o_searchview .o_searchview_facet .o_facet_remove,
+.o_searchview_facet > .o_facet_remove {
+    all: unset !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    border-radius: 50% !important;
+    background: rgba(244,63,94,0.18) !important;
+    border: 1px solid rgba(244,63,94,0.3) !important;
+    color: rgba(244,63,94,0.85) !important;
+    cursor: pointer !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    margin: 0 0 0 5px !important;
+    flex-shrink: 0 !important;
+    transition: background 0.18s, color 0.18s, transform 0.18s, box-shadow 0.18s !important;
+    vertical-align: middle !important;
+}
+
+.o_searchview .o_facet_remove:hover {
+    background: rgba(244,63,94,0.32) !important;
+    color: #fca5a5 !important;
+    border-color: rgba(244,63,94,0.6) !important;
+    box-shadow: 0 0 6px rgba(244,63,94,0.35) !important;
+}
+
+/* ── إجبار ظهور أيقونة X الصح (fa-times) ── */
+.o_searchview .o_facet_remove::before {
+    font-family: "FontAwesome" !important;
+    content: "\f00d" !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+    color: inherit !important;
+    display: block !important;
+}
+
+/* إخفاء أي محتوى داخلي آخر وإبقاء الـ ::before فقط */
+.o_searchview .o_facet_remove * {
+    display: none !important;
+}
+
+/* ── زر مسح كل البحث (clear all) ── */
+.o_searchview .o_searchview_input_container > .o_searchview_input[type="reset"],
+.o_cp_searchview .o_searchview_input_container > button[aria-label*="clear"],
+.o_cp_searchview .o_searchview_input_container > button[title*="Clear"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 50% !important;
+    background: rgba(244,63,94,0.15) !important;
+    border: 1px solid rgba(244,63,94,0.25) !important;
+    color: rgba(244,63,94,0.8) !important;
+    cursor: pointer !important;
+    font-size: 12px !important;
+    padding: 0 !important;
+    transition: all 0.18s !important;
+}
+
+/* ── أيقونة الفلتر (مثلث/قمع filter) ── */
+.o_searchview .o_searchview_dropdown_toggler .fa-caret-down,
+.o_searchview .o_dropdown_button .fa-caret-down {
+    font-size: 13px !important;
+    color: inherit !important;
+}
+
+/* ════════════════════════
+   SCROLLBARS
+   ════════════════════════ */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--pt-surface-2);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--pt-border);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--pt-purple-light);
+}
+
+/* ════════════════════════
+   MISCELLANEOUS
+   ════════════════════════ */
+/* Progress bars */
+.progress {
+    background: var(--pt-surface-3) !important;
+    border-radius: var(--pt-radius-pill) !important;
+    height: 8px !important;
+}
+
+.progress-bar {
+    background: var(--pt-grad-main) !important;
+    border-radius: var(--pt-radius-pill) !important;
+}
+
+/* Tables */
+.table {
+    font-family: var(--pt-font) !important;
+    color: var(--pt-text-2) !important;
+}
+
+.table thead th {
+    background: var(--pt-surface-2) !important;
+    color: var(--pt-text-muted) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+    border-bottom: 2px solid var(--pt-border) !important;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid var(--pt-border-light) !important;
+    transition: background 0.15s !important;
+}
+
+.table tbody tr:hover {
+    background: var(--pt-surface-2) !important;
+}
+
+/* Cards */
+.card {
+    border-radius: var(--pt-radius) !important;
+    border: 1px solid var(--pt-border-light) !important;
+    box-shadow: var(--pt-shadow) !important;
+    font-family: var(--pt-font) !important;
+}
+
+.card-header {
+    background: var(--pt-surface-2) !important;
+    border-bottom: 1px solid var(--pt-border) !important;
+    font-weight: 700 !important;
+    border-radius: var(--pt-radius) var(--pt-radius) 0 0 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   FORM FIELDS — Field sizing, Boolean, Required
+   ═══════════════════════════════════════════════════ */
+
+/* ── 1. توحيد ارتفاع الخانات في المجموعات ── */
+.o_form_view .o_group td.o_td_field,
+.o_form_view .o_group .o_field_widget {
+    min-height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.o_form_view .o_group td.o_wrap_field {
+    padding: 6px 8px !important;
+    vertical-align: middle !important;
+}
+
+/* توحيد عرض عمود التسمية */
+.o_form_view .o_group > tbody > tr > td.o_td_label {
+    width: 38% !important;
+    min-width: 160px !important;
+    max-width: 240px !important;
+    vertical-align: middle !important;
+    padding: 6px 12px 6px 8px !important;
+}
+
+/* توحيد عرض عمود القيمة */
+.o_form_view .o_group > tbody > tr > td.o_wrap_field,
+.o_form_view .o_group > tbody > tr > td:not(.o_td_label) {
+    vertical-align: middle !important;
+    padding: 6px 8px !important;
+}
+
+/* ضمان width كامل للـ input داخل الخانة */
+.o_form_view .o_group .o_field_widget input,
+.o_form_view .o_group .o_field_widget textarea,
+.o_form_view .o_group .o_field_widget select {
+    width: 100% !important;
+    min-height: 36px !important;
+    box-sizing: border-box !important;
+}
+
+/* ── 2. الحقل الإلزامي — أحمر فقط عندما فارغ ── */
+
+/* تسمية الحقل الإلزامي — دائماً */
+.o_form_view .o_form_required,
+.o_form_view label.o_form_required,
+.o_form_view .o_field_label.o_form_required,
+.o_form_view tr.o_wrap_input_required .o_form_label {
+    color: var(--pt-text) !important;
+    font-weight: 700 !important;
+}
+
+/* النجمة — دائماً */
+.o_form_view .o_form_required::after,
+.o_form_view label.o_form_required::after {
+    content: ' *' !important;
+    color: #E53E3E !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    margin-right: 2px !important;
+}
+
+/* حد أحمر فقط عندما الحقل فارغ */
+.o_form_view .o_field_widget.o_required_modifier.o_field_empty input,
+.o_form_view .o_field_widget.o_required_modifier.o_field_empty textarea,
+.o_form_view .o_field_widget.o_required_modifier.o_field_empty .o_input,
+.o_form_view .o_field_widget.o_required_modifier.o_field_empty .o_field_widget {
+    border-color: rgba(229, 62, 62, 0.5) !important;
+    background: rgba(229, 62, 62, 0.03) !important;
+}
+
+/* حقل مملوء — تنسيق طبيعي */
+.o_form_view .o_field_widget.o_required_modifier:not(.o_field_empty) input,
+.o_form_view .o_field_widget.o_required_ighter:not(.o_field_empty) textarea,
+.o_form_view .o_field_widget.o_required_modifier:not(.o_field_empty) .o_input {
+    border-color: var(--pt-border) !important;
+    background: var(--pt-surface-2) !important;
+}
+
+/* focus على حقل فارغ إلزامي */
+.o_form_view .o_field_widget.o_required_modifier.o_field_empty input:focus,
+.o_form_view .o_field_widget.o_required_modifier.o_field_empty .o_input:focus {
+    border-color: #E53E3E !important;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.12) !important;
+}
+
+/* ── عند الحفظ: o_field_invalid على كل حقل فارغ إلزامي ── */
+.o_form_view .o_field_widget.o_field_invalid input,
+.o_form_view .o_field_widget.o_field_invalid textarea,
+.o_form_view .o_field_widget.o_field_invalid .o_input,
+.o_form_view .o_field_widget.o_field_invalid .o_field_many2one_selection,
+.o_form_view .o_field_widget.o_field_invalid .o_many2many_tags,
+.o_form_view .o_field_widget.o_field_invalid select {
+    border-color: #E53E3E !important;
+    background: rgba(229, 62, 62, 0.05) !important;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1) !important;
+}
+
+/* تسمية الحقل الإلزامي عند الخطأ */
+.o_form_view .o_wrap_field:has(.o_field_invalid) .o_form_label,
+.o_form_view tr:has(.o_field_invalid) .o_form_label {
+    color: #E53E3E !important;
+}
+
+/* animation اهتزاز خفيف عند ظهور الخطأ */
+.o_form_view .o_field_widget.o_field_invalid {
+    animation: pt-shake 0.3s ease !important;
+}
+
+@keyframes pt-shake {
+    0%, 100% { transform: translateX(0); }
+    25%       { transform: translateX(-4px); }
+    75%       { transform: translateX(4px); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ── 3. Boolean — Toggle احترافي (شامل كل الـ views)
+   ══════════════════════════════════════════════════════════════ */
+
+.o_field_boolean,
+.o_field_boolean_toggle,
+.o_field_widget.o_field_boolean,
+.o_setting_box .o_field_boolean,
+.o_res_config_settings .o_field_boolean,
+.modal .o_field_boolean,
+.o_list_view .o_field_boolean,
+.o_kanban_view .o_field_boolean,
+.o_form_view .o_field_boolean {
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+}
+
+.o_field_boolean .form-check,
+.o_field_boolean_toggle .form-check,
+.o_setting_box .o_field_boolean .form-check,
+.o_res_config_settings .o_field_boolean .form-check,
+.modal .o_field_boolean .form-check,
+.o_list_view .o_field_boolean .form-check,
+.o_form_view .o_field_boolean .form-check {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    border: none !important;
+    background: none !important;
+    width: auto !important;
+    line-height: 1 !important;
+}
+
+/* ── التراك (المسار) ── */
+.o_field_boolean .form-check-input[type="checkbox"],
+.o_field_boolean_toggle .form-check-input[type="checkbox"],
+.o_setting_box .o_field_boolean .form-check-input[type="checkbox"],
+.o_res_config_settings .o_field_boolean .form-check-input[type="checkbox"],
+.modal .o_field_boolean .form-check-input[type="checkbox"],
+.o_list_view .o_field_boolean .form-check-input[type="checkbox"],
+.o_form_view .o_field_boolean .form-check-input[type="checkbox"] {
+    position: relative !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 28px !important;
+    height: 16px !important;
+    min-width: 28px !important;
+    min-height: 16px !important;
+    max-width: 28px !important;
+    max-height: 16px !important;
+    border-radius: 8px !important;
+    background-color: #CBD5E0 !important;
+    background-image: radial-gradient(circle, #fff 5px, transparent 5px) !important;
+    background-size: 16px 16px !important;
+    background-position: right 0px center !important;
+    background-repeat: no-repeat !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.25s ease, background-position 0.25s ease !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1) !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+}
+
+/* ── مفعّل ── */
+.o_field_boolean .form-check-input:checked[type="checkbox"],
+.o_field_boolean_toggle .form-check-input:checked[type="checkbox"],
+.o_setting_box .o_field_boolean .form-check-input:checked[type="checkbox"],
+.o_res_config_settings .o_field_boolean .form-check-input:checked[type="checkbox"],
+.modal .o_field_boolean .form-check-input:checked[type="checkbox"],
+.o_list_view .o_field_boolean .form-check-input:checked[type="checkbox"],
+.o_form_view .o_field_boolean .form-check-input:checked[type="checkbox"] {
+    background-color: var(--pt-primary) !important;
+    background-image: radial-gradient(circle, #fff 5px, transparent 5px) !important;
+    background-size: 16px 16px !important;
+    background-position: left 0px center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 2px 6px rgba(67, 97, 238, 0.35) !important;
+}
+
+/* hover */
+.o_field_boolean .form-check-input[type="checkbox"]:hover,
+.o_field_boolean_toggle .form-check-input[type="checkbox"]:hover,
+.o_form_view .o_field_boolean .form-check-input[type="checkbox"]:hover {
+    box-shadow: 0 0 0 3px var(--pt-primary-bg) !important;
+}
+
+/* نص الحالة */
+.o_field_boolean .form-check-label,
+.o_field_boolean_toggle .form-check-label,
+.o_setting_box .o_field_boolean .form-check-label,
+.o_res_config_settings .o_field_boolean .form-check-label,
+.modal .o_field_boolean .form-check-label,
+.o_list_view .o_field_boolean .form-check-label,
+.o_form_view .o_field_boolean .form-check-label {
+    font-family: var(--pt-font) !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: var(--pt-text-muted) !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    transition: color 0.2s !important;
+}
+
+.o_field_boolean .form-check-input:checked ~ .form-check-label,
+.o_field_boolean_toggle .form-check-input:checked ~ .form-check-label,
+.o_form_view .o_field_boolean .form-check-input:checked ~ .form-check-label {
+    color: var(--pt-primary) !important;
+    font-weight: 600 !important;
+}
+
+/* readonly */
+.o_field_boolean[readonly] .form-check,
+.o_field_boolean.o_readonly .form-check,
+.o_form_view .o_field_boolean[readonly] .form-check,
+.o_form_view .o_field_boolean.o_readonly .form-check {
+    cursor: default !important;
+    pointer-events: none !important;
+    opacity: 0.6 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ── Checkbox نظيف لقائمة الصلاحيات (نموذج المستخدم)
+      widget: res_user_group_ids_privilege
+      الكلاس الفعلي: .o_field_res_user_group_ids_privilege
+   ══════════════════════════════════════════════════════════════ */
+
+/* حالة افتراضية — غير محدد */
+.o_field_res_user_group_ids_privilege .o-checkbox .form-check-input[type="checkbox"],
+.o_field_res_user_group_ids_privilege .o-checkbox > input[type="checkbox"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+    border-radius: 5px !important;
+    background-color: #F4F6FC !important;
+    background-image: none !important;
+    background-size: auto !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 2px solid #CBD5E0 !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
+    cursor: pointer !important;
+}
+
+/* حالة محدد */
+.o_field_res_user_group_ids_privilege .o-checkbox .form-check-input:checked[type="checkbox"],
+.o_field_res_user_group_ids_privilege .o-checkbox > input:checked[type="checkbox"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-color: var(--pt-primary) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M2.5 8L6.5 12L13.5 4'/%3E%3C/svg%3E") !important;
+    background-size: 13px 13px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-color: var(--pt-primary) !important;
+    box-shadow: 0 2px 8px rgba(67, 97, 238, 0.25) !important;
+}
+
+/* hover */
+.o_field_res_user_group_ids_privilege .o-checkbox .form-check-input[type="checkbox"]:hover,
+.o_field_res_user_group_ids_privilege .o-checkbox > input[type="checkbox"]:hover {
+    border-color: var(--pt-primary) !important;
+    background-color: var(--pt-primary-bg) !important;
+    box-shadow: 0 0 0 3px var(--pt-primary-bg-md) !important;
+}
+
+/* حالة o_is_implied — الصلاحية ممنوحة ضمنياً */
+.o_field_res_user_group_ids_privilege .o_is_implied:not(.o_is_disjoint) .o-checkbox .form-check-input[type="checkbox"],
+.o_field_res_user_group_ids_privilege .o_is_implied:not(.o_is_disjoint) .o-checkbox > input[type="checkbox"] {
+    background-color: var(--pt-primary) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M2.5 8L6.5 12L13.5 4'/%3E%3C/svg%3E") !important;
+    background-size: 13px 13px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-color: var(--pt-primary) !important;
+    opacity: 0.6 !important;
+}
+
+/* حالة o_is_disjoint — تعارض */
+.o_field_res_user_group_ids_privilege .o_is_disjoint:not(.o_is_implied) .o-checkbox .form-check-input[type="checkbox"],
+.o_field_res_user_group_ids_privilege .o_is_disjoint:not(.o_is_implied) .o-checkbox > input[type="checkbox"] {
+    background-color: #FF4757 !important;
+    border-color: #FF4757 !important;
+    background-image: none !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   ── Boolean متعدد في صف واحد (مجموعة boolean أفقية)
+      مثل الصورة: سكني | تجاري | صناعي | متعدد | أرض
+   ══════════════════════════════════════════════════════════════ */
+
+/* كل مجموعة boolean أفقية داخل نفس الصف */
+.o_form_view .o_group tr.o_wrap_boolean_group td.o_wrap_field,
+.o_form_view .o_field_boolean_group_wrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    align-items: center !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ── 4. Selection — أزرار Pill بصرية
+   ══════════════════════════════════════════════════════════════ */
+
+/* إخفاء الـ radio input */
+.o_form_view .o_field_radio .o_radio_input,
+.o_field_radio .o_radio_input {
+    display: none !important;
+}
+
+/* الحاوية */
+.o_form_view .o_field_radio,
+.o_field_radio {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    align-items: center !important;
+    padding: 0 !important;
+}
+
+/* كل خيار */
+.o_form_view .o_field_radio .o_radio_item,
+.o_field_radio .o_radio_item {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 5px 14px !important;
+    border-radius: var(--pt-radius-pill) !important;
+    color: var(--pt-text-2) !important;
+    font-family: var(--pt-font) !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s var(--pt-ease) !important;
+    user-select: none !important;
+}
+
+.o_form_view .o_field_radio .o_radio_item:hover,
+.o_field_radio .o_radio_item:hover {
+    border-color: var(--pt-purple-light) !important;
+    background: var(--pt-purple-bg) !important;
+    color: var(--pt-purple) !important;
+}
+
+/* الخيار المحدد */
+.o_form_view .o_field_radio .o_radio_item.o_radio_item_active,
+.o_field_radio .o_radio_item.o_radio_item_active,
+.o_form_view .o_field_radio .o_radio_item:has(.o_radio_input:checked),
+.o_field_radio .o_radio_item:has(.o_radio_input:checked) {
+    /*!*border-color: var(--pt-primary) !important;*!*/
+    /*color: #ffffff !important;*/
+    font-weight: 600 !important;
+}
+
+/* حقل selection عادي (select/dropdown) — نفس ستايل الـ inputs */
+.o_form_view .o_field_selection select,
+.o_field_selection select {
+    border: 1.5px solid var(--pt-border) !important;
+    border-radius: var(--pt-radius-xs) !important;
+    background: var(--pt-surface-2) !important;
+    color: var(--pt-text) !important;
+    padding: 8px 12px !important;
+    font-family: var(--pt-font) !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    transition: border-color 0.2s !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238890B5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: left 12px center !important;
+    padding-left: 34px !important;
+    cursor: pointer !important;
+}
+
+.o_form_view .o_field_selection select:focus,
+.o_field_selection select:focus {
+    border-color: var(--pt-purple) !important;
+    background-color: var(--pt-surface) !important;
+    box-shadow: 0 0 0 3px var(--pt-purple-bg) !important;
+    outline: none !important;
+}
+
+/* ── Many2many Tags — تنسيق الـ tags ── */
+.o_form_view .o_field_many2many_tags .badge,
+.o_field_many2many_tags .badge {
+    background: var(--pt-purple-bg) !important;
+    color: var(--pt-purple) !important;
+    border: 1px solid var(--pt-purple-light) !important;
+    border-radius: var(--pt-radius-pill) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding: 3px 10px !important;
+}
+
+.o_form_view .o_field_many2many_tags .o_delete,
+.o_field_many2many_tags .o_delete {
+    color: var(--pt-purple) !important;
+    opacity: 0.7 !important;
+    transition: opacity 0.15s !important;
+}
+
+.o_form_view .o_field_many2many_tags .o_delete:hover,
+.o_field_many2many_tags .o_delete:hover {
+    opacity: 1 !important;
+}
+
+/* ── 4. تحسين مجموعات النماذج (groups) ── */
+.o_form_view .o_group {
+    margin-bottom: 8px !important;
+}
+
+/* عنوان المجموعة الفرعية (group title/separator) */
+.o_form_view .o_horizontal_separator {
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    color: var(--pt-purple) !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    padding: 16px 0 8px !important;
+    border-bottom: 2px solid var(--pt-border) !important;
+    margin-bottom: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.o_form_view .o_horizontal_separator::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 4px !important;
+    height: 14px !important;
+    background: var(--pt-grad-purple) !important;
+    border-radius: 2px !important;
+    flex-shrink: 0 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   FORM SHEET — RESPONSIVE
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (≤ 992px) ── */
+@media (max-width: 992px) {
+    .o_form_view .o_form_sheet_bg {
+        padding: 12px !important;
+    }
+
+    .o_form_view .o_form_sheet {
+        padding: 20px !important;
+        max-width: 100% !important;
+        border-radius: var(--pt-radius-sm) !important;
+    }
+
+    /* Label column: shrink slightly */
+    .o_form_view .o_group > tbody > tr > td.o_td_label {
+        width: 35% !important;
+        min-width: 130px !important;
+        max-width: 200px !important;
+    }
+
+    /* Stat buttons: allow wrapping */
+    .o_form_view .oe_button_box {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+
+    .o_form_view .oe_button_box .oe_stat_button {
+        flex: 1 1 auto !important;
+        min-width: 80px !important;
+    }
+
+    /* Notebook tabs: allow scroll on overflow */
+    .o_form_view .o_notebook .nav-tabs {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+    }
+
+    .o_form_view .o_notebook .nav-tabs::-webkit-scrollbar {
+        display: none !important;
+    }
+}
+
+/* ── Mobile (≤ 768px) ── */
+@media (max-width: 768px) {
+    .o_form_view .o_form_sheet_bg {
+        padding: 8px !important;
+    }
+
+    .o_form_view .o_form_sheet {
+        padding: 14px !important;
+        border-radius: var(--pt-radius-xs) !important;
+    }
+
+    /* Stack label + field vertically */
+    .o_form_view .o_group > tbody > tr {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .o_form_view .o_group > tbody > tr > td.o_td_label {
+        width: 100% !important;
+        min-width: unset !important;
+        max-width: unset !important;
+        padding: 8px 8px 2px !important;
+    }
+
+    .o_form_view .o_group > tbody > tr > td.o_wrap_field,
+    .o_form_view .o_group > tbody > tr > td:not(.o_td_label) {
+        padding: 2px 8px 8px !important;
+        width: 100% !important;
+    }
+
+    .o_form_view .o_group .o_field_widget input,
+    .o_form_view .o_group .o_field_widget textarea,
+    .o_form_view .o_group .o_field_widget select {
+        width: 100% !important;
+    }
+
+    /* Two-column groups become single column */
+    .o_form_view .o_group.o_inner_group {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Stat buttons: compact on mobile */
+    .o_form_view .oe_button_box .oe_stat_button {
+        flex: 1 1 calc(50% - 6px) !important;
+        max-width: calc(50% - 6px) !important;
+    }
+
+    .o_form_view .oe_button_box .o_stat_value {
+        font-size: 17px !important;
+    }
+
+    /* Chatter margin */
+    .o_form_view .o_chatter {
+        margin-top: 12px !important;
+    }
+
+    /* Radio pill buttons wrap nicely */
+    .o_form_view .o_field_radio {
+        gap: 4px !important;
+    }
+
+    .o_form_view .o_field_radio .o_radio_item {
+        padding: 4px 10px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* ── Small Mobile (≤ 576px) ── */
+@media (max-width: 576px) {
+    .o_form_view .o_form_sheet_bg {
+        padding: 4px !important;
+    }
+
+    .o_form_view .o_form_sheet {
+        padding: 10px !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    /* Stat buttons: one per row on very small screens */
+    .o_form_view .oe_button_box .oe_stat_button {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Notebook tabs font size */
+    .o_form_view .o_notebook .nav-tabs .nav-link {
+        font-size: 14px !important;
+        padding: 8px 10px !important;
+    }
+
+    /* Group separator */
+    .o_form_view .o_horizontal_separator {
+        font-size: 12px !important;
+        padding: 12px 0 6px !important;
+    }
+}

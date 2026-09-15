@@ -1,0 +1,1236 @@
+/* Smart dashboard navbar: follow Smart dynamic palette + dark/light (--biz-theme-* from menu.js). */
+:root {
+  --smart-primary: var(--biz-theme-primary-color, #5b2d8e);
+  --smart-primary-dark: color-mix(
+    in srgb,
+    var(--biz-theme-primary-color, #5b2d8e) 68%,
+    #000 32%
+  );
+  --smart-primary-light: color-mix(
+    in srgb,
+    var(--biz-theme-primary-color, #5b2d8e) 72%,
+    #fff 28%
+  );
+  --smart-border: color-mix(
+    in srgb,
+    var(--biz-theme-primary-color, #5b2d8e) 14%,
+    var(--biz-theme-body-color, #f9f9f9) 86%
+  );
+  --smart-text-main: var(--biz-theme-body-text-color, #1a1035);
+  --smart-text-muted: color-mix(
+    in srgb,
+    var(--biz-theme-body-text-color, #1b1b1b) 45%,
+    var(--biz-theme-body-color, #f9f9f9) 55%
+  );
+}
+
+/* Outer Odoo nav is a shell; portal strip is .main-nav inside (matches SmartPortalDashboard). */
+.o_smart_backend_mainnav.o_main_navbar {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+/* Portal-style shell + topbar (matches SmartPortalDashboard `header.topbar`). */
+.o_smart_backend_mainnav .smart-backend-nav-shell {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  direction: inherit;
+  align-items: stretch;
+}
+
+.o_smart_backend_mainnav .smart-backend-main-nav.main-nav {
+  direction: inherit;
+  align-self: stretch;
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  justify-content: space-between;
+}
+
+.o_smart_backend_mainnav .smart-backend-nav-toolbar-cluster {
+  flex: 0 0 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  direction: inherit;
+}
+
+.o_smart_backend_mainnav .top-actions-pill {
+  flex-shrink: 0;
+}
+
+.o_smart_backend_mainnav .smart-backend-topbar.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding-block: 4px;
+  padding-inline: 0 12px;
+  background: transparent;
+  color: #fff;
+  border-radius: 0;
+  border-bottom: none;
+  font-family: "Almarai", "Segoe UI", "Tahoma", "Arial", sans-serif;
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}
+
+.o_smart_backend_mainnav .smart-backend-topbar .topbar__brand {
+  display: flex;
+  align-items: center;
+}
+
+.o_smart_backend_mainnav .smart-backend-topbar .brand-mark {
+  /* Wide logo asset (emblem + text): size by height, not a square box. */
+  display: block;
+  height: var(--smart-brand-logo-height, 48px);
+  width: auto;
+  max-height: calc(var(--smart-backend-main-nav-min-height, 60px) - 12px);
+  max-width: #{"min(var(--smart-brand-logo-max-width, 220px), 34vw)"};
+  object-fit: contain;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+/*
+ * WebClient template order: <NavBar/> then <ActionContainer/>.
+ * Without a stacking context on <header>, the action manager (control panel)
+ * paints above navbar overflows and clips `.o-dropdown--menu` (fixed popper).
+ * Use 1043: above Smart overlays at 1041, below Bootstrap modals at 1055.
+ */
+body.o_web_client.o_smart_backend header.o_navbar {
+  position: relative;
+  z-index: 1043;
+  overflow: visible !important;
+}
+
+body.o_web_client.o_smart_backend .o_action_manager {
+  position: relative;
+  z-index: 0;
+}
+
+body.o_web_client.o_smart_backend .o_main_navbar.o_smart_backend_mainnav .main-nav {
+  overflow: visible !important;
+}
+
+body.o_web_client.o_smart_backend .o_main_navbar.o_smart_backend_mainnav .smart-default-nav-menus,
+body.o_web_client.o_smart_backend .o_main_navbar.o_smart_backend_mainnav .smart-backend-nav-toolbar-cluster,
+body.o_web_client.o_smart_backend .o_main_navbar.o_smart_backend_mainnav .top-actions-pill,
+body.o_web_client.o_smart_backend .o_main_navbar.o_smart_backend_mainnav .topbar__tools,
+body.o_web_client.o_smart_backend .o_main_navbar.o_smart_backend_mainnav .o_menu_sections {
+  overflow: visible !important;
+}
+
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .o_menu_sections
+  .o-dropdown {
+  position: relative;
+  z-index: 1;
+}
+
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .o_menu_sections
+  .o-dropdown.show {
+  /* Order multiple open toggles inside the bar only; keep below modals (1055). */
+  z-index: 10;
+}
+
+/* Systray row (company, etc.) */
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .smart-embedded-systray
+  .o-dropdown.show {
+  z-index: 10;
+}
+
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .o-dropdown--menu.dropdown-menu {
+  /* Subtle boost within header; primary fix is `header.o_navbar { z-index: 1043 }`. */
+  z-index: 20 !important;
+}
+
+.o_smart_backend_mainnav .smart-backend-main-nav.main-nav {
+  $pf: "Almarai", "Segoe UI", "Tahoma", "Arial", sans-serif;
+  font-family: $pf;
+  background: linear-gradient(
+    135deg,
+    var(--smart-primary-dark) 0%,
+    var(--smart-primary) 60%,
+    var(--smart-primary-light) 100%
+  );
+  padding-block: 0;
+  padding-inline: 1.25rem 1rem;
+  min-height: 60px;
+  border-radius: 0;
+  box-shadow: 0 2px 20px
+    color-mix(in srgb, var(--smart-primary-dark) 40%, transparent);
+  position: relative;
+  overflow: visible !important;
+}
+
+/* Grows between action icons and the opposite toolbar edge (see toolbar-cluster space-between). */
+.o_smart_backend_mainnav .smart-nav-search-slot {
+  flex: 1 1 0%;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden; /* clip section-bar overflow; dropdowns use position:fixed so they escape */
+}
+
+/* Portal topbar search (matches internal portal `label.topbar__search`). */
+.o_smart_backend_mainnav .topbar__search {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.o_smart_backend_mainnav .smart-nav-search-slot .topbar__search {
+  flex: 0 0 auto;
+  width: #{"min(680px, 88vw)"};
+  max-width: 100%;
+}
+
+.o_smart_backend_mainnav .topbar__search input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  padding-block: 0;
+  padding-inline-start: 48px;
+  padding-inline-end: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.o_smart_backend_mainnav .topbar__search input::placeholder {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.o_smart_backend_mainnav .topbar__search i {
+  position: absolute;
+  inset-inline-start: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 1rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.o_smart_backend_mainnav .topbar__search--portal input.smart-portal-nav-search {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+}
+
+.o_smart_backend_mainnav .topbar__search--portal input.smart-portal-nav-search::placeholder {
+  color: rgba(255, 255, 255, 0.72) !important;
+  opacity: 1;
+}
+
+.o_smart_backend_mainnav .topbar__search--portal input.smart-portal-nav-search::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.72) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.72);
+}
+
+.o_smart_backend_mainnav .topbar__search--portal {
+  cursor: default;
+}
+
+.o_smart_backend_mainnav .topbar__search--portal input {
+  cursor: text;
+}
+
+.o_smart_backend_mainnav .topbar__search--trigger input {
+  cursor: pointer;
+}
+
+.o_smart_backend_mainnav .topbar__search input[type="search"]::-webkit-search-decoration,
+.o_smart_backend_mainnav .topbar__search input[type="search"]::-webkit-search-cancel-button {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.o_smart_backend_mainnav .top-actions-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.o_smart_backend_mainnav .action-btn {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.12s, transform 0.12s, border-color 0.12s;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.o_smart_backend_mainnav .action-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.o_smart_backend_mainnav .action-btn-lang {
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+}
+
+.o_smart_backend_mainnav .action-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.o_smart_backend_mainnav .avatar-ring {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  overflow: hidden;
+  display: block;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+}
+
+.o_smart_backend_mainnav .avatar-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.o_smart_backend_mainnav .avatar-btn {
+  padding: 0;
+  overflow: hidden;
+}
+
+.o_smart_backend_mainnav .badge-dot {
+  position: absolute;
+  top: -6px;
+  inset-inline-start: -6px;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #ff3b57;
+  border: 2px solid var(--smart-primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+
+.o_smart_backend_mainnav .menu-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Topbar tools: icon row + systray + profile chip (matches portal topbar__tools pattern). */
+.o_smart_backend_mainnav .topbar__tools {
+  align-items: center;
+}
+
+.o_smart_backend_mainnav .topbar__tools .icon-button {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  transition: background 0.12s, transform 0.12s, border-color 0.12s;
+}
+
+.o_smart_backend_mainnav .topbar__tools .icon-button:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.o_smart_backend_mainnav .topbar__tools .icon-button.is-active {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.o_smart_backend_mainnav .topbar__tools .icon-button .fa {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/*
+ * Smart `font_icons.scss` maps a long list of `.fa.fa-*` names to remixicon (a font
+ * that isn't bundled here), which leaves the icon blank unless explicitly pinned back
+ * to FontAwesome — same defensive pattern as the fa-solid overrides below. `question-circle`
+ * and `th-large` aren't in that remap list but are pinned anyway as a guard against any
+ * other rule (or load-order race) stealing their font-family.
+ */
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .topbar__tools
+  .fa.fa-bars::before {
+  font-family: FontAwesome !important;
+  content: "\f0c9" !important;
+}
+
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .topbar__tools
+  .fa.fa-question-circle::before {
+  font-family: FontAwesome !important;
+  content: "\f059" !important;
+}
+
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .topbar__tools
+  .fa.fa-th-large::before {
+  font-family: FontAwesome !important;
+  content: "\f009" !important;
+}
+
+/*
+ * FA6-style `fa-solid fa-universal-access`: Odoo bundles Font Awesome 4 only, so we draw the
+ * official FA4 glyph (\f29a) with the same visual weight as other toolbar icons.
+ */
+.o_smart_backend_mainnav .topbar__tools .icon-button .fa-solid.fa-universal-access {
+  display: inline-block;
+  font-size: 17px;
+  line-height: 1;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .topbar__tools
+  .fa-solid.fa-universal-access::before {
+  font-family: FontAwesome !important;
+  font-weight: normal !important;
+  content: "\f29a" !important;
+}
+
+/*
+ * FA6 `fa-file-waveform` is not in Odoo's Font Awesome 4.7 webfont. Map FA6-style classes to the
+ * closest FA4 glyph (file-audio-o, \f1c7). For the exact FA6 shape, use an inline SVG instead.
+ */
+.o_smart_backend_mainnav .topbar__tools .icon-button .fa-solid.fa-file-waveform {
+  display: inline-block;
+  font-size: 17px;
+  line-height: 1;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .topbar__tools
+  .fa-solid.fa-file-waveform::before {
+  font-family: FontAwesome !important;
+  font-weight: normal !important;
+  content: "\f1c7" !important;
+}
+
+/*
+ * FA6 `fa-book-open` is not in Odoo's FA4.7 font. Map to FA4 `fa-book` (\f02d).
+ */
+.o_smart_backend_mainnav .topbar__tools .icon-button .fa-solid.fa-book-open {
+  display: inline-block;
+  font-size: 17px;
+  line-height: 1;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .topbar__tools
+  .fa-solid.fa-book-open::before {
+  font-family: FontAwesome !important;
+  font-weight: normal !important;
+  content: "\f02d" !important;
+}
+
+/*
+ * Match `.icon-button`'s exact circle styling (same size/bg/border) so the avatar
+ * reads as one of the same family of chips sitting in the toolbar, not a separate
+ * floating element — matching background/border is what visually ties it to its
+ * neighbors, structural nesting alone isn't enough for the eye to group them.
+ */
+.o_smart_backend_mainnav .topbar__tools .avatar-chip.dd-toggle {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.o_smart_backend_mainnav .topbar__tools .avatar-chip.dd-toggle:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.o_smart_backend_mainnav .topbar__tools .avatar-chip__img {
+  width: 26px;
+  height: 26px;
+  max-width: 26px;
+  max-height: 26px;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+  border: 0;
+  box-sizing: border-box;
+}
+
+/* Messaging systray: show bell (البلاغات) instead of comments bubble. */
+body.o_web_client.o_smart_backend
+  .o_main_navbar.o_smart_backend_mainnav
+  .topbar__tools
+  .smart-systray-notifications
+  .fa-comments::before {
+  content: "\f0f3" !important; /* Font Awesome 4 bell */
+}
+
+.o_smart_backend_mainnav .topbar__tools {
+  direction: ltr;
+}
+
+.o_smart_backend_mainnav .dd-wrap {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+
+.o_smart_backend_mainnav .topbar__tools .dd-wrap .smart-dd.dd-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  left: auto;
+  width: 290px;
+  max-width: #{"min(86vw, 320px)"};
+  background: #fff;
+  border: 1px solid var(--smart-border);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  display: none;
+  z-index: 1100;
+  direction: rtl !important;
+  text-align: right;
+  unicode-bidi: isolate;
+}
+
+.o_smart_backend_mainnav .topbar__tools .dd-wrap .smart-dd.dd-panel.open {
+  display: block;
+}
+
+.o_smart_backend_mainnav .dd-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: #fbfbff;
+  border-bottom: 1px solid var(--smart-border);
+  direction: rtl !important;
+}
+
+.o_smart_backend_mainnav .dd-head b {
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--smart-text-main);
+}
+
+.o_smart_backend_mainnav .dd-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--smart-border);
+  background: #fff;
+  color: var(--smart-text-muted);
+  cursor: pointer;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+}
+
+.o_smart_backend_mainnav .dd-body {
+  padding: 8px;
+  max-height: 300px;
+  overflow: auto;
+  direction: rtl !important;
+}
+
+.o_smart_backend_mainnav .dd-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.o_smart_backend_mainnav .dd-item:hover {
+  background: #f4f6fb;
+}
+
+.o_smart_backend_mainnav .dd-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--smart-primary);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.o_smart_backend_mainnav .dd-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--smart-text-main);
+}
+
+.o_smart_backend_mainnav .dd-sub {
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: var(--smart-text-muted);
+}
+
+.o_smart_backend_mainnav .dd-foot {
+  padding: 10px;
+  border-top: 1px solid var(--smart-border);
+}
+
+.o_smart_backend_mainnav .dd-link {
+  width: 100%;
+  border: 1px solid var(--smart-border);
+  background: #fbfbff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--smart-text-main);
+}
+
+.o_smart_backend_mainnav .dd-row {
+  width: 100%;
+  text-align: right;
+  border: 1px solid var(--smart-border);
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--smart-text-main);
+  margin: 5px 0;
+  display: block;
+}
+
+.o_smart_backend_mainnav .dd-row:hover {
+  background: #f4f6fb;
+}
+
+.o_smart_backend_mainnav .dd-row.active {
+  background: color-mix(in srgb, var(--smart-primary, #5b2d8e) 12%, #f4f6fb);
+  color: var(--smart-primary, #5b2d8e);
+  font-weight: 700;
+}
+
+.o_smart_backend_mainnav .dd-row.danger {
+  color: #c62828;
+  border-color: rgba(198, 40, 40, 0.2);
+  background: #fff5f5;
+}
+
+/* App switcher + section menus in the center slot (non-portal): horizontal bar like default Enterprise navbar.
+   overflow:hidden clips sections that exceed slot width; dropdown menus use position:fixed so they escape.
+   flex: 1 1 0 avoids the w-100 percentage-resolution bug when the slot has flex-basis:0% — the div grows
+   from 0 to fill the slot, so justify-content positions items relative to the full grown width. */
+.o_smart_backend_mainnav .smart-default-nav-menus {
+  overflow: hidden;
+  min-width: 0;
+  flex-wrap: nowrap;
+  flex: 1 1 0 !important;
+  /* Follows t-att-dir="pageDirection": flex-start = outer edge (left in LTR, right in RTL). */
+  justify-content: flex-start;
+}
+
+.o_smart_backend_mainnav .smart-default-nav-menus .smart-ent-toggle-inline {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  gap: 6px;
+  max-width: #{"min(42vw, 320px)"};
+  box-sizing: border-box;
+  text-decoration: none;
+  //padding: 4px 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 4px;
+  padding-left:  30px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--biz-theme-body-color, #f9f9f9) 88%, var(--biz-theme-primary-color, #5b2d8e) 12%);
+  color: var(--smart-text-main, #1a1d26);
+  border: 1px solid var(--smart-border, #e6e8ef);
+}
+
+.o_smart_backend_mainnav .smart-default-nav-menus .smart-ent-toggle-inline:hover {
+  background: color-mix(in srgb, var(--biz-theme-body-color, #f9f9f9) 82%, var(--biz-theme-primary-color, #5b2d8e) 18%);
+}
+
+/* App-toggle pill has its own light background → keep dark text */
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_toggle_icon,
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_brand {
+  color: var(--smart-text-main, #1a1d26) !important;
+}
+
+/* Section menu items sit directly on the dark gradient → white text */
+.o_smart_backend_mainnav .smart-default-nav-menus .o_nav_entry,
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_sections .dropdown-toggle {
+  color: rgba(255, 255, 255, 0.92) !important;
+  border-radius: 8px;
+  padding-inline: 8px;
+}
+
+.o_smart_backend_mainnav .smart-default-nav-menus .o_nav_entry:hover,
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_sections .dropdown-toggle:hover,
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_sections .o-dropdown.show > .dropdown-toggle {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_sections {
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  gap: 2px !important;
+  width: auto !important;
+}
+
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_sections > * {
+  width: auto;
+  max-width: none;
+}
+
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_sections .o-dropdown,
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_sections .o_nav_entry {
+  width: auto;
+  max-width: none;
+}
+
+.o_smart_backend_mainnav .smart-default-nav-menus .o_menu_sections .dropdown-toggle {
+  justify-content: flex-start;
+  width: auto;
+}
+
+.o_smart_backend_mainnav .smart-default-nav-menus .o-dropdown--menu.dropdown-menu {
+  z-index: 1205 !important;
+}
+
+/* Smart `side_menu.scss` sometimes hides navbar brand/sections and debug toggles
+   in some top-menu modes (e.g. vertical-mini). Since `smart_dashboard` replaces
+   the EnterpriseNavBar DOM, we must force them visible for our backend — but not
+   while the apps home menu is open (`o_home_menu_background`) and not when Enterprise
+   toggles `o_hidden` on brand/sections (higher specificity than :root .o_hidden). */
+body.o_web_client.o_smart_backend:not(.o_home_menu_background) .o_main_navbar.o_smart_backend_mainnav
+  .o_menu_brand:not(.o_hidden),
+body.o_web_client.o_smart_backend:not(.o_home_menu_background) .o_main_navbar.o_smart_backend_mainnav
+  .o_menu_sections:not(.o_hidden) {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: auto !important;
+  color: white !important;
+}
+
+body.o_web_client.o_smart_backend .o_main_navbar.o_smart_backend_mainnav
+  .debug_activator,
+body.o_web_client.o_smart_backend .o_main_navbar.o_smart_backend_mainnav
+  .o_debug_manager {
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: auto !important;
+  display: flex !important;
+}
+
+/* Embedded systray inside portal pill: match .action-btn size; hide duplicate user avatar */
+/* body + .o_main_navbar chain beats Smart .o_menu_systray rules loaded later in the bundle */
+body.o_web_client
+  .o_main_navbar.o_smart_backend_mainnav
+  .top-actions-pill
+  .topbar__tools
+  .smart-embedded-systray.o_menu_systray {
+  position: relative;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  align-self: center !important;
+  gap: 6px;
+  margin: 0 !important;
+  padding: 0 !important;
+  /* Odoo navbar.xml: empty <div t-att-data-index/> between items — inherits line-height and skews flex alignment */
+  > div[data-index] {
+    display: none !important;
+  }
+
+  /* Wrapper must not grow past the 34px controls (Smart uses height: unset on .o_menu_systray > div) */
+  > .o-dropdown {
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Icon-only systray toggles: line-height 0 avoids flex vertical drift; never apply to
+     `.o_debug_manager` or `.o-mail-DiscussSystray-class` — menu content inherits and collapses. */
+  > .o-dropdown:not(.o_debug_manager) {
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  > .o-dropdown:not(.o_debug_manager):not(.o-mail-DiscussSystray-class) {
+    line-height: 0 !important;
+  }
+
+  > .o-dropdown.o_debug_manager,
+  > .o-dropdown.o-mail-DiscussSystray-class {
+    line-height: normal !important;
+  }
+
+  .o_debug_manager.o-dropdown .o-dropdown--menu.dropdown-menu,
+  .o_debug_manager.o-dropdown .dropdown-menu {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    padding: 0.25rem 0 !important;
+  }
+
+  .o_debug_manager.o-dropdown .dropdown-item,
+  .o_debug_manager.o-dropdown span.dropdown-item {
+    font-size: inherit !important;
+    line-height: 1.5 !important;
+    padding: 0.5rem 1rem !important;
+  }
+
+  /* Discuss + Activity systray menus (same OWL class); readable size and scrollable body */
+  .o-mail-DiscussSystray-class.o-dropdown .o-dropdown--menu.dropdown-menu {
+    min-width: 360px !important;
+    //width: #{"min(440px, 94vw)"} !important;
+    max-width: #{"min(460px, 94vw)"} !important;
+    max-height: #{"min(72vh, 560px)"} !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    font-size: 0.875rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .o-mail-DiscussSystray-class.o-dropdown .o-mail-MessagingMenu,
+  .o-mail-DiscussSystray-class.o-dropdown .o-mail-ActivityMenu {
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .o-mail-DiscussSystray-class.o-dropdown .o-mail-MessagingMenu > .overflow-auto,
+  .o-mail-DiscussSystray-class.o-dropdown .o-mail-ActivityMenu [name="activityGroups"] {
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+  }
+
+  > .o_switch_company_menu {
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .o_user_menu {
+    display: none !important;
+  }
+
+  .o-dropdown > button.dropdown-toggle {
+    position: relative !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 999px !important;
+    display: grid !important;
+    place-items: center !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+    z-index: 1000 !important;
+  }
+
+  .o-dropdown > button.dropdown-toggle::after {
+    display: none !important;
+  }
+
+  .o-dropdown .fa,
+  .o-dropdown .fa-lg,
+  .o-dropdown .oi {
+    font-size: 16px !important;
+    line-height: 1 !important;
+    vertical-align: 0;
+  }
+
+  /* Web Studio systray (`web_studio.SystrayItem`): root is not `.o-dropdown`, so it missed the rules above */
+  > .o_web_studio_navbar_item {
+    display: flex !important;
+    align-items: center !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    line-height: 0 !important;
+  }
+
+  > .o_web_studio_navbar_item .o_nav_entry {
+    position: relative !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 999px !important;
+    display: grid !important;
+    place-items: center !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    transition: background 0.12s, transform 0.12s, border-color 0.12s;
+  }
+
+  > .o_web_studio_navbar_item:not(.o_disabled) .o_nav_entry:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    color: #fff !important;
+  }
+
+  > .o_web_studio_navbar_item.o_disabled {
+    pointer-events: none;
+    opacity: 0.45;
+  }
+
+  > .o_web_studio_navbar_item.o_disabled .o_nav_entry {
+    cursor: not-allowed;
+  }
+
+  /* login_as_any_user: systray item root is a plain `.icon-button` (align like Web Studio row). */
+  > button.icon-button.sh-login-as-switch-user {
+    display: grid !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    line-height: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    transition: background 0.12s, transform 0.12s, border-color 0.12s;
+  }
+
+  > button.icon-button.sh-login-as-switch-user:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    color: #fff !important;
+  }
+
+  > button.icon-button.sh-login-as-switch-user .fa {
+    font-size: 16px !important;
+    line-height: 1 !important;
+  }
+
+  > .o_web_studio_navbar_item .oi.oi-studio {
+    font-size: 16px !important;
+    line-height: 1 !important;
+  }
+
+  .o-dropdown svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .o-mail-MessagingMenu-counter,
+  .o-mail-ActivityMenu-counter {
+    position: absolute;
+    top: -2px;
+    inset-inline-end: -2px;
+    z-index: 1;
+    font-size: 9px;
+    font-weight: 800;
+    min-width: 16px;
+    padding: 1px 4px;
+    line-height: 1.2;
+  }
+
+  /* Smart SwitchCompanyMenu strip (base.xml): same circular chrome as .action-btn / menu-btn */
+  .o_switch_company_menu {
+    display: flex !important;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 6px;
+
+    /* Smart default `lang_selector` dropdown — redundant with smart nav language pill */
+    .o_user_lang {
+      display: none !important;
+    }
+
+    & > div {
+      margin: 0 !important;
+      margin-inline-start: 0 !important;
+    }
+
+    .list-unstyled {
+      padding: 0;
+      margin: 0 !important;
+    }
+
+    .company_selections > a.dropdown-toggle,
+    .debug_activator a.activate_debug,
+    .theme_selector a.theme-edit,
+    .vertical_sidemenu_behaviour a.pin_sidebar,
+    .header_to_do_list a.to_do_list,
+    .dark-light-mode-button-design label.label {
+      width: 34px !important;
+      height: 34px !important;
+      min-width: 34px !important;
+      max-width: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border-radius: 999px !important;
+      display: grid !important;
+      place-items: center !important;
+      line-height: 1 !important;
+      box-shadow: none !important;
+      box-sizing: border-box !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      color: #fff !important;
+      text-decoration: none !important;
+      text-align: center !important;
+      cursor: pointer !important;
+    }
+
+    .company_selections .ri,
+    .debug_activator .ri,
+    .company_selections .fa,
+    .debug_activator .fa,
+    .theme_selector .ri,
+    .vertical_sidemenu_behaviour .ri,
+    .header_to_do_list .ri,
+    .dark-light-mode-button-design .ri,
+    .dark-light-mode-button-design .bulb-on {
+      font-size: 16px !important;
+      line-height: 1 !important;
+      vertical-align: 0;
+    }
+  }
+}
+
+.o_smart_backend_mainnav .smart-embedded-systray .badge,
+.o_smart_backend_mainnav .smart-embedded-systray .o_notification_counter {
+  color: #1a1035 !important;
+}
+
+.o_smart_backend_mainnav .dropdown-menu {
+  color: #1a1035;
+}
+
+/* Smart vertical layouts: reset top bar + full-width content. */
+body.o_web_client.o_smart_backend.top_menu_vertical_mini:not(.o_in_studio) {
+  header.o_navbar + .o_action_manager .o-mail-Discuss,
+  header.o_navbar + .o_action_manager > .o_action.o_view_controller,
+  header.o_navbar + .o_action_manager .o_spreadsheet_dashboard_action {
+    padding-inline: 0 !important;
+  }
+}
+
+body.o_web_client.o_smart_backend.top_menu_vertical:not(.o_in_studio):not(.o_home_menu_background):not(.editor_has_snippets_hide_backend_navbar) {
+  header.o_navbar + .o_action_manager {
+    padding: 0 !important;
+  }
+
+  header.o_navbar + .o_action_manager .o-mail-Discuss,
+  header.o_navbar + .o_action_manager > .o_action.o_view_controller,
+  header.o_navbar + .o_action_manager .o_spreadsheet_dashboard_action {
+    padding-inline: 0 !important;
+  }
+}
+
+body.o_web_client.o_smart_backend.top_menu_vertical_mini:not(.o_in_studio),
+body.o_web_client.o_smart_backend.top_menu_vertical:not(.o_in_studio):not(.o_home_menu_background):not(.editor_has_snippets_hide_backend_navbar) {
+  .o_main_navbar.o_smart_backend_mainnav {
+    flex-direction: row !important;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    position: sticky !important;
+    top: 0 !important;
+    inset-inline-start: auto !important;
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .o_main_navbar .o_navbar_apps_menu {
+    display: none !important;
+    position: static !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .o_main_navbar .o_navbar_apps_menu::after {
+    display: none !important;
+  }
+
+  .o_main_navbar .o_menu_systray {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    margin-bottom: 0 !important;
+    margin-inline-start: auto !important;
+    width: auto !important;
+    //margin: 0 -15px !important;
+  }
+
+  /*
+   * The smart topbar's own systray (.smart-embedded-systray) is a flex child
+   * of .topbar__tools alongside the other icon-buttons and the avatar chip —
+   * it must stay inline with them, not get pushed to the far edge like the
+   * legacy vertical-menu systray above (that rule shoved it + the avatar
+   * away from the rest of the toolbar, leaving the avatar visually detached).
+   */
+  .o_main_navbar.o_smart_backend_mainnav .topbar__tools .smart-embedded-systray {
+    margin-inline-start: 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .o_main_navbar .o_menu_sections {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    max-height: none !important;
+  }
+
+  .o_main_navbar #accordion {
+    display: none !important;
+  }
+}
+
+/* ====================================================
+   RTL (Arabic) navbar: menus on the right, icons left
+   (toolbar-cluster uses inverted nav dir + space-between; no flex order hacks)
+   ==================================================== */
+
+/* Keep icon button visual order left-to-right inside the cluster (same as LTR). */
+[dir="rtl"] .o_smart_backend_mainnav .top-actions-pill {
+  direction: ltr;
+}

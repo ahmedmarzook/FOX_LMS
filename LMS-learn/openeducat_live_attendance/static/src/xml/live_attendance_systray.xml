@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="openeducat_live_attendance.LiveAttendanceSystray">
+        <div t-if="isDiscussPage"
+             class="o_live_attendance_systray position-relative d-flex align-items-center">
+            <button type="button"
+                    class="btn btn-link o-no-caret px-2"
+                    title="Live Meeting Attendance"
+                    aria-label="Live Meeting Attendance"
+                    t-on-click="toggleMenu">
+                <i class="fa fa-check-square-o"/>
+            </button>
+
+            <div t-if="state.open"
+                 class="dropdown-menu show p-3 shadow"
+                 style="display:block; right:0; left:auto; min-width:320px;">
+                <h6 class="mb-3">Live Meeting Attendance</h6>
+
+                <t t-if="state.loading">
+                    <div class="text-center py-3">
+                        <i class="fa fa-spinner fa-spin"/>
+                    </div>
+                </t>
+                <t t-else="">
+                    <label class="form-label">Register</label>
+                    <select class="form-select mb-3"
+                            t-on-change="onRegisterChange">
+                        <option value="">Select register</option>
+                        <t t-foreach="state.registers"
+                           t-as="register"
+                           t-key="register.id">
+                            <option t-att-value="register.id"
+                                    t-att-selected="state.registerId === register.id">
+                                <t t-esc="register.name"/>
+                            </option>
+                        </t>
+                    </select>
+
+                    <label class="form-label">Attendance Sheet</label>
+                    <select class="form-select mb-3"
+                            t-on-change="onSheetChange">
+                        <option value="">Select sheet</option>
+                        <t t-foreach="state.sheets"
+                           t-as="sheet"
+                           t-key="sheet.id">
+                            <option t-att-value="sheet.id"
+                                    t-att-selected="state.sheetId === sheet.id">
+                                <t t-esc="sheet.attendance_sheet_date || sheet.name"/>
+                            </option>
+                        </t>
+                    </select>
+
+                    <div class="d-flex gap-2">
+                        <button type="button"
+                                class="btn btn-secondary flex-grow-1"
+                                t-on-click="createSheet">
+                            New Sheet
+                        </button>
+                        <button type="button"
+                                class="btn btn-primary flex-grow-1"
+                                t-on-click="save">
+                            Save
+                        </button>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

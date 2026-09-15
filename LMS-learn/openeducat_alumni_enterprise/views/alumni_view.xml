@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="alumni_form_view">
+        <field name="name">op.student.form.alumni.inherit</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Alumni Details">
+                    <field name="alumni_boolean"/>
+                    <group invisible="not alumni_boolean">
+                        <group>
+                            <field name="alumni_id"/>
+                            <field name="passing_year_id"/>
+                        </group>
+                        <group>
+                            <field name="current_position"/>
+                            <field name="current_job"/>
+                        </group>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

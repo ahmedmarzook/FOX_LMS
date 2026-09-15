@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_calendar_online_meeting_attentiveness" model="ir.ui.view">
+        <field name="name">calendar.online.meeting.attentiveness</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id"
+               ref="openeducat_live.view_calendar_online_meeting_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Meeting Logs"
+                      name="openeducat_attentiveness_logs"
+                      invisible="not is_meeting">
+                    <field name="logs_line" readonly="1">
+                        <list>
+                            <field name="partner_id"/>
+                            <field name="join_time"/>
+                            <field name="raised_hand"/>
+                            <field name="total_time"/>
+                            <field name="attentive_percentage"
+                                   widget="percentage"/>
+                        </list>
+                    </field>
+                </page>
+
+                <page string="Meeting Guests"
+                      name="openeducat_attentiveness_guests"
+                      invisible="not is_meeting">
+                    <field name="guest_line" readonly="1">
+                        <list>
+                            <field name="guest"/>
+                        </list>
+                    </field>
+                </page>
+
+                <page string="Meeting KPI"
+                      name="openeducat_attentiveness_kpi"
+                      invisible="not is_meeting">
+                    <group>
+                        <group>
+                            <field name="meeting_start_time"/>
+                            <field name="meeting_end_time"/>
+                            <field name="meeting_duration"
+                                   widget="float_time"/>
+                            <field name="meeting_attentive_percentage"
+                                   widget="percentage"/>
+                            <field name="live_meeting_ended"/>
+                        </group>
+                        <group>
+                            <field name="total_student"/>
+                            <field name="total_guest"/>
+                            <field name="total_member"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

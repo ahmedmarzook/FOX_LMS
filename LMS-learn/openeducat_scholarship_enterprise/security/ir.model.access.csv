@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_op_scholarship_back_office_admin,op.scholarship back office admin,model_op_scholarship,openeducat_core.group_op_back_office_admin,1,1,1,1
+access_op_scholarship_type_back_office_admin,op.scholarship.type back office admin,model_op_scholarship_type,openeducat_core.group_op_back_office_admin,1,1,1,1
+access_scholarship_stages_back_office_admin,scholarship.stages back office admin,model_scholarship_stages,openeducat_core.group_op_back_office_admin,1,1,1,1

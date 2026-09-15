@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="student_progress_attendance_wizad_form" model="ir.ui.view">
+        <field name="name">Attendance Progress Wizard</field>
+        <field name="model">attendance.progress.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Student Attendance Progress">
+                <group>
+                    <field name="student_id" invisible="1"/>
+                    <field name="attendance_ids" widget="many2many_tags"
+                           domain="[('student_id', '=', student_id)]"
+                           options="{'no_create': True, 'no_create_edit': True}"/>
+                </group>
+                <footer>
+                    <button string="Add" type="object" name="Add_attendance" class="oe_highlight"/>
+                    <button special="cancel" string="Close" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="act_win_progress_attendance_wizard_action" model="ir.actions.act_window">
+        <field name="name">Add Attendance</field>
+        <field name="res_model">attendance.progress.wizard</field>
+        <field name="binding_model_id" ref="openeducat_student_progress_enterprise.model_op_student_progression"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="student_progress_attendance_wizad_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

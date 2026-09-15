@@ -1,0 +1,259 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* oi_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-04 01:28+0000\n"
+"PO-Revision-Date: 2024-12-04 01:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: oi_base
+#: model:ir.model,name:eds_base.model_ir_actions_actions
+msgid "Actions"
+msgstr "الإجراءات"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "All Logs ("
+msgstr "جميع السجلات ("
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/js/record_info.js:0
+#, python-format
+msgid "Audit Log"
+msgstr "سجل التدقيق"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/js/record_info.js:0
+#, python-format
+msgid "Audit Log Detail"
+msgstr "تفاصيل سجل التدقيق"
+
+#. module: oi_base
+#: model:ir.model,name:eds_base.model_base
+msgid "Base"
+msgstr "قاعدة "
+
+#. module: oi_base
+#: model:ir.model,name:eds_base.model_cache_mixin
+msgid "Cache Mixin"
+msgstr "مخبأ ميكسين"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/js/record_info.js:0
+#, python-format
+msgid "Chatter Logs"
+msgstr "سجلات الدردشة"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Chatter Logs ("
+msgstr "سجلات الدردشة ("
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/js/record_info.js:0
+#, python-format
+msgid "Copied"
+msgstr "تم نسخها"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/js/record_info.js:0
+#, python-format
+msgid "Copy"
+msgstr "ينسخ"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Create XML ID"
+msgstr "إنشاء معرف XML"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Creation By:"
+msgstr "الإنشاء بواسطة:"
+
+#. module: oi_base
+#: model:ir.model,name:eds_base.model_res_currency
+msgid "Currency"
+msgstr "العملة"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Date"
+msgstr "تاريخ"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Field"
+msgstr "مجال"
+
+#. module: oi_base
+#: model:ir.model,name:eds_base.model_ir_model_fields
+msgid "Fields"
+msgstr "الحقول"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "ID:"
+msgstr "بطاقة تعريف:"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Latest Modification:"
+msgstr "أحدث تعديل:"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Name:"
+msgstr "اسم:"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "New Value"
+msgstr "قيمة جديدة"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "No Update:"
+msgstr "لا يوجد تحديث:"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Ok"
+msgstr "نعم"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Old Value"
+msgstr "القيمة القديمة"
+
+#. module: oi_base
+#: model_terms:ir.ui.view,arch_db:eds_base.view_ir_model_fields_tree_data
+msgid "Open Field"
+msgstr "حقل مفتوح"
+
+#. module: oi_base
+#: model_terms:ir.ui.view,arch_db:eds_base.view_ir_model_fields_tree_data
+msgid "Open Record"
+msgstr "سجل مفتوح"
+
+#. module: oi_base
+#: model_terms:ir.ui.view,arch_db:eds_base.view_module_filter
+msgid "Openinside"
+msgstr "مفتوح من الداخل"
+
+#. module: oi_base
+#: model:ir.model,name:eds_base.model_ir_qweb
+msgid "Qweb"
+msgstr "كيويب"
+
+#. module: oi_base
+#: model:ir.model.fields,field_description:eds_base.field_ir_model_fields__record_display
+msgid "Record Display"
+msgstr "عرض التسجيل"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/js/action_menu.js:0
+#: code:addons/oi_base/static/src/js/action_menu.js:0
+#: code:addons/oi_base/static/src/js/record_info.js:0
+#, python-format
+msgid "Record Info"
+msgstr "معلومات السجل"
+
+#. module: oi_base
+#: model:ir.model.fields,field_description:eds_base.field_ir_model_fields__record_value
+msgid "Record Value"
+msgstr "قيمة السجل"
+
+#. module: oi_base
+#: model:ir.model,name:eds_base.model_ir_sequence
+msgid "Sequence"
+msgstr "تسلسل "
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "Update Logs\t("
+msgstr "تحديث السجلات ("
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "User"
+msgstr "مستخدم"
+
+#. module: oi_base
+#: model:ir.model.fields,field_description:eds_base.field_ir_model_fields__default_ids
+msgid "User-defined Defaults"
+msgstr "الإعدادات الافتراضية المحددة من قبل المستخدم"
+
+#. module: oi_base
+#. odoo-python
+#: code:addons/oi_base/models/base.py:0
+#, python-format
+msgid "View Data"
+msgstr "عرض البيانات"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/js/debug_items.js:0
+#, python-format
+msgid "View Fields With Data"
+msgstr "عرض الحقول التي تحتوي على البيانات"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/js/record_info.js:0
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "XML ID"
+msgstr "معرف XML"
+
+#. module: oi_base
+#. odoo-javascript
+#: code:addons/oi_base/static/src/xml/templates.xml:0
+#, python-format
+msgid "XML ID:"
+msgstr "معرف XML:"

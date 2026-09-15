@@ -1,0 +1,1219 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* oi_workflow_doc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-04 01:45+0000\n"
+"PO-Revision-Date: 2024-12-04 01:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__canceled_record_count
+msgid "#No."
+msgstr "#لا."
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_kanban
+msgid ""
+"<i class=\"fa fa-ellipsis-v\" aria-label=\"Selection\" role=\"img\" "
+"title=\"Selection\"/>"
+msgstr ""
+"<i class=\"fa fa-ellipsis-v\" aria-label=\"الاختيار\" role=\"img\" "
+"title=\"الاختيار\"/>"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid ""
+"<span class=\"o_stat_text\">\n"
+"\t\t\t\t\t\t\t\t\tCancellation Records\n"
+"\t\t\t\t\t\t\t\t</span>"
+msgstr ""
+"<span class=\"o_stat_text\">\n"
+"سجلات الإلغاء\n"
+"</span>"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__abstract
+msgid "Abstract"
+msgstr "خلاصة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__access_ids
+msgid "Access"
+msgstr "الوصول"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__action_id
+msgid "Action"
+msgstr "إجراء"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__action_count
+msgid "Action Count"
+msgstr "عدد الإجراءات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Actions"
+msgstr "الإجراءات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "رمز نوع النشاط"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Add a field"
+msgstr "إضافة حقل"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Add a group"
+msgstr "إضافة مجموعة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__restrict_department_ids
+msgid "Allowed Departments"
+msgstr "الأقسام المسموح بها"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__restrict_group_ids
+msgid "Allowed Groups"
+msgstr "المجموعات المسموح بها"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__website_form_access
+msgid "Allowed to use in forms"
+msgstr "مسموح باستخدامه في النماذج"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__approval_count
+msgid "Approval Count"
+msgstr "عدد الموافقات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approval_emails
+msgid "Approval Emails"
+msgstr "البريد الإلكتروني للموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approval_emp_emails
+msgid "Approval Emp Emails"
+msgstr "البريد الإلكتروني للموافقة الموظفين"
+
+#. module: oi_workflow_doc
+#: model:ir.actions.act_window,name:eds_workflow_doc.act_approval_model
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__approval_model_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__approval_model_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__approval_model_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__approval_model_id
+msgid "Approval Model"
+msgstr "نموذج الموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.ui.menu,name:eds_workflow_doc.menu_approval_model
+msgid "Approval Models"
+msgstr "إعداد"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid "Approve"
+msgstr "موافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approve_button_name
+msgid "Approve Button Name"
+msgstr "اسم الزر الموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approve_button_wizard
+msgid "Approve Button Wizard"
+msgstr "معالج زر الموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approve_confirm_msg
+msgid "Approve Confirm Msg"
+msgstr "رسالة التأكيد للموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approve_date
+msgid "Approve Date"
+msgstr "تاريخ الموافقة"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_search
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__button_approve_enabled
+msgid "Button Approve Enabled"
+msgstr "زر الموافقة مفعل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__button_cancel_enabled
+msgid "Button Cancel Enabled"
+msgstr "تم تمكين زر الإلغاء"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__button_confirm_enabled
+msgid "Button Confirm Enabled"
+msgstr "تم تمكين زر التأكيد"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__button_draft_enabled
+msgid "Button Draft Enabled"
+msgstr "زر المسودة مفعل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__button_forward_enabled
+msgid "Button Forward Enabled"
+msgstr "تمكين زر التقدم للأمام"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__button_return_enabled
+msgid "Button Return Enabled"
+msgstr "تم تمكين زر الرجوع"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__button_transfer_enabled
+msgid "Button Transfer Enabled"
+msgstr "تمكين نقل الزر"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_show_as_service_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__category_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_show_as_service_wizard__category_id
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_search
+msgid "Category"
+msgstr "فئة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__color
+msgid "Color Index"
+msgstr "معرف اللون"
+
+#. module: oi_workflow_doc
+#: model:ir.ui.menu,name:eds_workflow_doc.menu_configuration
+msgid "Configuration"
+msgstr "إعدادات"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid "Confirm"
+msgstr "إرسال"
+
+#. module: oi_workflow_doc
+#: model:ir.actions.act_window,name:eds_workflow_doc.act_approval_model_dashboard_corporate
+#: model:ir.ui.menu,name:eds_workflow_doc.menu_approval_root_corporate_sub
+msgid "Corporate Communication and Business Development"
+msgstr "التواصل المؤسسي وتطوير الأعمال"
+
+#. module: oi_workflow_doc
+#: model:ir.ui.menu,name:eds_workflow_doc.menu_approval_root_corporate
+msgid "Corporate Communication"
+msgstr "التواصل المؤسسي"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__count
+msgid "Count (Incl. Archived)"
+msgstr "العد (بما في ذلك المؤرشفة)"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__canceled_record_count
+msgid "Counter for the canceled records related to record"
+msgstr "عداد للسجلات الملغاة المتعلقة بالسجل"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_excel_form
+msgid "Create Action"
+msgstr "إنشاء إجراء"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Create Menu"
+msgstr "إنشاء القائمة"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Create Views"
+msgstr "إنشاء وجهات نظر"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Create Views?"
+msgstr "إنشاء وجهات نظر؟"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__create_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_category__create_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__create_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__create_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__create_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__create_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__create_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__create_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_show_as_service_wizard__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__create_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_category__create_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__create_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__create_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__create_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__create_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__create_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__create_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_show_as_service_wizard__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__cron_count
+msgid "Cron Count"
+msgstr "عدد الكرون"
+
+#. module: oi_workflow_doc
+#: model:ir.actions.act_window,name:eds_workflow_doc.act_approval_model_dashboard
+#: model:ir.ui.menu,name:eds_workflow_doc.menu_approval_model_dashboard
+msgid "Dashboard"
+msgstr "لوحة المعلومات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__description
+msgid "Description"
+msgstr "الوصف"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Details"
+msgstr "التفاصيل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__details_model_ids
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Details Model"
+msgstr "تفاصيل الموديل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__details_model_count
+msgid "Details Model Count"
+msgstr "التفاصيل عدد النماذج"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__display_ids
+msgid "Display"
+msgstr "عرض"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__display_name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_category__display_name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__display_name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__display_name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__display_name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__display_name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__display_name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__display_name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_show_as_service_wizard__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__display_type
+msgid "Display Type"
+msgstr "نوع العرض"
+
+#. module: oi_workflow_doc
+#: model:ir.ui.menu,name:eds_workflow_doc.menu_approval_root
+msgid "Doc Manager"
+msgstr "الخدمات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__document_user_id
+msgid "Document User"
+msgstr "مستخدم الوثيقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__editable
+msgid "Editable"
+msgstr "قابلة للتحرير"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__website_form_access
+msgid "Enable the form builder feature for this model."
+msgstr "تمكين ميزة إنشاء النماذج لهذا النموذج."
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__excel_id
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Excel"
+msgstr "إكسل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__excel_count
+msgid "Excel Count"
+msgstr "عدد الاكسل"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_search
+msgid "Favorites"
+msgstr "المفضلات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__field_ids
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__field_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__field_ids
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__field_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__field_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__field_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__field_id
+msgid "Field"
+msgstr "حقل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__website_form_default_field_id
+msgid "Field for custom form data"
+msgstr "حقل لبيانات النموذج المخصص"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__field_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_ir_model__field_id
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_excel_form
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Fields"
+msgstr "الحقول"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__fields_count
+msgid "Fields Count"
+msgstr "عدد الحقول"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة الخط رائعة مثل fa-tasks"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Form Display"
+msgstr "عرض النموذج"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__form_invisible
+msgid "Form Invisible"
+msgstr "النموذج غير مرئي"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__form_view_id
+msgid "Form View"
+msgstr "عرض النموذج"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__website_form_label
+msgid ""
+"Form action label. Ex: crm.lead could be 'Send an e-mail' and project.issue "
+"could be 'Create an Issue'."
+msgstr ""
+"تسمية إجراء النموذج. على سبيل المثال: crm.lead يمكن أن يكون \"إرسال بريد "
+"إلكتروني\" وproject.issue يمكن أن يكون \"إنشاء مشكلة\"."
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid "Forward"
+msgstr "إلى الأمام"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Future Activities"
+msgstr "الأنشطة المستقبلية"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__is_mail_activity
+msgid "Has Mail Activity"
+msgstr "لديه نشاط بريد"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__is_mail_blacklist
+msgid "Has Mail Blacklist"
+msgstr "القائمة السوداء للبريد"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__is_mail_thread
+msgid "Has Mail Thread"
+msgstr "موضوع البريد"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__has_message
+msgid "Has Message"
+msgstr "لديه رسالة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_category__id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_show_as_service_wizard__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط استثناء."
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تحتاج لرؤيتها."
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__message_has_error
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فقد حدث خطأ في تسليم بعض الرسائل."
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__modules
+msgid "In Apps"
+msgstr "داخل التطبيقات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__info
+msgid "Information"
+msgstr "معلومات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__inherited_model_ids
+msgid "Inherited models"
+msgstr "الكائنات الموروثة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__initail_submit_date
+msgid "Initail Submit Date"
+msgstr "تاريخ تقديم الطلب"
+
+#. module: oi_workflow_doc
+#. odoo-python
+#: code:addons/oi_workflow_doc/models/approval_model.py:0
+#, python-format
+msgid "Invalid sequence code"
+msgstr "رمز التسلسل غير صالح"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__is_approval_model
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_ir_model__is_approval_model
+msgid "Is Approval Model"
+msgstr "هل هو نموذج الموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__kanban_dashboard
+msgid "Kanban Dashboard"
+msgstr "لوحة معلومات كانبان"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__name
+msgid "Label"
+msgstr "بطاقة عنوان"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__website_form_label
+msgid "Label for form action"
+msgstr "تسمية لإجراء النموذج"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__last_state_update
+msgid "Last State Update"
+msgstr "آخر تعديل للحالة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__write_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_category__write_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__write_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__write_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__write_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__write_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__write_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__write_uid
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_show_as_service_wizard__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__write_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_category__write_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__write_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__write_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__write_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__write_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__write_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__write_date
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_show_as_service_wizard__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Late Activities"
+msgstr "الأنشطة المتأخرة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__modules
+msgid "List of modules in which the object is defined or inherited"
+msgstr "قائمة الموديولات المُعرف أو الموروث فيها الحقل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__is_mail_thread_sms
+msgid "Mail Thread SMS"
+msgstr "سلسلة البريد الإلكتروني الرسائل القصيرة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__menu_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_category__menu_id
+msgid "Menu"
+msgstr "القائمة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__model
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__model_id
+msgid "Model"
+msgstr "الكائن"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__name
+msgid "Model Description"
+msgstr "وصف الكائن"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_ir_model
+msgid "Models"
+msgstr "النماذج"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "My Activities"
+msgstr "أنشطتي"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "My Request"
+msgstr "طلباتي"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_category__name
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__needaction_partner_ids
+msgid "Needaction Partner"
+msgstr "بحاجة إلى عمل الشريك"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_kanban
+msgid "New Request"
+msgstr "طلب جديد"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "تقويم النشاط القادم"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields.selection,name:eds_workflow_doc.selection__approval_model_display__display_type__line_note
+msgid "Note"
+msgstr "الملاحظات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__name
+msgid "Number"
+msgstr "الرقم"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الاخطاء"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل الحادث بها خطأ في التسليم"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__model_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel__model_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_show_as_service_wizard__model_id
+msgid "Object"
+msgstr "الكائن"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__old_id
+msgid "Old ID"
+msgstr "الهوية القديمة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__order
+msgid "Order"
+msgstr "طلب"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__page_ids
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__page_id
+msgid "Page"
+msgstr "الصفحة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__page_field_ids
+msgid "Page Field"
+msgstr "حقل الصفحة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__parent_approval_model_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_ir_model__parent_approval_model_id
+msgid "Parent Approval Model"
+msgstr "نموذج موافقة الوالدين"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_show_as_service_form
+msgid "Process"
+msgstr "تنفيذ"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__rating_ids
+msgid "Ratings"
+msgstr "التقييمات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__rule_ids
+msgid "Record Rules"
+msgstr "قواعد السجلات"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Records"
+msgstr "السجلات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__records_count
+msgid "Records Count"
+msgstr "عدد السجلات"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__reject_button_name
+msgid "Reject Button Name"
+msgstr "اسم زر الرفض"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__reject_button_wizard
+msgid "Reject Button Wizard"
+msgstr "عرض إستمارة الرفض"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__reject_confirm_msg
+msgid "Reject Confirm Msg"
+msgstr "رسالة تأكيد الرفض"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_excel_form
+msgid "Remove Action"
+msgstr "إزالة الإجراء"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__requester_id
+msgid "Requester"
+msgstr "مقدم الطلب"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__requester_department_id
+msgid "Requester Department"
+msgstr "قسم مقدم الطلب"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid "Reset to draft"
+msgstr "إعادة التعيين لمسودة"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid "Reset to draft ?"
+msgstr "إعادة التعيين لمسودة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid "Return"
+msgstr "إرجاع"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__order
+msgid ""
+"SQL expression for ordering records in the model; e.g. \"x_sequence asc, id "
+"desc\""
+msgstr ""
+"تعبير SQL لترتيب السجلات في النموذج؛ على سبيل المثال \"x_sequence asc, id "
+"desc\""
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Scheduled"
+msgstr "مجدولة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__search_view_id
+msgid "Search View"
+msgstr "بحث العرض"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields.selection,name:eds_workflow_doc.selection__approval_model_display__display_type__line_section
+msgid "Section"
+msgstr "القسم"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__sequence_id
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_display__sequence
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_excel_field__sequence
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page__sequence
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__sequence
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_tree__sequence
+msgid "Sequence"
+msgstr "المسلسل"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_search
+msgid "Service Name"
+msgstr "اسم الخدمة"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_kanban
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: oi_workflow_doc
+#: model:ir.ui.menu,name:eds_workflow_doc.menu_show_as_service
+msgid "Show An Object As Service"
+msgstr "إظهار كائن كخدمة"
+
+#. module: oi_workflow_doc
+#: model:ir.actions.act_window,name:eds_workflow_doc.act_show_as_service
+msgid "Show As Service"
+msgstr "إظهار كخدمة"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_show_as_service_wizard
+msgid "Show As Service Wizard"
+msgstr "معالج إظهار الخدمة"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Show all records which has next action date is before today"
+msgstr "عرض كافة السجلات المُعين لها تاريخ إجراء تالي يسبق تاريخ اليوم الجاري"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__show_on_dashboard
+msgid "Show on Model dashboard"
+msgstr "عرض في ال"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__website_form_default_field_id
+msgid ""
+"Specify the field which will contain meta and custom form fields datas."
+msgstr ""
+"حدد الحقل الذي سيحتوي على بيانات الحقول الوصفية وحقول النماذج المخصصة."
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__state_name
+msgid "State Name"
+msgstr "اسم الولاية"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__state
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__log_ids
+msgid "Status Log"
+msgstr "سجل الحالة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__status_id
+msgid "Status Settings"
+msgstr "إعدادات الحالة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة على أساس الأنشطة\n"
+"المتأخرة: تاريخ الاستحقاق مر\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"المخطط: الأنشطة المستقبلية."
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__stop_approval_trigger
+msgid "Stop Approval Trigger"
+msgstr "إيقاف تشغيل الموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__submit_date
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Submit Date"
+msgstr "تاريخ الإرسال"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model_display__display_type
+msgid "Technical field for UX purpose."
+msgstr "حقل تقني يهدف لتحسين تجربة المستخدم."
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__inherited_model_ids
+msgid "The list of models that extends the current model."
+msgstr "قائمة الكائنات التي يمتد لها الكائن الحالي."
+
+#. module: oi_workflow_doc
+#. odoo-python
+#: code:addons/oi_workflow_doc/wizard/show_as_service.py:0
+#, python-format
+msgid "The object is already exist."
+msgstr "الكائن موجود بالفعل."
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Today Activities"
+msgstr "نشاطات اليوم"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__count
+msgid "Total number of records in this model"
+msgstr "إجمالي عدد السجلات في هذا الكائن"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_form
+msgid "Transfer"
+msgstr "تحويل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__transient
+msgid "Transient Model"
+msgstr "نموذج عابر"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__tree_ids
+msgid "Tree"
+msgstr "الشجرة"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Tree Display"
+msgstr "عرض الشجرة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model_page_field__tree_invisible
+msgid "Tree Invisible"
+msgstr "شجرة غير مرئية"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__tree_view_id
+msgid "Tree View"
+msgstr "منظر الشجرة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__state
+msgid "Type"
+msgstr "النوع"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي المسجل."
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__website_form_key
+msgid "Used in FormBuilder Registry"
+msgstr "مستخدم في سجل FormBuilder"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__user_can_approve
+msgid "User Can Approve"
+msgstr "يمكن للمستخدم الموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__view_ids
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Views"
+msgstr "أدوات العرض"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__views_count
+msgid "Views Count"
+msgstr "عدد المشاهدات"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__waiting_approval
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Waiting Approval"
+msgstr "انتظار الموافقة"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_doc_search
+msgid "Waiting My Approval"
+msgstr "انتظار موافقتي"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approval_partner_ids
+msgid "Waiting Partner IDs Approval"
+msgstr "بانتظار موافقة المستخدمين"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approval_user_ids
+msgid "Waiting User Approval"
+msgstr "بانتظار موافقة المستخدمين"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__approval_user2_ids
+msgid "Waiting User Approval (Without OdooBot)"
+msgstr "بانتظار موافقة المستخدمين (بدون مستخدم النظام)"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_model__website_form_key
+msgid "Website Form Key"
+msgstr "مفتاح نموذج الموقع الإلكتروني"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_doc__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__show_on_dashboard
+msgid "Whether this Model should be displayed on the dashboard or not"
+msgstr "هل يجب عرض هذا النموذج على لوحة القيادة أم لا"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__abstract
+msgid "Whether this model is abstract"
+msgstr "هل هذا النموذج مجردا؟"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,help:eds_workflow_doc.field_approval_model__is_mail_thread_sms
+msgid "Whether this model supports messages and notifications through SMS"
+msgstr "هل يدعم هذا النموذج الرسائل والإشعارات عبر الرسائل القصيرة؟"
+
+#. module: oi_workflow_doc
+#: model_terms:ir.ui.view,arch_db:eds_workflow_doc.view_approval_model_form
+msgid "Workflow"
+msgstr "سير العمل"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields,field_description:eds_workflow_doc.field_approval_doc__workflow_states
+msgid "Workflow States"
+msgstr "سير العمل"
+
+#. module: oi_workflow_doc
+#. odoo-python
+#: code:addons/oi_workflow_doc/models/approval_doc.py:0
+#, python-format
+msgid "You can delete draft status only"
+msgstr "يمكنك حذف حالة المسودة فقط"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_doc
+msgid "approval.doc"
+msgstr "الموافقة.doc"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_model
+msgid "approval.model"
+msgstr "نموذج الموافقة"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_model_category
+msgid "approval.model.category"
+msgstr "نموذج الموافقة الفئة"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_model_display
+msgid "approval.model.display"
+msgstr "نموذج الموافقة والعرض"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_model_excel
+msgid "approval.model.excel"
+msgstr "نموذج الموافقة.اكسل"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_model_excel_field
+msgid "approval.model.excel.field"
+msgstr "نموذج الموافقة في Excel"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_model_page
+msgid "approval.model.page"
+msgstr "نموذج الموافقة الصفحة"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_model_page_field
+msgid "approval.model.page.field"
+msgstr "نموذج الموافقة.الصفحة.الحقل"
+
+#. module: oi_workflow_doc
+#: model:ir.model,name:eds_workflow_doc.model_approval_model_tree
+msgid "approval.model.tree"
+msgstr "نموذج الموافقة.الشجرة"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields.selection,name:eds_workflow_doc.selection__approval_model_page__editable__bottom
+msgid "bottom"
+msgstr "قاع"
+
+#. module: oi_workflow_doc
+#: model:ir.model.fields.selection,name:eds_workflow_doc.selection__approval_model_page__editable__top
+msgid "top"
+msgstr "قمة"
+
+#. module: oi_workflow_doc
+#. odoo-python
+#: code:addons/oi_workflow_doc/models/approval_doc.py:0
+#, python-format
+msgid "New"
+msgstr "جديد"

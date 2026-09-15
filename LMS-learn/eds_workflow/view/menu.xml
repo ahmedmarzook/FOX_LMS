@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<menuitem id="menu_workflow_config_root" name="Workflow Config" action="act_approval_settings" parent="base.menu_administration" sequence="10" />
+	<menuitem id="menu_approval_settings" name="Workflow" action="act_approval_settings" parent="menu_workflow_config_root" sequence="1" />
+	<menuitem id="menu_approval_config" name="Approval Config" action="act_approval_configs" parent="menu_workflow_config_root" sequence="2" />
+
+	<record id="menu_approval_config" model="ir.ui.menu">
+		<field name="name">Workflow</field>
+	</record>
+	
+</odoo>

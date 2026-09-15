@@ -1,0 +1,20 @@
+{
+    "name": "OpenEduCat Exam Grading Bridge",
+    "summary": "Transfer exam results to OpenEduCat gradebook lines",
+    "version": "19.0.1.0",
+    "category": "Education",
+    "sequence": 3,
+    "author": "OpenEduCat Inc",
+    "website": "https://www.openeducat.org",
+    "depends": [
+        "openeducat_exam_enterprise",
+        "openeducat_grading",
+    ],
+    "data": [],
+    "demo": [],
+    "images": ['static/description/icon.png'],
+    "installable": True,
+    "auto_install": False,
+    "application": True,
+    "license": "Other proprietary",
+}

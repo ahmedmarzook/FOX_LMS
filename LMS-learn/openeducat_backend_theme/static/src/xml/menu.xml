@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="openeducat_backend_theme.Sidebar">
+        <t t-if="state.enabled">
+            <button type="button"
+                    class="o_openeducat_sidebar_toggle btn btn-primary"
+                    t-on-click="toggle"
+                    title="Applications">
+                <i class="oi oi-apps"/>
+            </button>
+
+            <t t-if="state.open">
+                <div class="o_openeducat_sidebar_backdrop"
+                     t-on-click="close"/>
+                <aside class="o_openeducat_sidebar">
+                    <header>
+                        <img src="/app-menu-logo" alt="Logo"/>
+                        <button type="button"
+                                class="btn-close btn-close-white"
+                                t-on-click="close"/>
+                    </header>
+                    <div class="p-3">
+                        <input type="search"
+                               class="form-control"
+                               placeholder="Search applications..."
+                               t-model="state.query"/>
+                    </div>
+                    <nav>
+                        <button t-foreach="apps"
+                                t-as="app"
+                                t-key="app.id"
+                                type="button"
+                                class="o_openeducat_app"
+                                t-on-click="() => this.selectApp(app)">
+                            <img t-if="app.webIconData"
+                                 t-att-src="app.webIconData"
+                                 t-att-alt="app.name"/>
+                            <span t-esc="app.name"/>
+                        </button>
+                    </nav>
+                </aside>
+            </t>
+        </t>
+    </t>
+</templates>

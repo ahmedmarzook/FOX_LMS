@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_course_lms_blog_form" model="ir.ui.view">
+        <field name="name">op.course.form.blog.inherit</field>
+        <field name="model">op.course</field>
+        <field name="inherit_id" ref="openeducat_lms.view_op_lms_course_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+                <button name="action_create_blog"
+                        string="Create Blog"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="blog_id or state != 'open'"/>
+            </xpath>
+
+            <xpath expr="//sheet//field[@name='name']" position="after">
+                <field name="blog_id" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button"
+                        type="object"
+                        name="get_blog"
+                        icon="fa-rss"
+                        invisible="not blog_id">
+                    <field name="blogs_count" string="Blog Posts" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

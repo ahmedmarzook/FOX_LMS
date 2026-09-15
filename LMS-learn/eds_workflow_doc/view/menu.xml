@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<menuitem id="menu_approval_root" name="Doc Manager" sequence="10" web_icon="eds_workflow_doc,static/description/icon.png" />
+
+	<menuitem id="menu_approval_model_dashboard" action="act_approval_model_dashboard" name="Dashboard" parent="menu_approval_root" sequence="1" />
+	
+	<menuitem id="menu_configuration" action="" name="Configuration" parent="menu_approval_root" sequence="9999" groups="base.group_system" />
+	
+	<menuitem id="menu_approval_model" action="act_approval_model" name="Approval Models" parent="menu_configuration" sequence="10"/>
+	
+	<menuitem id="menu_show_as_service" action="act_show_as_service" name="Show An Object As Service" parent="menu_configuration" sequence="20"/>
+		
+</odoo>

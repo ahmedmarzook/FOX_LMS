@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <record id="view_op_purchase_tree" model="ir.ui.view">
+            <field name="name">op.media.purchase.list</field>
+            <field name="model">op.media.purchase</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="Purchase Request">
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="edition"/>
+                    <field name="publisher"/>
+                    <field name="course_ids"/>
+                    <field name="media_type_id" optional="hide"/>
+                    <field name="subject_ids"/>
+                    <field name="requested_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_purchase_form" model="ir.ui.view">
+            <field name="name">op.media.purchase.form</field>
+            <field name="model">op.media.purchase</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Purchase Request">
+                    <header groups="base.group_user">
+                        <button name="act_requested" type="object" string="Request media" class="oe_highlight" groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty,openeducat_library.group_op_library" invisible="state != 'draft'"/>
+                        <button name="act_accept" type="object" string="Accept" class="oe_highlight" groups="openeducat_core.group_op_back_office_admin,openeducat_library.group_op_library" invisible="state != 'request'"/>
+                        <button name="act_reject" type="object" string="Reject" groups="openeducat_core.group_op_back_office_admin,openeducat_library.group_op_library" invisible="state != 'request'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,request,accept"/>
+                    </header>
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="course_ids"/>
+                                <field name="author"/>
+                                <field name="requested_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="media_type_id"/>
+                                <field name="subject_ids"/>
+                                <field name="publisher"/>
+                                <field name="edition"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <chatter/></form>
+            </field>
+        </record>
+
+        <record id="view_op_purchase_search" model="ir.ui.view">
+            <field name="name">op.media.purchase.search</field>
+            <field name="model">op.media.purchase</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Purchase Request">
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="edition"/>
+                    <field name="publisher"/>
+                    <field name="course_ids"/>
+                    <field name="subject_ids"/>
+                    <field name="requested_id"/>
+                    </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_purchase_view">
+            <field name="name">Media Purchase Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.media.purchase</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_op_purchase_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_purchase_view_form">
+            <field name="act_window_id" ref="act_open_op_purchase_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_purchase_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_purchase_view_tree">
+            <field name="act_window_id" ref="act_open_op_purchase_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_purchase_tree"/>
+        </record>
+    </data>
+</odoo>

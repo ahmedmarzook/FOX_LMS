@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="act_approval_model" model="ir.actions.act_window">
+		<field name="name">Approval Model</field>
+		<field name="res_model">approval.model</field>
+		<field name="view_mode">list,form</field>		
+		<field name="context">{'default_is_approval_model' : True, 'default_is_mail_thread' : True}</field>
+	</record>
+	
+	<record id="act_approval_model_dashboard" model="ir.actions.act_window">
+		<field name="name">Dashboard</field>
+		<field name="res_model">approval.model</field>
+		<field name="view_mode">kanban,form,list</field>
+		<field name="context">{'search_default_dashboard' : 1,'search_default_category_id' : 1}</field>
+	</record>
+	
+	<record id="act_show_as_service" model="ir.actions.act_window">
+		<field name="name">Show As Service</field>
+		<field name="res_model">show.as.service.wizard</field>
+		<field name="target">new</field>
+		<field name="view_mode">form</field>
+	</record>
+
+
+
+</odoo>

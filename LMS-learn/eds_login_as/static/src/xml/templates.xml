@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="eds_login_as.LoginAsSystrayItem" owl="1">
+        <div t-att-class="'o_systray_item' + (this.session.impersonate or this.user.isSystem ? '' : ' d-none')"
+             t-on-click="onClick"
+             t-att-title="this.session.impersonate ? 'العودة للمستخدم الأصلي' : 'تبديل المستخدم'">
+            <i t-att-class="this.session.impersonate ? 'fa fa-undo' : 'fa fa-user-secret'"
+               role="img" aria-label="Login As"/>
+        </div>
+    </t>
+</templates>

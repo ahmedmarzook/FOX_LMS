@@ -1,0 +1,194 @@
+@font-face {
+    font-family: "Rubik";
+    src: url("/openeducat_backend_theme/static/src/fonts/Rubik-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --oe-theme-brand: #424242;
+    --oe-theme-background: #f2f7fb;
+    --oe-theme-sidebar: #212529;
+    --oe-theme-font: "Rubik";
+}
+
+.o_web_client {
+    background: var(--oe-theme-background);
+    font-family: var(--oe-theme-font), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.o_main_navbar {
+    background: var(--oe-theme-brand);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.14);
+}
+
+.o_content,
+.o_form_view .o_form_sheet_bg {
+    background: var(--oe-theme-background);
+}
+
+.o_control_panel,
+.o_form_view .o_form_sheet,
+.o_list_renderer,
+.o_kanban_record {
+    border-radius: 10px;
+}
+
+.o_form_view .o_form_sheet,
+.o_kanban_record {
+    box-shadow: 0 3px 18px rgba(0, 0, 0, 0.08);
+}
+
+.o_openeducat_theme_button {
+    color: inherit;
+    padding: 0.5rem 0.75rem;
+}
+
+.o_openeducat_theme_backdrop,
+.o_openeducat_sidebar_backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.o_openeducat_theme_panel {
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    right: 0;
+    width: min(390px, 100vw);
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.o_openeducat_theme_panel header,
+.o_openeducat_theme_panel footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid #dddddd;
+}
+
+.o_openeducat_theme_panel footer {
+    border-top: 1px solid #dddddd;
+    border-bottom: 0;
+    justify-content: flex-end;
+}
+
+.o_openeducat_theme_body {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.o_openeducat_sidebar_toggle {
+    position: fixed;
+    z-index: 1040;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.o_openeducat_sidebar {
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(330px, 90vw);
+    background: var(--oe-theme-sidebar);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.25);
+}
+
+.o_openeducat_sidebar header {
+    min-height: 72px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.o_openeducat_sidebar header img {
+    max-width: 150px;
+    max-height: 48px;
+    object-fit: contain;
+}
+
+.o_openeducat_sidebar nav {
+    overflow: auto;
+    padding: 0.5rem;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.o_openeducat_app {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 0;
+    border-radius: 0.6rem;
+    padding: 0.75rem;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+}
+
+.o_openeducat_app:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.o_openeducat_app img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 0.4rem;
+}
+
+.oe_theme_dark {
+    color-scheme: dark;
+}
+
+.oe_theme_dark .o_web_client,
+.oe_theme_dark .o_content,
+.oe_theme_dark .o_form_view .o_form_sheet_bg {
+    background: #17191c;
+}
+
+.oe_theme_dark .o_control_panel,
+.oe_theme_dark .o_form_view .o_form_sheet,
+.oe_theme_dark .o_list_renderer,
+.oe_theme_dark .o_kanban_record,
+.oe_theme_dark .o_openeducat_theme_panel {
+    background: #24272b;
+    color: #f3f4f6;
+}
+
+.oe_theme_chatter_bottom .o_form_view .o_form_renderer {
+    flex-direction: column;
+}
+
+@media (max-width: 767.98px) {
+    .o_openeducat_sidebar_toggle {
+        top: auto;
+        bottom: 1rem;
+        transform: none;
+    }
+
+    .o_form_view .o_form_sheet {
+        border-radius: 0;
+        box-shadow: none;
+    }
+}

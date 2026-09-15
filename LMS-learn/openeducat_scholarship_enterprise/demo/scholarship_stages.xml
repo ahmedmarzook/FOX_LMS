@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo noupdate="1">
+
+        <record id="op_scholarship_stages_1" model="scholarship.stages">
+            <field name="name">Draft</field>
+        <field name="sequence">10</field></record>
+        <record id="op_scholarship_stages_2" model="scholarship.stages">
+            <field name="name">Awaiting Document</field>
+        <field name="sequence">20</field></record>
+        <record id="op_scholarship_stages_3" model="scholarship.stages">
+            <field name="name">Approved</field>
+        <field name="sequence">30</field></record>
+        <record id="op_scholarship_stages_4" model="scholarship.stages">
+            <field name="name">Rejected</field>
+        <field name="sequence">40</field></record>
+        <record id="op_scholarship_stages_5" model="scholarship.stages">
+            <field name="name">On Hold</field>
+        <field name="sequence">50</field></record>
+        <record id="op_scholarship_stages_6" model="scholarship.stages">
+            <field name="name">Cancel</field>
+        <field name="sequence">60</field></record>
+
+
+</odoo>

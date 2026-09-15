@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="eds_workflow.approval_info" owl="1">
+		<Dialog size="'md'" title="props.title">
+			<main role="alert">
+			    <table class="table table-condensed table-striped">
+			        <tr>
+			            <th>Name:</th>
+			            <td><t t-esc="props.name"/></td>
+			        </tr>        
+			        <tr t-if="props.waiting_approval">
+			            <th>Waiting Approval:</th>
+			            <td>
+			            	<ul t-if="props.approval_users.length > 1">
+			            		<li t-foreach="props.approval_users" t-as="user" t-key="user_index">
+			            			<t t-esc="user[1]"/>
+					            	<t t-if="props.show_login_as">            		
+										<a t-attf-href="/web/login_as/#{user[0]}?redirect=#{window.location.href}"> (Login As) </a>
+					            	</t>            			
+			            		</li>
+			            	</ul>
+			            	<t t-if="props.approval_users.length == 1">
+			            		<t t-set="user" t-value="props.approval_users[0]" />
+			            		<t t-esc="user[1]"/>
+								<t t-if="props.show_login_as">            		
+									<a t-attf-href="/web/login_as/#{user[0]}?redirect=#{window.location.href}"> (Login As) </a>
+				            	</t>            		
+			            	</t>
+			            </td>
+			        </tr>
+			    </table>
+			    <div>
+				    <t t-if="props.lines[0]">
+				    	<table class="table table-condensed table-striped">
+				    		<thead>
+				    			<tr>
+				    				<th>Date</th>
+				    				<th>User</th>
+				    				<th>Old Status</th>
+				    				<th>New Status</th>
+				    				<th> </th>
+				    			</tr>
+				    		</thead>
+				    		<tbody>
+				    			<tr t-foreach="props.lines" t-as="line" t-key="line_index">
+				    				<td><t t-esc="line.date"/></td>
+				    				<td><t t-esc="line.user"/></td>
+				    				<td><t t-esc="line.old"/></td>
+				    				<td><t t-esc="line.new"/></td>
+				    				<td><t t-esc="line.description"/></td>
+				    			</tr>
+				    		</tbody>
+				    	</table>
+				    </t>
+			    </div>
+		    </main>
+			<t t-set-slot="footer" owl="1">
+                <button class="btn btn-primary" t-ref="autofocus"  t-on-click="props.close">
+                Ok
+                </button>
+            </t>		    
+	    </Dialog>
+	</t>
+
+</templates>

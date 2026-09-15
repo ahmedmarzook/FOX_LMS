@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_setting_view_form_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.openeducat.core.enterprise</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form" position="inside">
+                    <app string="OpenEduCat Enterprise" name="openeducat_core_enterprise">
+                        <block title="Global Users">
+                            <setting string="Calendar User">
+                                <div class="text-muted">
+                                    OpenEduCat Enterprise settings are active.
+                                </div>
+                            </setting>
+                        </block>
+                    </app>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

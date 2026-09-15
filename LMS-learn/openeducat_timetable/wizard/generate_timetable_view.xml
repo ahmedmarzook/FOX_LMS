@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_gen_time_table_line_tree" model="ir.ui.view">
+            <field name="name">gen.time.table.line.list</field>
+            <field name="model">gen.time.table.line</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="Session Lines" editable="top">
+                    <field name="day" invisible="1"/>
+                    <field name="session_start_time" widget="float_time"/>
+                    <field name="session_end_time" widget="float_time"/>
+                    <field name="faculty_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                    <field name="subject_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                    <field name="classroom_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_gen_time_table_line_form" model="ir.ui.view">
+            <field name="name">gen.time.table.line.form</field>
+            <field name="model">gen.time.table.line</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Session Line">
+                    <sheet>
+                        <group string="Session Line Information">
+                            <group>
+                                <field name="day"/>
+                                <field name="session_start_time" widget="float_time"/>
+                                <field name="session_end_time" widget="float_time"/>
+                            </group>
+                            <group>
+                                <field name="faculty_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="subject_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="classroom_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_generate_time_table_form" model="ir.ui.view">
+            <field name="name">generate.time.table.form</field>
+            <field name="model">generate.time.table</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Generate Sessions">
+                    <sheet>
+                        <group string="Timetable Information">
+                            <group>
+                                <field name="course_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="start_date"/>
+                            </group>
+                            <group>
+                                <field name="batch_id"
+                                       context="{'course_id': course_id, 'get_parent_batch': 1}"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page name="monday" string="Monday">
+                                <field name="time_table_lines_1" nolabel="1" context="{'default_day': '0'}"/>
+                            </page>
+                            <page name="tuesday" string="Tuesday">
+                                <field name="time_table_lines_2" nolabel="1" context="{'default_day': '1'}"/>
+                            </page>
+                            <page name="wednesday" string="Wednesday">
+                                <field name="time_table_lines_3" nolabel="1" context="{'default_day': '2'}"/>
+                            </page>
+                            <page name="thursday" string="Thursday">
+                                <field name="time_table_lines_4" nolabel="1" context="{'default_day': '3'}"/>
+                            </page>
+                            <page name="friday" string="Friday">
+                                <field name="time_table_lines_5" nolabel="1" context="{'default_day': '4'}"/>
+                            </page>
+                            <page name="saturday" string="Saturday">
+                                <field name="time_table_lines_6" nolabel="1" context="{'default_day': '5'}"/>
+                            </page>
+                            <page name="sunday" string="Sunday">
+                                <field name="time_table_lines_7" nolabel="1" context="{'default_day': '6'}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <footer>
+                        <button string="Proceed" type="object" name="act_gen_time_table" class="oe_highlight"/>
+                        <button special="cancel" string="Close" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_generate_time_table_view">
+            <field name="name">Generate Sessions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">generate.time.table</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_generate_time_table_view_form">
+            <field name="act_window_id" ref="act_open_generate_time_table_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_generate_time_table_form"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_op_inherit_jobpost_form" model="ir.ui.view">
+        <field name="name">op.job.post.form.skills.bridge</field>
+        <field name="model">op.job.post</field>
+        <field name="inherit_id"
+               ref="openeducat_job_enterprise.view_op_job_post_form_v19"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='employment_type']" position="after">
+                <field name="skill_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_op_inherit_jobpost_list" model="ir.ui.view">
+        <field name="name">op.job.post.list.skills.bridge</field>
+        <field name="model">op.job.post</field>
+        <field name="inherit_id"
+               ref="openeducat_job_enterprise.view_op_job_post_list_v19"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='employment_type']" position="after">
+                <field name="skill_ids"
+                       widget="many2many_tags"
+                       optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

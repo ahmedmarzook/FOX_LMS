@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_timetable" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.timetable</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="50"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="OpenEduCat Timetable" name="openeducat_timetable">
+                    <block title="Timetable Constraints">
+                        <setting string="Batch Constraint"
+                                 help="If checked, you will not be allowed to create a session with the same batch even if it is for a different subject.">
+                            <field name="is_batch_constraint"/>
+                        </setting>
+
+                        <setting string="Batch and Subject Constraint"
+                                 help="If checked, you will not be allowed to create a session with the same batch and same subject on the same date and time.">
+                            <field name="is_batch_and_subject_constraint"/>
+                        </setting>
+
+                        <setting string="Classroom Constraint"
+                                 help="If checked, you will not be allowed to create a session with the same classroom on the same date and time.">
+                            <field name="is_classroom_constraint"/>
+                        </setting>
+
+                        <setting string="Faculty Constraint"
+                                 help="If checked, you will not be allowed to create a session with the same faculty on the same date and time.">
+                            <field name="is_faculty_constraint"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

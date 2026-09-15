@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══ Client Action ══ -->
+    <record id="action_eds_hr_employee_dashboard" model="ir.actions.client">
+        <field name="name">بوابة الموظف</field>
+        <field name="tag">eds_hr_employee_dashboard</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- ══ Top-level menu ══ -->
+    <menuitem
+        id="menu_eds_hr_dashboard_root"
+        name="بوابة الموظف"
+        sequence="1"
+        web_icon="eds_smart_theme,static/src/img/hr_dashboard_icon.png"
+    />
+
+    <!-- ══ Dashboard sub-menu ══ -->
+    <menuitem
+        id="menu_eds_hr_dashboard"
+        name="الرئيسية"
+        parent="menu_eds_hr_dashboard_root"
+        action="action_eds_hr_employee_dashboard"
+        sequence="1"
+    />
+
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="alumni_job_view_act" model="ir.actions.act_window">
+        <field name="name">Alumni Job Posts</field>
+        <field name="res_model">op.job.post</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="view_id"
+               ref="openeducat_job_enterprise.view_op_job_post_list_v19"/>
+        <field name="domain">[('created_by', '=', 'alumni')]</field>
+        <field name="context">{'default_created_by': 'alumni'}</field>
+    </record>
+</odoo>

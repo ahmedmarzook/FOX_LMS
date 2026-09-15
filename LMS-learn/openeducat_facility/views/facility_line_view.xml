@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Facility Line List View -->
+        <record model="ir.ui.view" id="op_facility_line_tree_view">
+            <field name="name">op.facility.line.list</field>
+            <field name="model">op.facility.line</field>
+            <field name="arch" type="xml">
+                <list string="Facilities">
+                    <field name="facility_id"/>
+                    <field name="quantity"/>
+                </list>
+            </field>
+        </record>
+
+
+        <!-- Facility Line Form View -->
+        <record id="op_facility_line_form_view" model="ir.ui.view">
+            <field name="name">op.facility.line.form</field>
+            <field name="model">op.facility.line</field>
+            <field name="arch" type="xml">
+                <form string="Facility Line">
+                    <sheet>
+                        <group string="Facility Details">
+                            <group>
+                                <field name="facility_id"
+                                       required="1"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                            </group>
+                            <group>
+                                <field name="quantity" required="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,477 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eds_user_audit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-04 01:28+0000\n"
+"PO-Revision-Date: 2024-12-04 01:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__action_id
+msgid "Action"
+msgstr "الإجراء"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/js/sidebar.js:0
+#, python-format
+msgid "All Logs"
+msgstr "جميع السجلات"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__all_user
+msgid "All Users"
+msgstr "جميع المستخدمين"
+
+#. module: eds_user_audit
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_config_search
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: eds_user_audit
+#: model:ir.actions.act_window,name:eds_user_audit.action_audit_config
+msgid "Audit Config"
+msgstr "تكوين التدقيق"
+
+#. module: eds_user_audit
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_config_tree
+msgid "Audit Config Tree"
+msgstr "شجرة تكوين التدقيق"
+
+#. module: eds_user_audit
+#: model:ir.actions.act_window,name:eds_user_audit.action_audit_logs
+msgid "Audit Logs"
+msgstr "سجلات التدقيق"
+
+#. module: eds_user_audit
+#: model:ir.actions.act_window,name:eds_user_audit.action_audit_logs_detail
+msgid "Audit Logs Detail"
+msgstr "تفاصيل سجلات التدقيق"
+
+#. module: eds_user_audit
+#: model:ir.model,name:eds_user_audit.model_base
+msgid "Base"
+msgstr "قاعدة "
+
+#. module: eds_user_audit
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_delete_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/js/sidebar.js:0
+#, python-format
+msgid "Chatter Logs"
+msgstr "سجلات الثرثرة"
+
+#. module: eds_user_audit
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_delete_form
+msgid "Clear Audit Log"
+msgstr "مسح سجل التدقيق"
+
+#. module: eds_user_audit
+#: model:ir.actions.act_window,name:eds_user_audit.action_audit_delete
+#: model:ir.ui.menu,name:eds_user_audit.menu_audit_delete
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_delete_form
+msgid "Clear Log"
+msgstr "مسح السجل"
+
+#. module: eds_user_audit
+#: model:ir.ui.menu,name:eds_user_audit.menu_eds_user_audit_config
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/js/sidebar.js:0
+#, python-format
+msgid "Copied !"
+msgstr "تم النسخ!"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__on_create
+#: model:ir.model.fields.selection,name:eds_user_audit.selection__audit_log__type__2
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_log_search
+msgid "Create"
+msgstr "إنشاء"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/js/sidebar.js:0
+#, python-format
+msgid "Create XML ID"
+msgstr "إنشاء معرف XML"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__create_uid
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__create_uid
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_type__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__create_date
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__create_date
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_type__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#, python-format
+msgid "Creation By:"
+msgstr "الإبداع من قبل:"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__date
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__date
+#, python-format
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__on_unlink
+#: model:ir.model.fields.selection,name:eds_user_audit.selection__audit_log__type__4
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_log_search
+msgid "Delete"
+msgstr "حذف"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__detail_ids
+msgid "Detail"
+msgstr "التفاصيل"
+
+#. module: eds_user_audit
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_log_form
+msgid "Details"
+msgstr "التفاصيل"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__display_name
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__display_name
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__display_name
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__display_name
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_type__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__domain
+msgid "Domain"
+msgstr "النطاق"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__field_id
+#, python-format
+msgid "Field"
+msgstr "حقل"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__field_name
+msgid "Field Label"
+msgstr "اسم الحقل"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__field_ids
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_config_form
+msgid "Fields"
+msgstr "الحقول"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__full_log
+msgid "Full Log"
+msgstr "سجل كامل"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__id
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__id
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__id
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__id
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_type__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#, python-format
+msgid "ID:"
+msgstr "الرقم التسلسلي:"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__write_uid
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__write_uid
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_type__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__write_date
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__write_date
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_type__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#, python-format
+msgid "Latest Modification:"
+msgstr "أحدث تعديل:"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__log_id
+msgid "Log"
+msgstr "سجل"
+
+#. module: eds_user_audit
+#: model:res.groups,name:eds_user_audit.group_audit_admin
+msgid "Log Audit Manager"
+msgstr "سجل مدير التدقيق"
+
+#. module: eds_user_audit
+#: model:ir.model,name:eds_user_audit.model_mail_tracking_value
+msgid "Mail Tracking Value"
+msgstr "قيمة متتبع البريد"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__menu_ids
+msgid "Menu"
+msgstr "القائمة"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__models_ids
+msgid "Models"
+msgstr "نماذج"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__name
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__name
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: eds_user_audit
+#: model:ir.model.constraint,message:eds_user_audit.constraint_audit_type_uk_name
+msgid "Name should be unique!"
+msgstr "يجب أن يكون الاسم فريدًا!"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#, python-format
+msgid "Name:"
+msgstr "اسم السجل:"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__new_value
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__new_value_display
+#: model:ir.model.fields,field_description:eds_user_audit.field_mail_tracking_value__new_value
+#, python-format
+msgid "New Value"
+msgstr "قيمه جديده"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#, python-format
+msgid "No Update:"
+msgstr "لا يوجد تحديث:"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__model_ids
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__model_id
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_log_search
+msgid "Object"
+msgstr "Object"
+
+#. module: eds_user_audit
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_config_form
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_delete_form
+msgid "Objects"
+msgstr "الكائنات"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/js/sidebar.js:0
+#, python-format
+msgid "Ok"
+msgstr "موافق"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__old_value
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__old_value_display
+#: model:ir.model.fields,field_description:eds_user_audit.field_mail_tracking_value__old_value
+#, python-format
+msgid "Old Value"
+msgstr "القيمة القديمة"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__on_read
+#: model:ir.model.fields.selection,name:eds_user_audit.selection__audit_log__type__1
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_log_search
+msgid "Read"
+msgstr "قراءة"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__record_count
+msgid "Record Count"
+msgstr "عدد السجلات"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__record_id
+msgid "Record ID"
+msgstr "تسجيل الهوية"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/js/sidebar.js:0
+#, python-format
+msgid "Record Info"
+msgstr "معلومات التسجيل"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__records_to_delete
+msgid "Records to Delete"
+msgstr "السجلات المطلوب حذفها"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__reference
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__reference
+#: model:ir.model.fields,field_description:eds_user_audit.field_mail_tracking_value__reference
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__table_size
+msgid "Table Size"
+msgstr "حجم الطاولة"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__date
+msgid "To Date"
+msgstr "الى تاريخ"
+
+#. module: eds_user_audit
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_mail_tracking_value_tree
+msgid "Tracking Value"
+msgstr "تتبع القيمة"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_delete__type_ids
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__type
+msgid "Type"
+msgstr "النوع"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/js/sidebar.js:0
+#, python-format
+msgid "Update Logs"
+msgstr "تحديث السجلات"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__user_ids
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log__user_id
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_log_detail__user_id
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_log_search
+#, python-format
+msgid "User"
+msgstr "المستخدم"
+
+#. module: eds_user_audit
+#: model:ir.ui.menu,name:eds_user_audit.menu_eds_user_audit_root
+msgid "User Audit"
+msgstr "تدقيق المستخدم"
+
+#. module: eds_user_audit
+#: model:ir.ui.menu,name:eds_user_audit.menu_eds_user_audit_logs
+msgid "User Logs"
+msgstr "سجلات المستخدم"
+
+#. module: eds_user_audit
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_config_form
+msgid "Users"
+msgstr "المستخدمون"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_type__value
+msgid "Value"
+msgstr "القيمة"
+
+#. module: eds_user_audit
+#: model:ir.model.constraint,message:eds_user_audit.constraint_audit_type_uk_value
+msgid "Value should be unique!"
+msgstr "القيمة يجب أن تكون فريدة!"
+
+#. module: eds_user_audit
+#: model:ir.model.fields,field_description:eds_user_audit.field_audit_config__on_write
+#: model:ir.model.fields.selection,name:eds_user_audit.selection__audit_log__type__3
+#: model_terms:ir.ui.view,arch_db:eds_user_audit.view_audit_log_search
+msgid "Write"
+msgstr "كتابة"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/js/sidebar.js:0
+#, python-format
+msgid "XML ID"
+msgstr "معرف XML"
+
+#. module: eds_user_audit
+#. odoo-javascript
+#: code:addons/eds_user_audit/static/src/xml/templates.xml:0
+#, python-format
+msgid "XML ID:"
+msgstr "مُعرف XML:"
+
+#. module: eds_user_audit
+#: model:ir.model,name:eds_user_audit.model_audit_config
+msgid "audit.config"
+msgstr "التدقيق.config"
+
+#. module: eds_user_audit
+#: model:ir.model,name:eds_user_audit.model_audit_delete
+msgid "audit.delete"
+msgstr "حذف.التدقيق"
+
+#. module: eds_user_audit
+#: model:ir.model,name:eds_user_audit.model_audit_log
+msgid "audit.log"
+msgstr "سجل التدقيق."
+
+#. module: eds_user_audit
+#: model:ir.model,name:eds_user_audit.model_audit_log_detail
+msgid "audit.log.detail"
+msgstr "سجل.تدقيق.تفاصيل"
+
+#. module: eds_user_audit
+#: model:ir.model,name:eds_user_audit.model_audit_type
+msgid "audit.type"
+msgstr "نوع التدقيق."

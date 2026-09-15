@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+<t t-name="eds_smart_theme.HrDashboard">
+<div class="hrd" dir="rtl">
+
+  <t t-if="state.loading"><div class="hrd-loading"><div class="hrd-spinner"/></div></t>
+
+  <div class="hrd-body">
+
+    <!-- ══ ROW 1: Profile + Welcome ══ -->
+    <div class="hrd-grid hrd-anim" style="--d:0.04s">
+
+      <!-- LEFT COL -->
+      <div class="hrd-left">
+
+        <!-- Profile Card -->
+        <div class="hrd-profile">
+          <div class="hrd-pc-top">
+            <div class="hrd-pc-avatar">
+              <t t-if="state.user.avatarUrl"><img t-att-src="state.user.avatarUrl" alt=""/></t>
+              <t t-else=""><i class="fa fa-user"/></t>
+            </div>
+            <div class="hrd-pc-info">
+              <div class="hrd-pc-name" t-esc="state.user.name"/>
+              <div class="hrd-pc-title" t-esc="state.user.jobTitle"/>
+              <div class="hrd-pc-online">
+                <span class="hrd-online-dot"/>
+                <span class="hrd-online-lbl">نشط الآن</span>
+              </div>
+            </div>
+          </div>
+          <div class="hrd-pc-stats">
+            <div class="hrd-sbox">
+              <div class="hrd-sl">رمز الموظف</div>
+              <div class="hrd-sv" t-esc="'#' + state.user.code"/>
+            </div>
+            <div class="hrd-sbox">
+              <div class="hrd-sl">القسم</div>
+              <div class="hrd-sv" t-esc="state.user.department"/>
+            </div>
+            <div class="hrd-sbox">
+              <div class="hrd-sl">طلبات معلقة</div>
+              <div class="hrd-sv orange" t-esc="state.user.pendingRequests"/>
+            </div>
+            <div class="hrd-sbox">
+              <div class="hrd-sl">إجازة متبقية</div>
+              <div class="hrd-sv" t-esc="state.user.leaveBalance + ' يوم'"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div class="hrd-panel hrd-events">
+          <div class="hrd-ph">
+            <div class="hrd-ph-icon"><i class="fa fa-calendar"/></div>
+            <div class="hrd-ph-title">أحداث قادمة</div>
+            <button class="hrd-viewall"><i class="fa fa-angle-left"/> عرض الكل</button>
+          </div>
+          <t t-foreach="state.events" t-as="ev" t-key="ev.id">
+            <t t-if="ev_index > 0"><div class="hrd-ev-divider"/></t>
+            <div class="hrd-ev-row">
+              <div t-attf-class="hrd-ev-badge #{ev.color}">
+                <span class="hrd-ev-day" t-esc="ev.day"/>
+                <span class="hrd-ev-mon" t-esc="ev.month"/>
+              </div>
+              <div class="hrd-ev-info">
+                <div class="hrd-ev-name" t-esc="ev.name"/>
+                <div class="hrd-ev-sub"  t-esc="ev.subtitle"/>
+              </div>
+              <span t-attf-class="hrd-ev-tag #{ev.statusClass}" t-esc="ev.statusLabel"/>
+            </div>
+          </t>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="hrd-panel hrd-quick">
+          <div class="hrd-ph">
+            <div class="hrd-ph-icon"><i class="fa fa-bolt"/></div>
+            <div class="hrd-ph-title">إجراءات سريعة</div>
+          </div>
+          <div class="hrd-qbtns">
+            <button class="hrd-qbtn teal" t-on-click="goLeaveRequest">
+              <i class="fa fa-file-text-o"/>
+              <span>طلب التقديم من مشكلة أو إسناد استخدام نظام البصمة</span>
+            </button>
+            <button class="hrd-qbtn purple" t-on-click="goLeaveRequest">
+              <i class="fa fa-calendar-plus-o"/>
+              <span>طلب إجازة</span>
+            </button>
+          </div>
+          <div class="hrd-minicards">
+            <div class="hrd-mini orange" t-on-click="goMyRequests">
+              <i class="fa fa-file-text-o orange"/>
+              <span class="orange">طلب إجازة</span>
+            </div>
+            <div class="hrd-mini purple" t-on-click="goMyRequests">
+              <i class="fa fa-folder-open-o purple"/>
+              <span class="purple">طلباتي</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Request Status -->
+        <div class="hrd-panel hrd-reqst">
+          <div class="hrd-ph">
+            <div class="hrd-ph-icon"><i class="fa fa-file-text"/></div>
+            <div class="hrd-ph-title">حالة الطلبات</div>
+            <button class="hrd-viewall" t-on-click="goMyRequests"><i class="fa fa-angle-left"/> عرض الكل</button>
+          </div>
+          <div class="hrd-rst-list">
+            <t t-foreach="state.requestStatus" t-as="req" t-key="req.id">
+              <div t-attf-class="hrd-rst-item #{req.borderClass}">
+                <div class="hrd-rst-info">
+                  <div class="hrd-rst-name" t-esc="req.name"/>
+                  <div class="hrd-rst-ago" t-esc="req.ago"/>
+                </div>
+                <span t-attf-class="hrd-rst-badge #{req.badgeClass}" t-esc="req.statusLabel"/>
+              </div>
+            </t>
+          </div>
+        </div>
+      </div><!-- /LEFT -->
+
+      <!-- RIGHT COL -->
+      <div class="hrd-right">
+
+        <!-- Welcome Banner -->
+        <div class="hrd-welcome">
+          <div class="hrd-wb-building"><i class="fa fa-building"/></div>
+          <div class="hrd-wb-text">
+            <div class="hrd-wb-title">
+              <span>👋</span>
+              <span>مرحباً، <t t-esc="state.user.name"/>!</span>
+            </div>
+            <div class="hrd-wb-sub">
+              <span class="bold">لديك <t t-esc="state.user.pendingRequests"/> طلبات جديدة</span>
+              <span class="hrd-wb-dot"/>
+              <span class="light" t-esc="state.todayDate"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Announcements + News row -->
+        <div class="hrd-news-ann-row">
+
+          <!-- Announcements -->
+          <div class="hrd-panel hrd-ann">
+            <div class="hrd-ph">
+              <div class="hrd-ph-icon"><i class="fa fa-bullhorn"/></div>
+              <div class="hrd-ph-title">التعاميم والقرارات</div>
+              <button class="hrd-viewall"><i class="fa fa-angle-left"/> عرض الكل</button>
+            </div>
+            <div class="hrd-ann-track"/>
+            <div class="hrd-ann-list">
+              <t t-foreach="state.announcements" t-as="ann" t-key="ann.id">
+                <div class="hrd-ann-item">
+                  <div class="hrd-ann-num" t-esc="ann_index + 1"/>
+                  <div class="hrd-ann-txt" t-esc="ann.name"/>
+                </div>
+              </t>
+            </div>
+          </div>
+
+          <!-- News -->
+          <div class="hrd-panel hrd-news">
+            <div class="hrd-ph">
+              <div class="hrd-ph-icon"><i class="fa fa-newspaper-o"/></div>
+              <div class="hrd-ph-title">أخبار</div>
+              <button class="hrd-viewall"><i class="fa fa-angle-left"/> عرض الكل</button>
+            </div>
+            <div class="hrd-news-lay">
+              <div class="hrd-news-list">
+                <t t-foreach="state.news" t-as="ni" t-key="ni.id">
+                  <div class="hrd-nitem">
+                    <span t-attf-class="hrd-ndot #{ni.dotColor}"/>
+                    <span class="hrd-ntxt" t-esc="ni.name"/>
+                  </div>
+                </t>
+              </div>
+              <div class="hrd-nfeat">
+                <div class="hrd-nfeat-bg"/>
+                <div class="hrd-nfeat-body">
+                  <span class="hrd-urgent">عاجل</span>
+                  <div class="hrd-nfeat-title" t-esc="state.featuredNews.name"/>
+                  <div class="hrd-nfeat-date" t-esc="state.featuredNews.date"/>
+                  <div class="hrd-ndots">
+                    <span class="hrd-di"/><span class="hrd-di"/>
+                    <span class="hrd-da"/>
+                    <span class="hrd-di"/><span class="hrd-di"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /news-ann-row -->
+
+        <!-- Tasks / Services / My Info Panel -->
+        <div class="hrd-tasks">
+          <!-- Tabs -->
+          <div class="hrd-tabs">
+            <button t-attf-class="hrd-tab #{state.activeTab==='tasks'?'active':''}" t-on-click="()=>this.setTab('tasks')">
+              <i class="fa fa-hourglass-half"/>
+              المهام
+              <span t-attf-class="hrd-tbadge #{state.activeTab==='tasks'?'pur':''}">
+                <t t-esc="state.taskCount"/>
+              </span>
+            </button>
+            <button t-attf-class="hrd-tab #{state.activeTab==='services'?'active':''}" t-on-click="()=>this.setTab('services')">
+              <i class="fa fa-th"/>
+              الخدمات الذاتية
+            </button>
+            <button t-attf-class="hrd-tab #{state.activeTab==='myinfo'?'active':''}" t-on-click="()=>this.setTab('myinfo')">
+              <i class="fa fa-info-circle"/>
+              معلوماتي
+            </button>
+          </div>
+
+          <!-- ── TASKS TAB ── -->
+          <t t-if="state.activeTab==='tasks'">
+            <div class="hrd-filters">
+              <button t-attf-class="hrd-pill #{state.taskFilter==='active'?'active':''}" t-on-click="()=>this.setFilter('active')">
+                <span t-attf-class="hrd-pill-dot #{state.taskFilter==='active'?'':'gray'}"/>
+                تحت التنفيذ
+                <t t-if="state.taskFilter==='active'"><span class="hrd-tbadge pur" style="margin-right:2px"><t t-esc="state.taskCount"/></span></t>
+              </button>
+              <button t-attf-class="hrd-pill #{state.taskFilter==='locked'?'active':''}" t-on-click="()=>this.setFilter('locked')">
+                <i class="fa fa-lock" style="font-size:8px;opacity:.6;"/>
+                المقفلة
+              </button>
+              <button t-attf-class="hrd-pill #{state.taskFilter==='done'?'active':''}" t-on-click="()=>this.setFilter('done')">
+                <span t-attf-class="hrd-pill-dot orange"/>
+                المنتهية
+              </button>
+              <button class="hrd-update-btn" t-on-click="refresh"><i class="fa fa-refresh"/> تحديث الكل</button>
+            </div>
+
+            <t t-if="filteredTasks.length > 0">
+              <div class="hrd-twrap">
+                <table class="hrd-table">
+                  <thead><tr>
+                    <th>رقم المهمة</th>
+                    <th>اسم الخدمة / النظام</th>
+                    <th>مقدم المهمة</th>
+                    <th>حالة المهمة</th>
+                    <th>رابط الطلب</th>
+                  </tr></thead>
+                  <tbody>
+                    <t t-foreach="filteredTasks" t-as="task" t-key="task.id">
+                      <tr class="hrd-tr" t-on-click="()=>this.openTask(task.id)">
+                        <td class="hrd-tdnum" t-esc="task.ref"/>
+                        <td t-esc="task.name"/>
+                        <td>
+                          <div class="hrd-sub">
+                            <div class="hrd-subav" t-esc="initials(task.submitter)"/>
+                            <span t-esc="task.submitter"/>
+                          </div>
+                        </td>
+                        <td>
+                          <span t-attf-class="hrd-tbadge2 #{task.statusClass}"
+                                t-esc="task.statusLabel"/>
+                        </td>
+                        <td class="center">
+                          <span class="hrd-tlink">
+                            <i class="fa fa-external-link"/> رابط الطلب
+                          </span>
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+              </div>
+            </t>
+            <t t-else="">
+              <div class="hrd-empty">
+                <i class="fa fa-lock"/>
+                <p t-esc="emptyMsg"/>
+              </div>
+            </t>
+
+            <div class="hrd-pag">
+              <button class="hrd-pag-btn"><i class="fa fa-angle-right"/></button>
+              <span class="hrd-pag-txt" t-esc="'صفحة ' + state.currentPage + ' من ' + state.totalPages"/>
+              <button class="hrd-pag-btn"><i class="fa fa-angle-left"/></button>
+            </div>
+          </t>
+
+          <!-- ── SERVICES TAB ── -->
+          <t t-if="state.activeTab==='services'">
+            <div class="hrd-filters">
+              <button t-attf-class="hrd-pill #{state.deptFilter==='hr'?'active':''}" t-on-click="()=>this.setDept('hr')">
+                الموارد البشرية
+              </button>
+              <button t-attf-class="hrd-pill #{state.deptFilter==='fin'?'active':''}" t-on-click="()=>this.setDept('fin')">
+                الشؤون المالية والإدارية
+              </button>
+              <button class="hrd-update-btn" t-on-click="refresh"><i class="fa fa-refresh"/> تحديث الكل</button>
+            </div>
+            <div class="hrd-svcgrid">
+              <t t-foreach="filteredServices" t-as="svc" t-key="svc.id">
+                <div class="hrd-svc">
+                  <button class="hrd-svcbtn">طلب</button>
+                  <span class="hrd-svctxt" t-esc="svc.name"/>
+                </div>
+              </t>
+            </div>
+          </t>
+
+          <!-- ── MY INFO TAB ── -->
+          <t t-if="state.activeTab==='myinfo'">
+            <div class="hrd-kpirow">
+              <t t-foreach="state.kpiBoxes" t-as="kpi" t-key="kpi.label">
+                <div t-attf-class="hrd-kbox #{kpi.highlight?'hl':''}">
+                  <div t-attf-class="hrd-kval #{kpi.color}" t-esc="kpi.value"/>
+                  <div class="hrd-klbl" t-esc="kpi.label"/>
+                  <div class="hrd-ksub" t-esc="kpi.sub"/>
+                </div>
+              </t>
+            </div>
+            <div class="hrd-infogrid">
+              <div class="hrd-infocard">
+                <div class="hrd-ich">
+                  <div class="hrd-ph-icon sm"><i class="fa fa-id-card"/></div>
+                  <span class="hrd-ict">بيانات الموظف</span>
+                </div>
+                <div class="hrd-irow"><span class="hrd-ik">المسمى الوظيفي</span><span class="hrd-iv" t-esc="state.user.jobTitle"/></div>
+                <div class="hrd-irow"><span class="hrd-ik">القسم</span><span class="hrd-iv" t-esc="state.user.department"/></div>
+                <div class="hrd-irow last"><span class="hrd-ik">تاريخ التعيين</span><span class="hrd-iv" t-esc="state.user.hireDate"/></div>
+              </div>
+              <div class="hrd-infocard">
+                <div class="hrd-ich">
+                  <div class="hrd-ph-icon sm"><i class="fa fa-bar-chart"/></div>
+                  <span class="hrd-ict">ملخص الأداء</span>
+                </div>
+                <div class="hrd-irow"><span class="hrd-ik">آخر تقييم</span><span class="hrd-iv teal" t-esc="state.user.lastReview"/></div>
+                <div class="hrd-irow"><span class="hrd-ik">الدرجة الوظيفية</span><span class="hrd-iv" t-esc="state.user.grade"/></div>
+                <div class="hrd-irow last"><span class="hrd-ik">سنوات الخدمة</span><span class="hrd-iv" t-esc="state.user.yearsOfService + ' سنوات'"/></div>
+              </div>
+              <div class="hrd-infocard wide">
+                <div class="hrd-ich">
+                  <div class="hrd-ph-icon sm"><i class="fa fa-clock-o"/></div>
+                  <span class="hrd-ict">سجل الحضور والانصراف</span>
+                </div>
+                <div class="hrd-attrow">
+                  <div class="hrd-atts"><div class="hrd-attv pur" t-esc="state.attendance.present"/><div class="hrd-attl">الحضور</div></div>
+                  <div class="hrd-atts"><div class="hrd-attv or" t-esc="state.attendance.late"/><div class="hrd-attl">تأخير</div></div>
+                  <div class="hrd-atts"><div class="hrd-attv te" t-esc="state.attendance.remote"/><div class="hrd-attl">عن بعد</div></div>
+                  <div class="hrd-atts"><div class="hrd-attv re" t-esc="state.attendance.absent"/><div class="hrd-attl">غياب</div></div>
+                </div>
+              </div>
+            </div>
+          </t>
+
+        </div><!-- /hrd-tasks -->
+
+        <!-- Quick Links -->
+        <div class="hrd-qlpanel">
+          <div class="hrd-ph">
+            <div class="hrd-ph-icon"><i class="fa fa-link"/></div>
+            <div class="hrd-ph-title">روابط سريعة</div>
+          </div>
+          <div class="hrd-qlgrid">
+            <t t-foreach="state.quickLinks" t-as="ql" t-key="ql.label">
+              <button class="hrd-qltile" t-on-click="()=>this.go(ql.action)">
+                <div t-attf-class="hrd-qli #{ql.iconClass}"><i t-attf-class="fa #{ql.icon}"/></div>
+                <span class="hrd-qll" t-esc="ql.label"/>
+              </button>
+            </t>
+          </div>
+        </div>
+
+      </div><!-- /RIGHT -->
+    </div><!-- /hrd-grid -->
+
+  </div><!-- /hrd-body -->
+</div>
+</t>
+</templates>

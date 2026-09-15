@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="student_statistics" model="ir.ui.view">
+        <field name="name">student.statistics.form</field>
+        <field name="model">student.statistics</field>
+        <field name="arch" type="xml">
+            <form string="Student Statistics" create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <field name="student_name"/>
+                        <field name="gradebook_name"/>
+                    </group>
+                    <group string="Assignment" col="4">
+                        <field name="graded"/>
+                        <field name="grades_published"/>
+                        <field name="need_grading"/>
+                        <field name="grades_archieve"/>
+                    </group>
+                    <group string="Attendance" col="4">
+                        <field name="grades_given_att"/>
+                        <field name="att_grades_publish"/>
+                        <field name="grade_att"/>
+                        <field name="att_grades_archive"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="student_action_view" model="ir.actions.act_window">
+        <field name="name">Overview</field>
+        <field name="res_model">student.statistics</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="student_statistics"/>
+        <field name="target">current</field>
+    </record>
+</odoo>

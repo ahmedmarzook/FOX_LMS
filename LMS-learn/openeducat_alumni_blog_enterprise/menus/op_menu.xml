@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_alumni_blog_posts" model="ir.actions.act_window">
+        <field name="name">Alumni Blog</field>
+        <field name="res_model">blog.post</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('alumni_group_id', '!=', False)]</field>
+    </record>
+
+    <menuitem id="menu_alumni_blog_root"
+              name="Alumni Blog"
+              action="action_alumni_blog_posts"
+              sequence="35"
+              web_icon="openeducat_alumni_blog_enterprise,static/description/icon.png"/>
+</odoo>

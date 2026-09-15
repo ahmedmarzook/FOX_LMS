@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delegation_employee,access_delegation_employee,model_delegation,delegation_employee,1,1,1,1
+access_delegation_line_employee,access_delegation_line_employee,model_delegation_line,delegation_employee,1,1,1,1
+access_delegation_line_user,access_delegation_line_user,model_delegation_line,base.group_user,1,0,0,0
+access_ir_actions_server_user,ir.actions.server.user,base.model_ir_actions_server,base.group_user,1,0,0,0
+access_ir_model_user,ir.model.user,base.model_ir_model,base.group_user,1,0,0,0

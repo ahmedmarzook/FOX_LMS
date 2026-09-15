@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="eds_smart_theme.SmartPortalDashboard">
+    <div class="o_eds_smart_dashboard o_eds_smart_dashboard_root mwh-dashboard" t-ref="dashboardRoot" t-att-dir="direction">
+      <div class="app-shell">
+        <!-- Search UI lives in the main navbar on this screen; keep #globalSearch for filtering logic in JS. -->
+        <input id="globalSearch" type="search" class="o_smart_portal_search_sink" autocomplete="off" tabindex="-1" aria-hidden="true"/>
+        <main class="main-layout">
+          <section class="summary-strip">
+            <section class="welcome-panel panel">
+              <div class="welcome-panel__side">
+                <div class="profile-div-image">
+                  <img
+                    id="welcomeAvatar"
+                    class="profile-main-image"
+                    src="/web/static/img/placeholder.png"
+                    t-att-alt="labelProfilePicture"
+                  />
+                  <button class="profile-button" type="button" t-on-click="onOpenMyProfile">
+                    <span t-esc="labelMyProfile"/>
+                    <i class="fa-solid fa-arrow-left arrow-sm" aria-hidden="true"/>
+                  </button>
+                </div>
+                <div class="welcome-text">
+                  <h1 id="welcomeTitle" t-esc="labelWelcome"/>
+                  <p id="welcomeSubtitle"></p>
+                  <p id="welcomeMeta"></p>
+                  <strong id="welcomePending"></strong>
+                </div>
+              </div>
+              <div class="kpi-row kpi-row--loading" id="kpiRow" aria-busy="true"></div>
+            </section>
+            <aside class="profile-panel panel">
+              <div class="employee-card" id="employeeCarousel">
+                <span class="employee-badge" t-esc="labelRecentlyJoined"/>
+                <div class="employee-photo-wrap">
+                  <button class="nav-arrow nav-arrow--prev" type="button" id="joinerPrev" t-att-aria-label="labelPreviousProfile"><span class="nav-arrow__glyph" aria-hidden="true"/></button>
+                  <img id="joinerPhoto" src="/web/static/img/placeholder.png" t-att-alt="labelEmployeePhoto"/>
+                  <button class="nav-arrow nav-arrow--next" type="button" id="joinerNext" t-att-aria-label="labelNextProfile"><span class="nav-arrow__glyph" aria-hidden="true"/></button>
+                </div>
+                <h2 id="joinerName"></h2>
+                <p id="joinerDepartment"></p>
+                <p id="joinerJob"></p>
+                <div class="employee-dots" id="joinerDots"></div>
+              </div>
+              <div class="attendance-grid" id="attendanceGrid"></div>
+            </aside>
+          </section>
+          <section class="primary-grid">
+            <section class="tasks-panel panel">
+              <header class="panel__header panel__header--stacked">
+                <div class="custom_segment segment--tight" id="taskTabs">
+                  <button class="active" type="button" data-tab="tasks">
+                    <span class="tab-btn__icon tab-btn__icon--hourglass" aria-hidden="true"/>
+                    <span class="tab-btn__label"><t t-esc="labelMyTasks"/></span>
+                    <span class="custom-badge-count">0</span>
+                  </button>
+                  <button type="button" data-tab="requests">
+                    <span class="tab-btn__icon tab-btn__icon--info" aria-hidden="true"/>
+                    <span class="tab-btn__label"><t t-esc="labelMyRequests"/></span>
+                    <span class="custom-badge-count">0</span>
+                  </button>
+                </div>
+                <div class="tasks-subheader">
+                  <div class="segment segment--tight segment--subtabs" id="taskFilterTabs">
+                    <button class="active" type="button" data-filter="pending">
+                      <span class="subtab-btn__icon subtab-btn__icon--hourglass" aria-hidden="true"/>
+                      <span class="subtab-btn__label"><t t-esc="labelPendingTasks"/></span>
+                      <span class="custom-badge-count subtab-badge-count">0</span>
+                    </button>
+                    <button type="button" data-filter="closed">
+                      <span class="subtab-btn__icon subtab-btn__icon--verified" aria-hidden="true"/>
+                      <span class="subtab-btn__label"><t t-esc="labelClosedTasks"/></span>
+                      <span class="custom-badge-count subtab-badge-count">0</span>
+                    </button>
+                  </div>
+                </div>
+              </header>
+              <div class="table-wrap">
+                <table class="tasks-table">
+                  <thead>
+                    <tr><th t-esc="labelTaskNo"/><th t-esc="labelServiceSystem"/><th class="tasks-table__col-status" t-esc="labelTaskStatus"/><th t-esc="labelTaskOwner"/><th t-esc="labelRequestLink"/></tr>
+                  </thead>
+                  <tbody id="taskTableBody"></tbody>
+                </table>
+              </div>
+              <div class="table-footer">
+<!--                <button class="pager-button pager-button&#45;&#45;next" id="nextPage" type="button" t-att-aria-label="labelNextPage"><span class="pager-button__glyph" aria-hidden="true"/></button>-->
+                <button class="pager-button pager-button--next" id="prevPage" type="button" t-att-aria-label="labelNextPage"><span class="pager-button__glyph" aria-hidden="true"/></button>
+                <div class="pagination-label" id="pageLabel" t-esc="labelPageOf"/>
+<!--                <button class="pager-button pager-button&#45;&#45;prev" id="prevPage" type="button" t-att-aria-label="labelPreviousPage"><span class="pager-button__glyph" aria-hidden="true"/></button>-->
+                <button class="pager-button pager-button--prev" id="nextPage" type="button" t-att-aria-label="labelPreviousPage"><span class="pager-button__glyph" aria-hidden="true"/></button>
+              </div>
+            </section>
+            <section class="services-panel panel">
+              <header class="panel__header">
+                <div class="section-title">
+                  <span class="section-title__icon section-title__icon--services" aria-hidden="true"/>
+                  <h3 t-esc="labelSelfServices"/>
+                </div>
+              </header>
+              <div class="segment" id="serviceTabs"></div>
+              <div class="service-grid" id="serviceGrid"></div>
+            </section>
+          </section>
+          <section class="quick-panel panel">
+            <header class="panel__header"><div class="section-title"><i class="fa-regular fa-calendar-days"/><h3 t-esc="labelQuickLinks"/></div></header>
+            <div class="quick-links" id="quickLinks"></div>
+          </section>
+          <footer class="dashboard-footer">
+            <p class="dashboard-footer__copyright" t-esc="labelCopyright"/>
+            <div class="dashboard-footer__social">
+              <a href="https://www.youtube.com/user/mawhibaportal" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <i class="fa fa-youtube" aria-hidden="true"/>
+              </a>
+              <a href="https://www.facebook.com/Mawhiba1444" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <i class="fa fa-facebook" aria-hidden="true"/>
+              </a>
+              <a href="https://www.instagram.com/mawhibaportal/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="fa fa-instagram" aria-hidden="true"/>
+              </a>
+              <a href="https://twitter.com/mawhiba" target="_blank" rel="noopener noreferrer" aria-label="X">
+                <i class="fa fa-twitter" aria-hidden="true"/>
+              </a>
+            </div>
+            <a
+              class="dashboard-footer__privacy"
+              href="/privacy_policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              t-esc="labelPrivacyPolicy"
+            />
+          </footer>
+        </main>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+  </t>
+</templates>

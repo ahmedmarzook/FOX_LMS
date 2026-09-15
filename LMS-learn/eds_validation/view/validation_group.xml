@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="view_validation_group_tree" model="ir.ui.view">
+		<field name="name">validation.group.tree</field>
+		<field name="model">validation.group</field>
+		<field name="arch" type="xml">
+			<list>
+				<field name="sequence" widget="handle" />
+				<field name="name" />
+				<field name="model_id" />
+				<field name="active" />
+				<field name="valid_from" />
+				<field name="valid_to" />
+			</list>
+		</field>
+	</record>
+
+	<record id="view_validation_groupi,_form" model="ir.ui.view">
+		<field name="name">validation.group.form</field>
+		<field name="model">validation.group</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button name="action_log" type="object" class="oe_stat_button" icon="fa-warning">
+							<field name="log_count" widget="statinfo" string="Logs" />
+						</button>
+						<button name="action_items" type="object" class="oe_stat_button" icon="fa-list-ul">
+							<field name="validation_count" widget="statinfo" string="Items" />
+						</button>
+					</div>
+					<widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active"/>
+					<group>
+						<group>
+							<field name="name" />
+							<field name="model_id" />
+							<field name="model" invisible="1" />
+							<field name="active" invisible="1"/>
+						</group>
+						<group>
+							<field name="valid_from"/>
+							<field name="valid_to" />
+						</group>
+					</group>
+					<group>
+						<field name="domain" widget="domain" options="{'model': 'model'}"/>
+					</group>
+					<group string="Items">
+						<field name="validation_ids" nolabel="1" readonly = "1" >
+							<list>
+								<field name="sequence" />
+								<field name="name" />
+								<field name="type" />
+								<field name="on_create" />
+								<field name="on_write" />
+								<field name="on_unlink" />
+								<field name="active" widget="boolean_toggle" readonly = "1" />
+							</list>
+						</field>
+					</group>
+				</sheet>
+				<div class="oe_chatter">
+					<field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+					<field name="message_ids" widget="mail_thread" />
+				</div>
+			</form>
+		</field>
+	</record>
+
+	<record id="view_validation_group_search" model="ir.ui.view">
+		<field name="name">validation.group.search</field>
+		<field name="model">validation.group</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="model_id" />
+				<separator />
+				<filter name="active" string="Active" domain="[('active','=', True)]" />
+    			<filter name="inactive" string="Inactive" domain="[('active','=', False)]" />
+				<filter name="model_id_group" string="Object" context="{'group_by' : 'model_id'}" />
+			</search>
+		</field>
+	</record>
+
+</odoo>

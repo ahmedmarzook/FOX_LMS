@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_audit_log_user,access_audit_log_user,model_audit_log,base.group_user,1,0,0,0
+access_audit_log_detail_user,access_audit_detail_log_user,model_audit_log_detail,base.group_user,1,0,0,0
+access_audit_type_all,access_audit_type_all,model_audit_type,,1,0,0,0
+access_audit_config_group_audit,access_audit_config_group_audit,model_audit_config,group_audit_admin,1,1,1,1
+access_audit_config_group_user,access_audit_config_group_user,model_audit_config,base.group_user,1,0,0,0
+
+access_audit_delete_group_audit,access_audit_delete_group_audit,model_audit_delete,group_audit_admin,1,1,1,1
+access_audit_delete_group_user,access_audit_delete_group_user,model_audit_delete,base.group_user,1,0,0,0

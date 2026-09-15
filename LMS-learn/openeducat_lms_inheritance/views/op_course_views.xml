@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List view: add Doctor Name right after Name -->
+    <record id="view_op_lms_course_tree_doctor_name" model="ir.ui.view">
+        <field name="name">op.course.list.lms.doctor.name</field>
+        <field name="model">op.course</field>
+        <field name="inherit_id" ref="openeducat_lms.view_op_lms_course_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="doctor_name" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Form view: add Doctor Name right after Name -->
+    <record id="view_op_lms_course_form_doctor_name" model="ir.ui.view">
+        <field name="name">op.course.form.lms.doctor.name</field>
+        <field name="model">op.course</field>
+        <field name="inherit_id" ref="openeducat_lms.view_op_lms_course_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="doctor_name" placeholder="Doctor Name"/>
+            </field>
+        </field>
+    </record>
+</odoo>

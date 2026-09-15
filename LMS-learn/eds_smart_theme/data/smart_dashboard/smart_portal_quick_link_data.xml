@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--
+    Original Mawhiba demo data pointed at Mawhiba-only action ids/menu ids and
+    mawhiba.org domains, meaningless (and mostly 404) in this project. Ported
+    with generic, safe-by-default entries instead — an admin can add/replace
+    quick links via Settings > Smart Portal > Quick links.
+  -->
+  <data noupdate="0">
+    <record id="smart_portal_quick_link_directory" model="smart.portal.quick.link">
+      <field name="sequence">10</field>
+      <field name="name">دليل الموظفين</field>
+      <field name="icon">fa-user-o</field>
+      <field name="link_url">/odoo/employees</field>
+    </record>
+    <record id="smart_portal_quick_link_documents" model="smart.portal.quick.link">
+      <field name="sequence">20</field>
+      <field name="name">المستندات</field>
+      <field name="icon">fa-folder-open-o</field>
+      <field name="link_url">/odoo/documents</field>
+    </record>
+  </data>
+</odoo>

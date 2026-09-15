@@ -1,0 +1,123 @@
+@mixin fa-font-icons-content($name, $content) {
+    .fa.fa-#{$name}{
+        font-family: 'remixicon' !important;
+        &::before{
+            content: $content !important;
+        }
+    }
+}
+
+@include fa-font-icons-content(search, "\f0d1");
+@include fa-font-icons-content(folder, "\ed27");
+@include fa-font-icons-content(filter, "\ed23");
+@include fa-font-icons-content(star, "\f18b");
+@include fa-font-icons-content(bars, "\ef3e");
+@include fa-font-icons-content(chevron-left, "\ea60");
+@include fa-font-icons-content(chevron-right, "\ea6c");
+@include fa-font-icons-content(download, "\ec54");
+@include fa-font-icons-content(plus, "\ea13");
+@include fa-font-icons-content(pencil, "\efe0");
+@include fa-font-icons-content(check, "\eb7b");
+@include fa-font-icons-content(times, "\eb99");
+@include fa-font-icons-content(calendar-check-o, "\eb23");
+@include fa-font-icons-content(cogs, "\f0e6");
+@include fa-font-icons-content(cog, "\f0e6");
+@include fa-font-icons-content(clock-o, "\f215");
+// @include fa-font-icons-content(caret-right, "\ea6c");
+@include fa-font-icons-content(caret-down, "\ea4e");
+@include fa-font-icons-content(envelope, "\eef6");
+@include fa-font-icons-content(tasks, "\eb27");
+@include fa-font-icons-content(print, "\f029");
+@include fa-font-icons-content(paperclip, "\ea86");
+@include fa-font-icons-content(user, "\f264");
+@include fa-font-icons-content(star-o, "\f18b");
+@include fa-font-icons-content(bug, "\eb07");
+@include fa-font-icons-content(inbox, "\ee4f");
+
+body.o_web_client{
+    .dropdown-item.selected:before {
+        font-family: 'remixicon' !important;
+        content: "\eb7b" !important;
+    }
+    .ri{
+        font-size: 18px;
+        vertical-align: middle;
+        line-height: 20px
+    }
+    .fa{
+        vertical-align: middle;
+    }
+    .fa-folder{
+        color: var(--biz-theme-primary-color) !important;
+    }
+    
+    .o_menu_systray {
+        .fa{
+            font-size:18px;
+            vertical-align: middle;
+            &.fa-circle{
+                font-size: 14px
+            }
+        }
+        @include fa-font-icons-content(globe, "\ed8a");
+        @include fa-font-icons-content(institution, "\eb03");
+        // @include fa-font-icons-content(pencil, "\ef3f");
+        @include fa-font-icons-content(comments, "\eb51");
+    }
+    
+    .header_menu_right_content {
+        .fullscreen-exit {
+            .ri-fullscreen-line:before {
+                content: "\ed9a" !important;
+            }
+        }
+    }
+
+    /* Theme maps many .fa-* to remixicon, but remixicon font is not bundled — Odoo systray / debug UI stay on FontAwesome 4. */
+    $odoo-fa4-restore: (
+        search: "\f002",
+        folder: "\f07b",
+        filter: "\f0b0",
+        star: "\f005",
+        bars: "\f0c9",
+        chevron-left: "\f053",
+        chevron-right: "\f054",
+        download: "\f019",
+        plus: "\f067",
+        pencil: "\f040",
+        check: "\f00c",
+        times: "\f00d",
+        calendar-check-o: "\f274",
+        cogs: "\f085",
+        cog: "\f013",
+        clock-o: "\f017",
+        caret-down: "\f0d7",
+        envelope: "\f0e0",
+        tasks: "\f0ae",
+        print: "\f02f",
+        paperclip: "\f0c6",
+        user: "\f007",
+        star-o: "\f006",
+        bug: "\f188",
+        inbox: "\f01c",
+        globe: "\f0ac",
+        institution: "\f19c",
+        comments: "\f086",
+    );
+
+    @each $name, $code in $odoo-fa4-restore {
+        .o_menu_systray .fa.fa-#{$name}::before,
+        .o_debug_manager .fa.fa-#{$name}::before,
+        .debug_activator .activate_debug .fa.fa-#{$name}::before,
+        .o_control_panel .fa.fa-#{$name}::before {
+            font-family: FontAwesome !important;
+            content: $code !important;
+        }
+    }
+}
+
+.o_rtl {
+    .fa.fa-chevron-right, .fa.fa-chevron-left {
+        transform: unset !important;
+    }
+}

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="lesson_form_view" model="ir.ui.view">
+        <field name="name">op.lesson.form</field>
+        <field name="model">op.lesson</field>
+        <field name="arch" type="xml">
+            <form string="Lesson Information">
+                <header>
+                    <button type="object" name="lesson_plan" string="Planned"
+                            class="oe_highlight"
+                            groups="openeducat_timetable.group_op_timetable_user"
+                            invisible="state != 'draft'"/>
+                    <button type="object" name="lesson_conduct" string="Conducted"
+                            class="oe_highlight"
+                            groups="openeducat_timetable.group_op_timetable_user"
+                            invisible="state != 'plan'"/>
+                    <button type="object" name="lesson_draft" string="Set to Draft"
+                            class="oe_highlight"
+                            groups="openeducat_timetable.group_op_timetable_user"
+                            invisible="state != 'cancel'"/>
+                    <button type="object" name="lesson_cancel" string="Cancel"
+                            groups="openeducat_timetable.group_op_timetable_user"
+                            invisible="state not in ('draft', 'plan')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,plan,conduct,cancel"/>
+                </header>
+                <sheet>
+                    <field name="active" invisible="True"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="course_id"/>
+                            <field name="batch_id"/>
+                            <field name="subject_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="faculty_id"/>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="session_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <separator string="Lesson Topic"/>
+                    <field name="lesson_topic" placeholder="Lesson Topic ..."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="lesson_list_view" model="ir.ui.view">
+        <field name="name">op.lesson.list</field>
+        <field name="model">op.lesson</field>
+        <field name="arch" type="xml">
+            <list string="Lessons">
+                <field name="name"/>
+                <field name="faculty_id"/>
+                <field name="course_id"/>
+                <field name="batch_id" optional="hide"/>
+                <field name="subject_id"/>
+                <field name="start_datetime" optional="hide"/>
+                <field name="end_datetime" optional="hide"/>
+                <field name="session_ids" widget="many2many_tags" optional="hide"/>
+                <field name="lesson_topic" optional="hide"/>
+                <field name="state" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="lesson_search_view" model="ir.ui.view">
+        <field name="name">op.lesson.search</field>
+        <field name="model">op.lesson</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="faculty_id"/>
+                <field name="course_id"/>
+                <field name="batch_id"/>
+                <field name="subject_id"/>
+                <field name="start_datetime"/>
+                <separator/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_by_faculty" string="Faculty" context="{'group_by': 'faculty_id'}"/>
+                    <filter name="group_by_course" string="Course" context="{'group_by': 'course_id'}"/>
+                    <filter name="group_by_batch" string="Batch" context="{'group_by': 'batch_id'}"/>
+                    <filter name="group_by_subject" string="Subject" context="{'group_by': 'subject_id'}"/>
+                    <filter name="group_by_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="lesson_calendar_view" model="ir.ui.view">
+        <field name="name">op.lesson.calendar</field>
+        <field name="model">op.lesson</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <calendar string="Lesson Planning" date_start="start_datetime"
+                      date_stop="end_datetime" color="faculty_id" mode="week">
+                <field name="name"/>
+                <field name="course_id"/>
+                <field name="faculty_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_op_lesson_pivot" model="ir.ui.view">
+        <field name="name">op.lesson.pivot</field>
+        <field name="model">op.lesson</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <pivot string="Lesson Planning">
+                <field name="subject_id" type="row"/>
+                <field name="faculty_id" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_op_lesson_graph" model="ir.ui.view">
+        <field name="name">op.lesson.graph</field>
+        <field name="model">op.lesson</field>
+        <field name="arch" type="xml">
+            <graph string="Lesson Planning" type="bar">
+                <field name="subject_id"/>
+                <field name="faculty_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_lesson_info" model="ir.actions.act_window">
+        <field name="name">Lessons</field>
+        <field name="res_model">op.lesson</field>
+        <field name="view_mode">calendar,list,form,pivot,graph</field>
+        <field name="search_view_id" ref="lesson_search_view"/>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="form_view_inherited_lesson" model="ir.ui.view">
+        <field name="name">op.session.form.lesson</field>
+        <field name="model">op.session</field>
+        <field name="inherit_id" ref="openeducat_timetable.view_op_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="lesson_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="tree_view_inherited_lesson" model="ir.ui.view">
+        <field name="name">op.session.list.lesson</field>
+        <field name="model">op.session</field>
+        <field name="inherit_id" ref="openeducat_timetable.view_op_session_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="lesson_ids" widget="many2many_tags" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

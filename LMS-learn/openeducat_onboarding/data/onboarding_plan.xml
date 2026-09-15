@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="0">
+
+    <record id="onboarding_plan_1" model="oe.onboarding.plan">
+        <field name="name">OpenEduCat Onboarding Plan</field>
+    </record>
+
+    <record id="onboarding_step_student" model="oe.onboarding.steps">
+        <field name="step_name">Create Students</field>
+        <field name="plan_id" ref="onboarding_plan_1"/>
+        <field name="doc_link">https://www.openeducat.org</field>
+    </record>
+
+    <record id="onboarding_step_faculty" model="oe.onboarding.steps">
+        <field name="step_name">Create Faculties</field>
+        <field name="plan_id" ref="onboarding_plan_1"/>
+        <field name="doc_link">https://www.openeducat.org</field>
+    </record>
+
+    <record id="onboarding_step_course" model="oe.onboarding.steps">
+        <field name="step_name">Create Courses</field>
+        <field name="plan_id" ref="onboarding_plan_1"/>
+        <field name="doc_link">https://www.openeducat.org</field>
+    </record>
+
+    <record id="onboarding_step_batch" model="oe.onboarding.steps">
+        <field name="step_name">Create Batches</field>
+        <field name="plan_id" ref="onboarding_plan_1"/>
+        <field name="doc_link">https://www.openeducat.org</field>
+    </record>
+
+    <record id="onboarding_step_subject" model="oe.onboarding.steps">
+        <field name="step_name">Create Subjects</field>
+        <field name="plan_id" ref="onboarding_plan_1"/>
+        <field name="doc_link">https://www.openeducat.org</field>
+    </record>
+
+</odoo>

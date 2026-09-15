@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_op_activity_kanban" model="ir.ui.view">
+        <field name="name">op.activity.announcement.kanban</field>
+        <field name="model">op.activity.announcement</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="website_url"/>
+                <templates>
+                    <t t-name="card">
+                        <div>
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                            <div class="text-muted mt-2">
+                                By:
+                                <field name="partner_id"/>
+                            </div>
+                            <div class="mt-3 text-end">
+                                <a t-att-href="record.website_url.raw_value">
+                                    Design
+                                </a>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_op_activity_list" model="ir.ui.view">
+        <field name="name">op.activity.announcement.list</field>
+        <field name="model">op.activity.announcement</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="job_post_id" widget="many2many_tags"/>
+                <field name="skill_id" widget="many2many_tags"/>
+                <field name="team_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="active" widget="boolean_toggle" optional="hide"/>
+                <field name="state" optional="hide"/>
+                <field name="company_id"
+                       groups="base.group_multi_company"
+                       optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_activity_form" model="ir.ui.view">
+        <field name="name">op.activity.announcement.form</field>
+        <field name="model">op.activity.announcement</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="Activity Announcement">
+                <header>
+                    <button name="set_open"
+                            string="Open"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state == 'open'"
+                            groups="base.group_user"/>
+                    <button name="set_closed"
+                            string="Closed"
+                            type="object"
+                            invisible="state == 'closed'"
+                            groups="base.group_user"/>
+                    <button name="set_draft"
+                            string="Set to Draft"
+                            type="object"
+                            invisible="state == 'draft'"
+                            groups="base.group_user"/>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,open,closed"/>
+                </header>
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon"
+                            title="Archived"
+                            bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="job_post_id" widget="many2many_tags"/>
+                            <field name="team_id"/>
+                        </group>
+                        <group>
+                            <field name="partner_id"
+                                   domain="[('is_company', '=', True)]"/>
+                            <field name="skill_id" widget="many2many_tags"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_activity_search" model="ir.ui.view">
+        <field name="name">op.activity.announcement.search</field>
+        <field name="model">op.activity.announcement</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search string="Activity Announcement">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+                <filter string="Archived"
+                        name="inactive"
+                        domain="[('active', '=', False)]"/>
+                <searchpanel>
+                    <field name="company_id" icon="fa-building"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_op_activity_announcement_pivot" model="ir.ui.view">
+        <field name="name">op.activity.announcement.pivot</field>
+        <field name="model">op.activity.announcement</field>
+        <field name="arch" type="xml">
+            <pivot string="Activity Announcement Records">
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_activity_announcement_view">
+        <field name="name">Activity Announcement</field>
+        <field name="res_model">op.activity.announcement</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">kanban,list,form,pivot</field>
+        <field name="search_view_id" ref="view_op_activity_search"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_op_job_post_view_form">
+        <field name="act_window_id" ref="act_open_activity_announcement_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_op_activity_form"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_op_job_post_view_list">
+        <field name="act_window_id" ref="act_open_activity_announcement_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_op_activity_list"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_op_job_post_view_kanban">
+        <field name="act_window_id" ref="act_open_activity_announcement_view"/>
+        <field name="sequence" eval="5"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_op_activity_kanban"/>
+    </record>
+</odoo>

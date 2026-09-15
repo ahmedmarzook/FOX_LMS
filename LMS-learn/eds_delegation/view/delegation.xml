@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="view_delegation_form_tree" model="ir.ui.view">
+		<field name="name">Delegation Tree</field>
+		<field name="model">delegation</field>
+		<field name="arch" type="xml">
+			<list>
+				<field name="name" />
+				<field name="employee_id" groups="eds_delegation.delegation_manager" />
+				<field name="date_from" />
+				<field name="date_to" />
+				<field name="state" />
+				<field name="isactive" />
+			</list>
+		</field>
+	</record>
+
+	<record id="view_delegation_form_search" model="ir.ui.view">
+		<field name="name">Delegation Search</field>
+		<field name="model">delegation</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="employee_id" groups="eds_delegation.delegation_manager" />
+				<filter string="Active" name="active" domain="[('state','=','confirmed'), ('date_from','&gt;=', current_date), ('date_to','&lt;=', current_date)]" />
+				<filter string="Draft" name="draft" domain="[('state','=','draft')]" />
+				<filter string="Confirm" name="confirm" domain="[('state','=','confirmed')]" />
+				<group>
+					<filter string="Status" name="status" context="{'group_by':'state'}" />
+					<filter string="Employee" name="employee" context="{'group_by':'employee_id'}" groups="eds_delegation.delegation_manager" />
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<record id="view_delegation_form_default" model="ir.ui.view">
+		<field name="name">Delegation form</field>
+		<field name="model">delegation</field>
+		<field name="priority">1</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button name="action_confirm" type="object" invisible="state != 'draft'" class="oe_highlight" string="Confirm" />
+					<button name="action_revoked" type="object" invisible="state != 'confirmed'" class="oe_highlight" string="Revoke" />
+					<field name="state" widget="statusbar" statusbar_colors='{"revoked":"red","confirmed":"blue"}' />
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="is_delegation_admin" invisible="1" />
+							<field name="employee_id" readonly="is_delegation_admin == False" />
+							<field name="write_date" groups="eds_delegation.delegation_admin" />
+							<field name="user_id" required="1" invisible="1" />
+							<field name="name" />
+							<field name="date_from" readonly="state != 'draft'"/>
+							<field name="date_to" readonly="state != 'draft'"/>
+						</group>
+						<group>
+							<field name="one_employee" readonly="state != 'draft'"/>
+							<field name="delegateTo_employee_ids" invisible="1" widget="many2many_tag"/>
+
+							<field name="delegateTo_employee_id"
+								options="{'no_create_edit': True,}"
+								   required="one_employee == True" invisible="one_employee == False" readonly="state != 'draft'" domain="[('id', 'in', delegateTo_employee_ids)]"/>
+							<field name="stop_receiving_notification" readonly="state != 'draft'"/>
+						</group>
+					</group>
+					<group string="Assigned Roles">
+						<field name="lines" string="" readonly="state != 'draft'">
+							<list editable="bottom" delete="false" create="false">
+								<field name="delegator_id" column_invisible="1" />
+								<field name="group_id" column_invisible="1" />
+								<field name="group_id_display" />
+								<field name="employee_id" domain="['&amp;', ('id','!=',delegator_id), '|', ('parent_id','=', delegator_id), ('parent_id.child_ids','=',delegator_id)]"
+									options="{'no_create_edit': True, 'no_quick_create': True }" readonly="one_employee == True" />
+								<field name="one_employee" column_invisible="1" />
+							</list>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="view_delegation_form" model="ir.ui.view">
+		<field name="name">Delegation form</field>
+		<field name="model">delegation</field>
+		<field name="priority">999</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<field name="state" widget="statusbar" statusbar_colors='{"revoked":"red","confirmed":"blue"}' />
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="name" />
+							<field name="date_from" readonly="state != 'draft'" />
+							<field name="date_to" readonly="state != 'draft'" />
+						</group>
+						<group>
+							<field name="one_employee" />
+							<field name="employee_id" invisible="1" />
+							<field name="user_id" required="1" invisible="1" />
+							<field name="delegateTo_employee_id" domain="['&amp;', ('id','!=',employee_id), '|', ('parent_id','=', employee_id), ('parent_id.child_ids','=',employee_id)]"
+								options="{'no_create_edit': True, 'no_quick_create': True }"
+								   required="one_employee == True" invisible="one_employee == False"/>
+						</group>
+					</group>
+					<group string="Assigned Roles">
+						<field name="lines" nolabel="0" list_options="{'limit':10}">
+							<list editable="bottom" delete="false" create="false">
+								<field name="group_id" column_invisible="True"/>
+								<field name="delegator_id" column_invisible="True" />
+								<field name="group_id_display" />
+								<field name="employee_id" domain="['&amp;', ('id','!=',delegator_id), '|', ('parent_id','=', delegator_id), ('parent_id.child_ids','=',delegator_id)]"
+									options="{'no_create_edit': True, 'no_quick_create': True }" readonly="one_employee == True"/>
+								<field name="one_employee" column_invisible="True"/>
+							</list>
+						</field>
+					</group>
+					<footer>
+						<button name="action_submit" string="Save" type="object" class="oe_highlight" />
+						or
+						<button string="Discard" class="oe_link" special="cancel" />
+					</footer>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="view_delegation_form_read" model="ir.ui.view">
+		<field name="name">Delegation form</field>
+		<field name="model">delegation</field>
+		<field name="priority">9999</field>
+		<field name="arch" type="xml">
+			<form create="false" edit="false">
+				<sheet>
+					<group>
+						<group>
+							<field name="name" />
+							<label string="Duration" for="date_to" />
+							<div>
+								<group col="3">
+									<field name="date_from" nolabel="0" class="oe_inline" />
+									<label string="-" for="date_to" class="oe_inline" />
+									<field name="date_to" nolabel="0" class="oe_inline" />
+								</group>
+							</div>
+						</group>
+						<group>
+							<field name="one_employee" />
+							<field name="employee_id" options="{'no_create_edit': True, 'no_quick_create': True }"
+								   required="one_employee == True" invisible="one_employee == False"/>
+						</group>
+					</group>
+					<group string="Assigned Roles">
+						<field name="lines" nolabel="0" list_options="{'limit':10}">
+							<list editable="bottom" delete="false" create="false">
+								<field name="group_id" readonly="1" />
+								<field name="employee_id" options="{'no_create_edit': True, 'no_quick_create': True }" readonly="one_employee == True"/>
+								<field name="one_employee" invisible="1" />
+							</list>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+</odoo>

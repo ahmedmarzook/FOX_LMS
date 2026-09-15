@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_alumni_event" model="ir.actions.act_window">
+        <field name="name">Alumni Events</field>
+        <field name="res_model">event.event</field>
+        <field name="view_mode">list,kanban,calendar,form</field>
+        <field name="domain">[('alumni_event_id', '!=', False)]</field>
+        <field name="context">{'default_website_published': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create an alumni event</p>
+            <p>Events created here can be linked to an alumni group.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_alumni_event_root"
+              name="Alumni Events"
+              action="action_alumni_event"
+              sequence="35"
+              web_icon="openeducat_alumni_event_enterprise,static/description/icon.png"/>
+</odoo>

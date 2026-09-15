@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+        <record id="view_op_course_material_tree" model="ir.ui.view">
+            <field name="name">op.material.tree</field>
+            <field name="model">op.material</field>
+            <field name="type">list</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="material_type"/>
+                    <field name="user_id"/>
+                    <field name="image_1920" optional="hide"/>
+                    <!--                    <field name="image_medium" optional="hide"/>-->
+                    <!--                    <field name="image_thumb" optional="hide"/>-->
+                    <field name="short_description" optional="hide"/>
+                    <field name="auto_publish" widget="boolean_toggle" optional="hide"/>
+                    <field name="auto_publish_type" optional="hide"/>
+                    <field name="wait_until_date" optional="hide"/>
+                    <field name="wait_until_duration" optional="hide"/>
+                    <field name="wait_until_duration_period" optional="hide"/>
+                    <field name="category_id" optional="hide"/>
+                    <field name="video_type" optional="hide"/>
+                    <field name="quiz_id" optional="hide"/>
+                    <field name="datas" optional="hide"/>
+                    <field name="url" optional="hide"/>
+                    <field name="document_id" optional="hide"/>
+                    <field name="total_time" widget="float_time" optional="hide"/>
+                    <field name="document_url" optional="hide"/>
+                    <field name="header_visible" widget="boolean_toggle" optional="hide"/>
+                    <field name="footer_visible" widget="boolean_toggle" optional="hide"/>
+                    <field name="date_published" optional="hide"/>
+                    <field name="website_message_ids" optional="hide"/>
+                    <field name="likes" optional="hide"/>
+                    <field name="dislikes" optional="hide"/>
+                    <field name="material_views" optional="hide"/>
+                    <field name="embed_views" optional="hide"/>
+                    <!--                    <field name="total_views" optional="hide"/>-->
+                    <field name="active" widget="boolean_toggle" optional="hide"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_course_material_form" model="ir.ui.view">
+            <field name="name">op.material.form</field>
+            <field name="model">op.material</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Course Material">
+                    <header/>
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="website_edit_web_page_content" type="object" icon="fa-pencil">
+                                <span>
+                                    Edit Content
+                                </span>
+                            </button>
+                            <button class="oe_stat_button" name="website_lms_publish_button" type="object" icon="fa-globe">
+                                <field name="website_published" widget="website_button"/>
+                                <span name="website_published" class="o_stat_text">Publish</span>
+                            </button>
+                        </div>
+                        <field name="image_1920" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name" string="Name"/>
+                            <h1>
+                                <field name="name" placeholder="Material Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group col="4">
+                                <field name="user_id" readonly="1"/>
+                            </group>
+                            <group col="4">
+                                <field name="website_url"/>
+                                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="general" string="General">
+                                <group col="2">
+                                    <field name="auto_publish"/>
+                                    <field name="auto_publish_type"/>
+                                    <field name="wait_until_date"/>
+                                    <field name="wait_until_duration"/>
+                                    <field name="wait_until_duration_period"/>
+                                </group>
+                            </page>
+                            <page string="Document">
+                                <group>
+                                    <field name="material_type"/>
+                                    <field name="video_type"/>
+                                    <field name="url"/>
+                                    <field name="document_id"/>
+                                    <field name="datas" widget="binary"/>
+                                    <field name="quiz_id" domain="[('lms', '=', True)]"/>
+                                    <field name="document_url"/>
+                                    <label for="document_url" string="Embed Code"/>
+                                    <div class="o_row">
+                                        <field name="document_url"/>
+                                        <button name="action_get_embed_code" type="object" string="Get the embed code" class="oe_link"/>
+                                    </div>
+                                    <field name="total_time" widget="float_time"/>
+                                    <field name="webpage_content"/>
+                                </group>
+                            </page>
+                            <page string="Description">
+                                <group string="Short Description">
+                                    <field name="short_description" colspan="4" nolabel="1"/>
+                                </group>
+                                <group string="Full Description">
+                                    <field name="full_description" colspan="4" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_course_material_search" model="ir.ui.view">
+            <field name="name">op.material.search</field>
+            <field name="model">op.material</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Course">
+                    <field name="name"/>
+                    </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_course_material_view">
+            <field name="name">Material</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.material</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_op_course_material_search"/>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_course_material_view_form">
+            <field name="act_window_id" ref="act_open_op_course_material_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_course_material_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_course_material_view_tree">
+            <field name="act_window_id" ref="act_open_op_course_material_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_course_material_tree"/>
+        </record>
+
+</odoo>

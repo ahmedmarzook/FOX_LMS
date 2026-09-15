@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<div t-name="validation.confirm.warning" class="o_dialog_warning" role="alert">
+    <p t-esc="message" style="white-space: pre-wrap;"/>
+</div>
+
+</templates>

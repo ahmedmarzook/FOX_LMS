@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Session List View -->
+        <record id="view_op_session_tree" model="ir.ui.view">
+            <field name="name">op.session.list</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="Sessions">
+                    <field name="faculty_id"/>
+                    <field name="course_id" optional="show"/>
+                    <field name="batch_id"/>
+                    <field name="subject_id"/>
+                    <field name="classroom_id" optional="show"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                    <field name="type" optional="hide"/>
+                    <field name="state"/>
+                    <field name="active" optional="hide"/>
+                </list>
+            </field>
+        </record>
+
+
+        <!-- Session Form View -->
+        <record id="view_op_session_form" model="ir.ui.view">
+            <field name="name">op.session.form</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Session">
+
+                    <header>
+                        <button type="object"
+                                name="lecture_confirm"
+                                string="Confirm"
+                                groups="openeducat_timetable.group_op_timetable_user"
+                                class="oe_highlight"
+                                invisible="state != 'draft'"/>
+
+                        <button type="object"
+                                name="lecture_done"
+                                string="Done"
+                                groups="openeducat_timetable.group_op_timetable_user"
+                                class="oe_highlight"
+                                invisible="state != 'confirm'"/>
+
+                        <button type="object"
+                                name="lecture_draft"
+                                string="Set to Draft"
+                                groups="openeducat_timetable.group_op_timetable_user"
+                                class="oe_highlight"
+                                invisible="state != 'cancel'"/>
+
+                        <button type="object"
+                                name="lecture_cancel"
+                                string="Cancel"
+                                groups="openeducat_timetable.group_op_timetable_user"
+                                invisible="state not in ['draft', 'confirm']"/>
+
+                        <field name="state"
+                               widget="statusbar"
+                               statusbar_visible="draft,confirm,done,cancel"/>
+                    </header>
+
+                    <sheet>
+                        <div name="button_box" class="oe_button_box"/>
+
+                        <field name="active" invisible="1"/>
+
+                        <widget name="web_ribbon"
+                                title="Archived"
+                                bg_color="text-text-bg-danger"
+                                invisible="active"/>
+
+                        <group string="Session Basic Data">
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="faculty_id"
+                                       required="1"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="course_id"
+                                       required="1"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="batch_id"
+                                       required="1"
+                                       context="{'course_id': course_id, 'get_parent_batch': 1}"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                            </group>
+
+                            <group>
+                                <field name="subject_id"
+                                       required="1"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="classroom_id"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="type" readonly="1"/>
+                                <field name="timing" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Session Time">
+                            <group>
+                                <field name="start_datetime" required="1"/>
+                            </group>
+                            <group>
+                                <field name="end_datetime" required="1"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+
+                    <!-- Odoo 19 Chatter -->
+                    <chatter/>
+
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Session Search View -->
+        <record id="view_op_session_search" model="ir.ui.view">
+            <field name="name">op.session.search</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Sessions">
+                    <field name="name"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="subject_id"/>
+                    <field name="faculty_id"/>
+                    <field name="classroom_id"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Session Calendar View -->
+        <record id="view_op_session_calendar" model="ir.ui.view">
+            <field name="name">op.session.calendar</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <calendar string="Sessions"
+                          date_start="start_datetime"
+                          date_stop="end_datetime"
+                          color="course_id">
+                    <field name="faculty_id"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="subject_id"/>
+                    <field name="classroom_id"/>
+                    <field name="type"/>
+                </calendar>
+            </field>
+        </record>
+
+
+        <!-- Session Kanban View -->
+        <record model="ir.ui.view" id="view_session_kanban">
+            <field name="name">op.session.kanban</field>
+            <field name="model">op.session</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="days" class="o_kanban_small_column">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="faculty_id"/>
+                    <field name="subject_id"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="classroom_id"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                    <field name="timing"/>
+                    <field name="days"/>
+
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click o_kanban_card">
+
+                                <div class="oe_kanban_content">
+                                    <strong>
+                                        <field name="timing"/>
+                                    </strong>
+
+                                    <ul class="mt-2 mb-0 ps-3">
+                                        <li t-if="record.faculty_id.raw_value">
+                                            <b>Faculty:</b>
+                                            <field name="faculty_id"/>
+                                        </li>
+                                        <li t-if="record.subject_id.raw_value">
+                                            <b>Subject:</b>
+                                            <field name="subject_id"/>
+                                        </li>
+                                        <li t-if="record.course_id.raw_value">
+                                            <b>Course:</b>
+                                            <field name="course_id"/>
+                                        </li>
+                                        <li t-if="record.batch_id.raw_value">
+                                            <b>Batch:</b>
+                                            <field name="batch_id"/>
+                                        </li>
+                                        <li t-if="record.classroom_id.raw_value">
+                                            <b>Classroom:</b>
+                                            <field name="classroom_id"/>
+                                        </li>
+                                        <li t-if="record.start_datetime.raw_value">
+                                            <b>Start:</b>
+                                            <field name="start_datetime"/>
+                                        </li>
+                                        <li t-if="record.end_datetime.raw_value">
+                                            <b>End:</b>
+                                            <field name="end_datetime"/>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- Session Pivot View -->
+        <record id="view_op_session_pivot" model="ir.ui.view">
+            <field name="name">op.session.pivot</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Session Analysis">
+                    <field name="course_id" type="row"/>
+                    <field name="batch_id" type="row"/>
+                    <field name="faculty_id" type="col"/>
+                    <field name="state" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <!-- Session Action -->
+        <record model="ir.actions.act_window" id="act_open_op_session_view">
+            <field name="name">Sessions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.session</field>
+            <field name="view_mode">kanban,calendar,list,form,pivot</field>
+            <field name="search_view_id" ref="view_op_session_search"/>
+            <field name="target">current</field>
+        </record>
+
+
+        <record model="ir.actions.act_window.view" id="act_open_op_session_view_kanban">
+            <field name="act_window_id" ref="act_open_op_session_view"/>
+            <field name="sequence" eval="5"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_session_kanban"/>
+        </record>
+
+
+        <record model="ir.actions.act_window.view" id="act_open_op_session_view_calendar">
+            <field name="act_window_id" ref="act_open_op_session_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">calendar</field>
+            <field name="view_id" ref="view_op_session_calendar"/>
+        </record>
+
+
+        <record model="ir.actions.act_window.view" id="act_open_op_session_view_tree">
+            <field name="act_window_id" ref="act_open_op_session_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_session_tree"/>
+        </record>
+
+
+        <record model="ir.actions.act_window.view" id="act_open_op_session_view_form">
+            <field name="act_window_id" ref="act_open_op_session_view"/>
+            <field name="sequence" eval="30"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_session_form"/>
+        </record>
+
+
+        <record model="ir.actions.act_window.view" id="act_open_op_session_view_pivot">
+            <field name="act_window_id" ref="act_open_op_session_view"/>
+            <field name="sequence" eval="40"/>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_op_session_pivot"/>
+        </record>
+
+    </data>
+</odoo>

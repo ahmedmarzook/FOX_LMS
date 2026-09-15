@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- ══ App icon content (image / native FA icon / gradient-initial fallback) ══ -->
+    <!-- Mirrors Odoo Enterprise's HomeMenu icon resolution order. -->
+    <t t-name="eds_smart_theme.PtAppIcon">
+        <t t-if="app.webIconData and app.webIconData !== false">
+            <span class="pt_app_icon_img" t-att-style="'background-image:url(' + app.webIconData + ')'"/>
+        </t>
+        <t t-elif="appIconMeta(app)">
+            <span class="pt_app_icon_native" t-att-style="'background-color:' + appIconMeta(app).backgroundColor">
+                <i t-att-class="appIconMeta(app).iconClass" t-att-style="'color:' + appIconMeta(app).color"/>
+            </span>
+        </t>
+        <t t-else="">
+            <span class="pt_app_icon_fallback" t-att-style="'background:' + appTileGradient(app.name)">
+                <t t-esc="appTileInitial(app.name)"/>
+            </span>
+        </t>
+    </t>
+
+    <t t-name="eds_smart_theme.GlobalTopbar">
+        <div class="pt_global_topbar">
+
+            <!-- ═══ LEFT : company logo (home) or current-app icon ═══ -->
+            <button class="pt_brand_btn" type="button" t-on-click="toggleDrawer" aria-label="Menu">
+                <t t-if="currentAppNav">
+                    <span class="pt_brand_logo pt_brand_logo--app">
+                        <t t-call="eds_smart_theme.PtAppIcon">
+                            <t t-set="app" t-value="currentAppNav.app"/>
+                        </t>
+                    </span>
+                    <span class="pt_brand_name" t-esc="currentAppNav.app.name"/>
+                </t>
+                <t t-else="">
+                    <img class="pt_brand_logo" t-att-src="companyLogo" t-att-alt="userCompany"/>
+                    <span class="pt_brand_name" t-esc="userCompany"/>
+                </t>
+            </button>
+
+            <!-- ═══ CENTER : current app's tabs, or the home search bar ═══ -->
+            <div t-att-class="currentAppNav ? 'pt_global_topbar__center pt_global_topbar__center--tabs' : 'pt_global_topbar__center'">
+                <t t-if="currentAppNav">
+                    <nav class="pt_app_tabs" t-ref="appTabs">
+                        <t t-foreach="currentAppNav.tabs" t-as="tab" t-key="tab.id">
+                            <t t-if="tab.name and (tab.action or (tab.children and tab.children.length))">
+                                <div class="pt_app_tab_wrap" t-att-data-tab-id="tab.id">
+                                    <button type="button"
+                                            t-att-class="'pt_app_tab' + (isTabActive(tab) ? ' pt_app_tab--active' : '')"
+                                            t-att-data-app-id="currentAppNav.app.id"
+                                            t-att-data-node-id="tab.id"
+                                            t-on-click="onTabClick">
+                                        <span t-esc="tab.name"/>
+                                        <i t-if="tab.children and tab.children.length"
+                                           class="fa fa-caret-down pt_app_tab_caret"/>
+                                    </button>
+                                    <t t-if="tab.children and tab.children.length and isExpanded(currentAppNav.app.id, tab.id)">
+                                        <div class="pt_drawer_backdrop pt_topbar_user_backdrop"
+                                             t-on-click="() => this.closeExpanded(currentAppNav.app.id, tab.id)"/>
+                                        <div class="pt_app_tab_dropdown" t-att-dir="isRTL ? 'rtl' : 'ltr'">
+                                            <t t-foreach="tab.children" t-as="sub" t-key="sub.id">
+                                                <t t-call="eds_smart_theme.PtMenuNode">
+                                                    <t t-set="node" t-value="sub"/>
+                                                    <t t-set="appId" t-value="currentAppNav.app.id"/>
+                                                    <t t-set="currentMenuId" t-value="state.currentMenuId"/>
+                                                </t>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+
+                        <!-- ── "+" overflow menu — tabs that didn't fit ── -->
+                        <div t-if="state.tabsExtra.length" class="pt_app_tabs_more_wrap">
+                            <button type="button"
+                                    t-att-class="'pt_app_tabs_more' + (state.tabsOverflowOpen ? ' pt_app_tabs_more--open' : '')"
+                                    t-on-click="toggleTabsOverflow" aria-label="More menus">
+                                <i class="fa fa-plus"/>
+                            </button>
+                            <t t-if="state.tabsOverflowOpen">
+                                <div class="pt_drawer_backdrop pt_topbar_user_backdrop"
+                                     t-on-click="closeTabsOverflow"/>
+                                <div class="pt_app_tabs_more_dropdown" t-att-dir="isRTL ? 'rtl' : 'ltr'">
+                                    <t t-foreach="state.tabsExtra" t-as="tab" t-key="tab.id">
+                                        <t t-call="eds_smart_theme.PtMenuNode">
+                                            <t t-set="node" t-value="tab"/>
+                                            <t t-set="appId" t-value="currentAppNav.app.id"/>
+                                            <t t-set="currentMenuId" t-value="state.currentMenuId"/>
+                                        </t>
+                                    </t>
+                                </div>
+                            </t>
+                        </div>
+                    </nav>
+                </t>
+                <t t-else="">
+                    <div class="pt_topbar_search">
+                        <i class="fa fa-search pt_topbar_search_icon"/>
+                        <input type="text" class="pt_topbar_search_input"
+                               placeholder="ابحث عن خدمة أو موضوع..."
+                               t-att-value="state.treeQuery"
+                               t-on-focus="onTopbarSearchFocus"
+                               t-on-input="onTopbarSearchInput"/>
+                    </div>
+                </t>
+            </div>
+
+            <!-- ═══ RIGHT : actions + apps + user ═══ -->
+            <div class="pt_global_topbar__right">
+
+                <!-- systray icon buttons (debug, switch-user, notifications, activity) -->
+                <div class="pt_topbar_actions">
+                    <t t-foreach="systrayItems" t-as="item" t-key="item_index">
+                        <t t-component="item.Component" t-props="item.props ?? {}"/>
+                    </t>
+                </div>
+
+                <div class="pt_topbar_user">
+                    <span class="pt_topbar_user_company" t-esc="userCompany"/>
+                    <button type="button" class="pt_topbar_avatar_btn"
+                            t-on-click="toggleTopbarUserMenu" aria-label="User menu">
+                        <img class="pt_topbar_avatar_img" t-att-src="userAvatar" t-att-alt="userName"/>
+                        <span class="pt_topbar_avatar_status"/>
+                    </button>
+
+                    <t t-if="state.topbarUserMenuOpen">
+                        <div class="pt_drawer_backdrop pt_topbar_user_backdrop"
+                             t-on-click="closeTopbarUserMenu"/>
+                        <div class="pt_user_dropdown pt_topbar_user_dropdown" t-att-dir="isRTL ? 'rtl' : 'ltr'">
+                            <button class="pt_udi_item" t-on-click="openMyProfile">
+                                <span class="pt_udi_icon pt_udi_icon--blue">
+                                    <i class="fa fa-user"/>
+                                </span>
+                                <span class="pt_udi_label">ملفي الشخصي</span>
+                            </button>
+                            <button class="pt_udi_item" t-on-click="openActivities">
+                                <span class="pt_udi_icon pt_udi_icon--green">
+                                    <i class="fa fa-tasks"/>
+                                </span>
+                                <span class="pt_udi_label">المهام والأنشطة</span>
+                            </button>
+                            <div class="pt_udi_divider"/>
+                            <button class="pt_udi_item pt_udi_item--danger" t-on-click="doLogout">
+                                <span class="pt_udi_icon pt_udi_icon--red">
+                                    <i class="fa fa-sign-out"/>
+                                </span>
+                                <span class="pt_udi_label">تسجيل الخروج</span>
+                            </button>
+                        </div>
+                    </t>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════ DRAWER ═══ -->
+        <t t-if="state.drawerOpen">
+            <div class="pt_drawer_backdrop" t-on-click="closeDrawer"/>
+            <aside class="pt_drawer_panel" role="dialog" aria-modal="true"
+                   t-att-dir="isRTL ? 'rtl' : 'ltr'">
+
+                <div class="pt_drawer_body">
+
+                    <!-- Search -->
+                    <div class="pt_drawer_search">
+                        <i class="fa fa-search pt_drawer_search_icon"/>
+                        <input type="text" class="pt_drawer_search_input"
+                               placeholder="بحث في القوائم..."
+                               t-att-value="state.treeQuery"
+                               t-on-input="onTreeQueryInput"/>
+                        <button t-if="state.treeQuery" type="button"
+                                class="pt_drawer_search_clear"
+                                t-on-click="clearSearch"
+                                aria-label="Clear search">
+                            <i class="fa fa-times"/>
+                        </button>
+                    </div>
+
+                    <!-- Apps -->
+                    <div class="pt_apps_tree">
+
+                        <!-- ── Drilled-in single app (submenus of the selected app) ── -->
+                        <t t-if="!state.treeQuery and expandedApp">
+                            <div class="pt_apps_back_row">
+                                <button type="button" class="pt_apps_back_btn" t-on-click="backToApps">
+                                    <i class="fa fa-arrow-right"/>
+                                    <span>كل التطبيقات</span>
+                                </button>
+                            </div>
+                            <div class="pt_apps_current_app">
+                                <span class="pt_app_icon pt_app_icon--sm">
+                                    <t t-call="eds_smart_theme.PtAppIcon">
+                                        <t t-set="app" t-value="expandedApp.app"/>
+                                    </t>
+                                </span>
+                                <span class="pt_apps_current_app_name"><t t-esc="expandedApp.app.name"/></span>
+                            </div>
+                            <div class="pt_tree_children pt_tree_children--root">
+                                <t t-if="expandedApp.tree and expandedApp.tree.children and expandedApp.tree.children.length">
+                                    <t t-foreach="expandedApp.tree.children" t-as="node" t-key="node.id">
+                                        <t t-call="eds_smart_theme.PtMenuNode">
+                                            <t t-set="node" t-value="node"/>
+                                            <t t-set="appId" t-value="expandedApp.app.id"/>
+                                            <t t-set="currentMenuId" t-value="state.currentMenuId"/>
+                                        </t>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <div class="pt_tree_empty">لا توجد قوائم</div>
+                                </t>
+                            </div>
+                        </t>
+
+                        <!-- ── Apps grid (Odoo Enterprise home-menu style) ── -->
+                        <t t-elif="!state.treeQuery">
+                            <div class="pt_apps_grid">
+                                <t t-foreach="filteredAppsTree or []" t-as="row" t-key="row.app.id">
+                                    <button type="button" class="pt_app_tile"
+                                            t-att-data-app-id="row.app.id"
+                                            t-on-click="toggleApp">
+                                        <span class="pt_app_tile_icon">
+                                            <t t-call="eds_smart_theme.PtAppIcon">
+                                                <t t-set="app" t-value="row.app"/>
+                                            </t>
+                                        </span>
+                                        <span class="pt_app_tile_label"><t t-esc="row.app.name"/></span>
+                                    </button>
+                                </t>
+                            </div>
+                        </t>
+
+                        <!-- ── Search results (across all apps) ── -->
+                        <t t-else="">
+                            <t t-foreach="filteredAppsTree or []" t-as="row" t-key="row.app.id">
+                                <div class="pt_app_group">
+
+                                    <!-- ── Root app with NO children but HAS action → direct button ── -->
+                                    <t t-if="row.tree and row.tree.action and !(row.tree.children and row.tree.children.length)">
+                                        <button type="button" class="pt_app_item pt_app_item--leaf"
+                                                t-att-data-app-id="row.app.id"
+                                                t-on-click="toggleApp">
+                                            <span class="pt_app_icon">
+                                                <t t-call="eds_smart_theme.PtAppIcon">
+                                                    <t t-set="app" t-value="row.app"/>
+                                                </t>
+                                            </span>
+                                            <span class="pt_app_name"><t t-esc="row.app.name"/></span>
+                                            <i class="fa fa-arrow-left pt_tree_chev pt_app_direct_icon"/>
+                                        </button>
+                                    </t>
+
+                                    <!-- ── Root app WITH children → expandable ── -->
+                                    <t t-else="">
+                                        <button type="button" class="pt_app_item"
+                                                t-att-data-app-id="row.app.id"
+                                                t-on-click="toggleApp">
+                                            <span class="pt_app_icon">
+                                                <t t-call="eds_smart_theme.PtAppIcon">
+                                                    <t t-set="app" t-value="row.app"/>
+                                                </t>
+                                            </span>
+                                            <span class="pt_app_name"><t t-esc="row.app.name"/></span>
+                                            <i t-if="isAppExpanded(row.app.id)"
+                                               class="fa fa-chevron-up pt_tree_chev"/>
+                                            <i t-else="" class="fa fa-chevron-down pt_tree_chev"/>
+                                        </button>
+
+                                        <t t-if="isAppExpanded(row.app.id)">
+                                            <div class="pt_tree_children">
+                                                <t t-if="row.tree and row.tree.children and row.tree.children.length">
+                                                    <t t-foreach="row.tree.children" t-as="node" t-key="node.id">
+                                                        <t t-call="eds_smart_theme.PtMenuNode">
+                                                            <t t-set="node" t-value="node"/>
+                                                            <t t-set="appId" t-value="row.app.id"/>
+                                                            <t t-set="currentMenuId" t-value="state.currentMenuId"/>
+                                                        </t>
+                                                    </t>
+                                                </t>
+                                                <t t-else="">
+                                                    <div class="pt_tree_empty">لا توجد قوائم</div>
+                                                </t>
+                                            </div>
+                                        </t>
+                                    </t>
+
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+
+                </div><!-- /drawer_body -->
+            </aside>
+        </t>
+    </t>
+
+    <!-- ══ Recursive menu node ══ -->
+    <t t-name="eds_smart_theme.PtMenuNode">
+        <t t-if="node.name and (node.action or (node.children and node.children.length))">
+
+            <!-- ── Leaf node: has action, no children → navigate directly, no toggle ── -->
+            <t t-if="node.action and !(node.children and node.children.length)">
+                <button t-att-class="'pt_tree_item pt_tree_item--leaf' + (isActiveMenu(node.id, currentMenuId) ? ' pt_tree_item--active' : '')"
+                        t-on-click="onNodeClick"
+                        t-att-data-app-id="appId"
+                        t-att-data-node-id="node.id">
+                    <span class="pt_tree_leaf_dot"/>
+                    <span class="pt_tree_label"><t t-esc="node.name"/></span>
+                </button>
+            </t>
+
+            <!-- ── Parent node: has children → show toggle + label ── -->
+            <t t-else="">
+                <div class="pt_tree_row">
+                    <button type="button" class="pt_tree_toggle"
+                            t-on-click="toggleNode"
+                            t-att-data-app-id="appId"
+                            t-att-data-node-id="node.id"
+                            aria-label="Toggle">
+                        <i class="fa" t-att-class="getChevronClass(appId, node.id)"/>
+                    </button>
+
+                    <button t-att-class="'pt_tree_item' + (isActiveMenu(node.id, currentMenuId) ? ' pt_tree_item--active' : '')"
+                            t-on-click="onNodeClick"
+                            t-att-data-app-id="appId"
+                            t-att-data-node-id="node.id">
+                        <span class="pt_tree_label"><t t-esc="node.name"/></span>
+                    </button>
+                </div>
+
+                <t t-if="isExpanded(appId, node.id)">
+                    <div class="pt_tree_children">
+                        <t t-foreach="node.children" t-as="child" t-key="child.id">
+                            <t t-if="child.name and (child.action or (child.children and child.children.length))">
+                                <t t-call="eds_smart_theme.PtMenuNode">
+                                    <t t-set="node" t-value="child"/>
+                                    <t t-set="appId" t-value="appId"/>
+                                    <t t-set="currentMenuId" t-value="currentMenuId"/>
+                                </t>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+
+        </t>
+    </t>
+
+</templates>

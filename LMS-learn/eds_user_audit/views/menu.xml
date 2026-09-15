@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<menuitem name="User Audit" id="menu_eds_user_audit_root" web_icon="eds_user_audit,static/description/icon.png" groups="group_audit_admin" />
+	
+	<menuitem name="User Logs" id="menu_eds_user_audit_logs" parent="menu_eds_user_audit_root" action="action_audit_logs" sequence="10" />
+	
+	<menuitem id="menu_audit_delete" parent="menu_eds_user_audit_root" action="action_audit_delete" sequence="20" />
+	
+	<menuitem name="Configuration" id="menu_eds_user_audit_config" parent="menu_eds_user_audit_root" action="action_audit_config" sequence="999" />		
+
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+        <record id="openeducat_assignment.op_assignment_sub_line_2" model="op.assignment.sub.line">
+            <field name="state">accept</field>
+            <field name="assignment_id" ref="op_assignment_1"/>
+            <field name="marks">79.5</field>
+            <field name="rubric_element_line" eval="[
+                   (0, 0, {'rubric_element_id': ref('rubrics_element_demo7'), 'maximum': 20.0, 'point': 18}),
+                   (0, 0, {'rubric_element_id': ref('rubrics_element_demo8'), 'maximum': 20.0, 'point': 13.5}),
+                   (0, 0, {'rubric_element_id': ref('rubrics_element_demo9'), 'maximum': 30.0, 'point': 23}),
+                   (0, 0, {'rubric_element_id': ref('rubrics_element_demo10'), 'maximum': 30.0, 'point': 25}),
+                   ]"/>
+        </record>
+
+        <record id="openeducat_assignment.op_assignment_sub_line_3" model="op.assignment.sub.line">
+            <field name="state">accept</field>
+            <field name="assignment_id" ref="openeducat_assignment.op_assignment_1"/>
+            <field name="marks">77.5</field>
+            <field name="rubric_element_line" eval="[
+                   (0, 0, {'rubric_element_id': ref('rubrics_element_demo4'), 'rubrics_type': 'percent', 'maximum': 20.0, 'percentage': 12.0}),
+                   (0, 0, {'rubric_element_id': ref('rubrics_element_demo5'), 'rubrics_type': 'percent', 'maximum': 40.0, 'percentage': 32}),
+                   (0, 0, {'rubric_element_id': ref('rubrics_element_demo6'), 'rubrics_type': 'percent', 'maximum': 40.0, 'percentage': 33.5}),
+                   ]"/>
+        </record>
+
+</odoo>

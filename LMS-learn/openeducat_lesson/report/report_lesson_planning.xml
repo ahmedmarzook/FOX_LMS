@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_lesson_planning">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-4">
+                            Lesson Planning: <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th>Lecture Name</th>
+                                    <td><span t-field="o.name"/></td>
+                                    <th>Faculty</th>
+                                    <td><span t-field="o.faculty_id"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Course</th>
+                                    <td><span t-field="o.course_id"/></td>
+                                    <th>Batch</th>
+                                    <td><span t-field="o.batch_id"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Subject</th>
+                                    <td><span t-field="o.subject_id"/></td>
+                                    <th>Status</th>
+                                    <td><span t-field="o.state"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Start Time</th>
+                                    <td><span t-field="o.start_datetime"/></td>
+                                    <th>End Time</th>
+                                    <td><span t-field="o.end_datetime"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Sessions</th>
+                                    <td colspan="3">
+                                        <t t-foreach="o.session_ids" t-as="session">
+                                            <span t-field="session.name"/>
+                                            <t t-if="not session_last">, </t>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Lesson Topic</th>
+                                    <td colspan="3" style="white-space: pre-wrap;">
+                                        <span t-field="o.lesson_topic"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

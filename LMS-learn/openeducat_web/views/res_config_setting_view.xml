@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_company_instance_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.company.instance.view.form.inherit</field>
+        <field name="model">res.company</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Instance Details" invisible="1">
+                    <group>
+                        <field name="openeducat_instance_key"/>
+                        <field name="openeducat_instance_hash_key"/>
+                        <field name="is_mail_sent"/>
+                        <field name="verify_date"/>
+                        <field name="openeducat_instance_hash_msg"/>
+                        <field name="is_hash_verified"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_instance" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.openeducat.web.instance</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="50"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="OpenEduCat Web" name="openeducat_web">
+                    <block title="Enterprise Instance Registration">
+                        <setting string="Instance Status">
+                            <field name="is_mail_sent" invisible="1"/>
+                            <field name="is_hash_verified" invisible="1"/>
+                            <field name="openeducat_instance_hash_msg" readonly="1" invisible="not is_mail_sent"/>
+                        </setting>
+
+                        <setting string="Instance Key">
+                            <field name="openeducat_instance_key"/>
+                            <button name="verify_instance"
+                                    string="Get Instance Hash Key"
+                                    class="oe_link btn btn-link"
+                                    type="object"
+                                    invisible="not openeducat_instance_key"/>
+                        </setting>
+
+                        <setting string="Instance Hash Key" invisible="not is_mail_sent">
+                            <field name="openeducat_instance_hash_key"/>
+                            <button name="verify_hash"
+                                    string="Verify Hash Key"
+                                    class="oe_link btn btn-link"
+                                    type="object"
+                                    invisible="not openeducat_instance_hash_key"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

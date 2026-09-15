@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="approval_record_approved">
+		<div>
+			<p>
+				<strong>Approved</strong>
+			</p>
+			<div t-if="reason" style="margin-top: 8px;">
+				<strong> Reason</strong>
+				<div style="margin-left: 8px;"><t t-esc="reason"/></div>
+			</div>
+		</div>
+	</template>
+
+	<template id="approval_record_rejected">
+		<div>
+			<p>
+				<strong>Rejected</strong>
+			</p>
+			<div t-if="reason" style="margin-top: 8px;">
+				<strong> Reason</strong>
+				<div style="margin-left: 8px;"><t t-esc="reason"/></div>
+			</div>
+		</div>
+
+	</template>
+	
+	<template id="approval_record_return">
+		<div>
+			<p>
+				<strong>Returned</strong>
+			</p>
+			<div t-if="reason" style="margin-top: 8px;">
+				<strong> Reason</strong>
+				<div style="margin-left: 8px;"><t t-esc="reason"/></div>
+			</div>
+		</div>
+
+	</template>
+	
+	<template id="approval_record_forward">
+		<div>
+			<p>
+				<strong>Forwarded To</strong>
+				<span t-field="forward_user.name" />
+			</p>
+			<div t-if="reason" style="margin-top: 8px;">
+				<strong> Reason</strong>
+				<div style="margin-left: 8px;"><t t-esc="reason"/></div>
+			</div>
+		</div>
+
+	</template>
+	
+	<template id="approval_record_transfer">
+		<div>
+			<p>
+				<strong>Transferred To Status</strong>
+				<span t-field="object.state" />
+			</p>
+			<div t-if="reason" style="margin-top: 8px;">
+				<strong> Reason</strong>
+				<div style="margin-left: 8px;"><t t-esc="reason"/></div>
+			</div>
+		</div>
+
+	</template>
+
+	<template id="approval_record_cancelled">
+		<div>
+			<p>
+				<strong>Cancelled To Status</strong>
+				<span t-field="object.state" />
+			</p>
+			<div t-if="reason" style="margin-top: 8px;">
+				<strong> Reason</strong>
+				<div style="margin-left: 8px;"><t t-esc="reason"/></div>
+			</div>
+		</div>
+
+	</template>
+	
+	<template id="approval_notification_default">
+		<p>
+		<b>Dear <t t-out="','.join(object.mapped('approval_user2_ids.name'))">Employee Name</t></b>,
+		</p>
+		<br />
+		<p>
+		Document is Waiting For Your Approval
+		</p>    
+		<p>
+			<t t-out="ctx.get('title') or object.get_title()">Record Name</t>
+			<br />
+		</p>
+		<p t-if="ctx.get('requester_name')">
+			Requester: <t t-out="ctx['requester_name']">Requester Name</t>
+		</p>
+		<div style="margin-top: 16px;">
+				<a t-att-href="object.get_form_url()" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View Document</a>
+		</div>
+		<br />
+		<p>
+		<b>Best regards,</b>
+		</p>  
+	</template>
+	
+	<template id="reject_notification_default">
+		<p>
+		<b>Dear <t t-out="object.document_user_id.name">Employee</t></b>,
+		</p>
+		<br />
+		<p>
+		Document is rejected
+		</p>    
+		<p>
+			<t t-out="ctx.get('title') or object.get_title()">Record Name</t>
+			<br />
+		</p>
+		<p t-if="ctx.get('reject_reason')">
+			<b>Reason: </b><t t-out="ctx['reject_reason']">Reason</t>
+		</p>
+
+		<div style="margin-top: 16px;">
+				<a t-att-href="object.get_form_url()" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View Document</a>
+		</div>
+		<br />
+		<p>
+		<b>Best regards,</b>
+		</p>  
+	</template>
+
+</odoo>

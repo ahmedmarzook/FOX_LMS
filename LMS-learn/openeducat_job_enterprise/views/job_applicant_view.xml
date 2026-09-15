@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <record id="view_op_jobpost_applicant_tree" model="ir.ui.view">
+        <field name="name">op.job.applicant.tree</field>
+        <field name="model">op.job.applicant</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="post_id"/>
+                <field name="stage_id"/>
+                <field name="mobile" optional="hide"/>
+                <field name="salary_expected" widget="monetary" optional="hide"/>
+                <field name="salary_proposed" widget="monetary" optional="hide"/>
+                <field name="availability" optional="hide"/>
+                <field name="kanban_state" widget="kanban_state_selection" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_jobpost_applicant_form" model="ir.ui.view">
+        <field name="name">op.job.applicant.form</field>
+        <field name="model">op.job.applicant</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="Job Applicant">
+                <header>
+                    <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}"/>
+                </header>
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active == True"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_get_attachment_tree_view" class="oe_stat_button pull-right" icon="fa-book" type="object">
+                            <field name="attachment_number" widget="statinfo" string="Documents"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" style="width: 100%"/>
+                        </group>
+                        <group>
+                            <field name="user_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="post_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="mobile" string="Mobile"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                        </group>
+                    </group>
+
+                    <group string="Contract">
+                        <field name="currency_id" invisible="1"/>
+                        <label for="salary_expected"/>
+                        <div class="o_row">
+                            <field name="salary_expected" widget="monetary"/>
+                        </div>
+                        <label for="salary_proposed"/>
+                        <div class="o_row">
+                            <field name="salary_proposed" widget="monetary"/>
+                        </div>
+                        <field name="availability"/>
+                    </group>
+
+                    <!--                        <field name="kanban_state" widget="kanban_state_selection"/>-->
+                    <field name="legend_normal" invisible="1"/>
+                    <field name="legend_blocked" invisible="1"/>
+                    <field name="legend_done" invisible="1"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_jobpost_applicant_search" model="ir.ui.view">
+        <field name="name">op.job.applicant.search</field>
+        <field name="model">op.job.applicant</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="post_id"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <searchpanel>
+                    <field name="post_id" icon="fa-clipboard"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="quick_create_job_form" model="ir.ui.view">
+        <field name="name">op.job.applicant.form.quick_create</field>
+        <field name="model">op.job.applicant</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="post_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="job_post_view_tree_activity" model="ir.ui.view">
+        <field name="name">job.post.view.tree.activity</field>
+        <field name="model">op.job.applicant</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="activity_date_deadline &lt; current_date" default_order="activity_date_deadline">
+                <field name="name"/>
+                <field name="activity_date_deadline"/>
+                <field name="activity_type_id"/>
+                <field name="activity_summary"/>
+                <field name="stage_id"/>
+                <field name="activity_exception_decoration" widget="activity_exception"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_job_applicant_search" model="ir.ui.view">
+        <field name="name">op.job.applicant.search</field>
+        <field name="model">op.job.applicant</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="post_id"/>
+                <searchpanel>
+                    <field name="post_id"/>
+                    <field name="company_id" icon="fa-building"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_op_job_applicant_pivot" model="ir.ui.view">
+        <field name="name">op.job.applicant.pivot</field>
+        <field name="model">op.job.applicant</field>
+        <field name="arch" type="xml">
+            <pivot string="Job Applicant">
+                <field name="user_id" type="row"/>
+                <field name="post_id" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_op_job_applicant_graph" model="ir.ui.view">
+        <field name="name">op.job.applicant.graph</field>
+        <field name="model">op.job.applicant</field>
+        <field name="arch" type="xml">
+            <graph string="Job Applicant" type="pie">
+                <field name="post_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- stage tree view-->
+    <record model="ir.ui.view" id="job_stage_tree">
+        <field name="name">job.stage.tree</field>
+        <field name="model">job.post.stage</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="fold"/>
+                <field name="post_id" widget="many2many_tags" optional="hide"/>
+                <field name="requirements" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Stage Form View -->
+    <record model="ir.ui.view" id="job_post_stage_form">
+        <field name="name">job.post.stage.form</field>
+        <field name="model">job.post.stage</field>
+        <field name="arch" type="xml">
+            <form string="Stage">
+                <header/>
+                <sheet>
+                    <group name="stage_definition" string="Stage Definition">
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence" groups="base.group_no_one"/>
+                            <field name="template_id" domain="[('model_id.model', '=', 'op.job.applicant')]"/>
+                        </group>
+                        <group name="stage_details">
+                            <field name="fold"/>
+                            <field name="post_id" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group name="tooltips" string="Tooltips">
+                        <p class="text-muted" colspan="2">
+                            You can define here the labels that will be displayed for the kanban state instead
+                            of the default labels.
+                        </p>
+                        <label for="legend_normal" string=" " class="o_status"/>
+                        <field name="legend_normal" nolabel="1"/>
+                        <label for="legend_blocked" string=" " class="o_status o_status_red"/>
+                        <field name="legend_blocked" nolabel="1"/>
+                        <label for="legend_done" string=" " class="o_status o_status_green"/>
+                        <field name="legend_done" nolabel="1"/>
+                    </group>
+                    <separator string="Requirements"/>
+                    <field name="requirements"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="job_post_view_activity" model="ir.ui.view">
+        <field name="name">job.post.activity</field>
+        <field name="model">op.job.applicant</field>
+        <field name="arch" type="xml">
+            <activity string="Applicants">
+                <templates>
+                    <div t-name="activity-box">
+                        <div>
+                            <field name="name" display="full"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
+    <!-- Stage Kanban View -->
+    <!-- Stage Action -->
+    <record id="job_post_stage_act" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.post.stage</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="job_stage_tree"/>
+    </record>
+
+    <!--        Applicant action-->
+    <record model="ir.actions.act_window" id="act_open_job_applicant_view">
+        <field name="name">Job Applicant</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">op.job.applicant</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">list,form,activity,pivot,graph</field>
+        <field name="context">{'default_post_id': 1}</field>
+    </record>
+
+    <!--        Applicant form view-->
+    <record model="ir.actions.act_window.view" id="view_op_jobpost_form">
+        <field name="act_window_id" ref="act_open_job_applicant_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_op_jobpost_applicant_form"/>
+    </record>
+
+    <!--        Applicant tree view-->
+    <record model="ir.actions.act_window.view" id="view_op_jobpost_tree">
+        <field name="act_window_id" ref="act_open_job_applicant_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_op_jobpost_applicant_tree"/>
+    </record>
+
+    <!--        Applicant kanban view-->
+    </odoo>

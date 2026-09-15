@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_op_fees_root"
+              name="Fees"
+              sequence="55"
+              web_icon="openeducat_fees,static/description/icon.png"/>
+
+    <menuitem id="menu_op_fees_reports"
+              name="Reports"
+              parent="menu_op_fees_root"
+              sequence="10"/>
+
+    <menuitem id="menu_op_fees_analysis_report_main"
+              name="Fees Analysis"
+              action="fees_detail_report_wizard_act"
+              parent="menu_op_fees_reports"
+              sequence="10"/>
+
+    <menuitem id="menu_op_fees_config"
+              name="Configuration"
+              parent="menu_op_fees_root"
+              sequence="20"/>
+
+    <menuitem id="menu_op_fees_terms_direct"
+              name="Fees Terms"
+              parent="menu_op_fees_config"
+              sequence="10"
+              action="act_open_fees_terms_view"/>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_op_activity_root"
+                  name="Activities"
+                  sequence="60"
+                  web_icon="openeducat_activity,static/description/icon.png"/>
+
+        <menuitem id="menu_op_activity_sub"
+                  name="Activity Logs"
+                  parent="menu_op_activity_root"
+                  sequence="10"
+                  action="act_open_op_activity_view"
+                  groups="base.group_system,openeducat_core.group_op_back_office_admin"/>
+
+        <menuitem id="menu_op_activity_type_sub"
+                  name="Activity Types"
+                  parent="menu_op_activity_root"
+                  sequence="20"
+                  action="act_open_op_activity_type_view"
+                  groups="base.group_system,openeducat_core.group_op_back_office_admin"/>
+
+        <menuitem id="menu_student_migrate"
+                  name="Student Migration"
+                  parent="menu_op_activity_root"
+                  sequence="30"
+                  action="act_open_student_migrate_view"
+                  groups="base.group_system,openeducat_core.group_op_back_office_admin"/>
+
+    </data>
+</odoo>

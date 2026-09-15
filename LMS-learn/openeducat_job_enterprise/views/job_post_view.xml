@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <record id="view_op_job_post_list_v19" model="ir.ui.view">
+        <field name="name">op.job.post.list.v19</field>
+        <field name="model">op.job.post</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="job_post"/>
+                <field name="street" placeholder="Street..." class="o_address_street"/>
+                <field name="city" placeholder="City" optional="hide"/>
+                <field name="state_id" placeholder="State" optional="hide"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="salary_from" widget="monetary"/>
+                <field name="salary_upto" widget="monetary"/>
+                <field name="payable_at"/>
+                <field name="employment_type" optional="hide"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="expected_employees" optional="hide"/>
+                <field name="created_by" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <field name="department_id" groups="openeducat_core.group_multi_department"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_job_post_form_v19" model="ir.ui.view">
+        <field name="name">op.job.post.form.v19</field>
+        <field name="model">op.job.post</field>
+        <field name="priority" eval="1"/>
+        <field name="mode">primary</field>
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <form string="Job Post">
+                <header>
+                    <button name="set_review" string="Review" type="object" class="oe_highlight"
+                            groups="openeducat_core.group_op_back_office_admin" invisible="states != 'draft'"/>
+                    <button name="set_submit" string="Start Recruitment" type="object" class="oe_highlight"
+                            groups="openeducat_core.group_op_back_office_admin" invisible="states != 'review'"/>
+                    <button name="set_done" string="Stop Recruitment" type="object"
+                            groups="openeducat_core.group_op_back_office_admin" invisible="states != 'submit'"/>
+                    <button name="set_cancel" string="Cancel Recruitment" type="object"
+                            groups="openeducat_core.group_op_back_office_admin"
+                            invisible="states in ('done', 'cancel')"/>
+                    <field name="states" widget="statusbar" statusbar_visible="submit,done"/>
+                </header>
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active == True"/>
+                    <group>
+                        <group string="Job Position" name="job position">
+                            <field name="name"/>
+                            <field name="job_post"/>
+                        </group>
+
+                        <group string="Address Detail" name="address">
+                            <label for="street" string="Address"/>
+                            <div name="div_address">
+                                <field name="street" placeholder="Street..."/>
+                                <field name="street2" placeholder="Street2"/>
+                                <div class="address_format">
+                                    <field name="city" placeholder="City" style="width: 40%"/>
+                                    <field name="zip" placeholder="ZIP" style="width: 20%"/>
+                                </div>
+                                <field name="country_id" placeholder="Country" class="oe_no_button"
+                                       options="{&quot;no_open&quot;: True}"/>
+                                <field name="state_id" class="oe_no_button" placeholder="State" style="width: 37%"
+                                       options="{&quot;no_open&quot;: True}"/>
+
+                            </div>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page name="offer_information" string="Offer">
+                            <group name="offer" col="4">
+                                <field name="salary_from" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="salary_upto" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="payable_at"/>
+                                <field name="employment_type"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </page>
+                        <page name="other_information" string="Other Information">
+                            <group name="otherinformation" col="4">
+                                <field name="created_by"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="expected_employees"/>
+                                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                                <field name="department_id" groups="openeducat_core.group_multi_department"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+                <chatter>
+                    <field name="activity_ids"/>
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </chatter>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_job_post_pivot_v19" model="ir.ui.view">
+        <field name="name">op.job.post.pivot.v19</field>
+        <field name="model">op.job.post</field>
+        <field name="arch" type="xml">
+            <pivot string="Job Post Records">
+                <field name="job_post" type="col"/>
+                <field name="city" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_op_job_post_search_v19" model="ir.ui.view">
+        <field name="name">op.job.post.search.v19</field>
+        <field name="model">op.job.post</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <searchpanel>
+                    <field name="company_id" icon="fa-building"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_op_job_post_view_v19">
+        <field name="name">Job Post</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">op.job.post</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="view_id" ref="view_op_job_post_list_v19"/>
+        <field name="search_view_id" ref="view_op_job_post_search_v19"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_op_job_post_view_v19_form">
+        <field name="act_window_id" ref="act_open_op_job_post_view_v19"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_op_job_post_form_v19"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_op_job_post_view_v19_tree">
+        <field name="act_window_id" ref="act_open_op_job_post_view_v19"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_op_job_post_list_v19"/>
+    </record>
+
+</odoo>

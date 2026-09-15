@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_op_assignment_inherit_form" model="ir.ui.view">
+        <field name="name">op.assignment.rubrics.form</field>
+        <field name="model">op.assignment</field>
+        <field name="priority">99</field>
+        <field name="inherit_id"
+               ref="openeducat_assignment.view_op_assignment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='marks']" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='point']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='point']" position="before">
+                <field name="rubric_template_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

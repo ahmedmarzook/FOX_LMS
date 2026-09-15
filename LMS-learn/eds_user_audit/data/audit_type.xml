@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="audit_type_read" model="audit.type">
+		<field name="name">Read</field>
+		<field name="value">1</field>
+	</record>
+
+	<record id="audit_type_create" model="audit.type">
+		<field name="name">Create</field>
+		<field name="value">2</field>
+	</record>
+		
+	<record id="audit_type_write" model="audit.type">
+		<field name="name">Write</field>
+		<field name="value">3</field>
+	</record>
+	
+	<record id="audit_type_delete" model="audit.type">
+		<field name="name">Delete</field>
+		<field name="value">4</field>
+	</record>			
+	
+</odoo>

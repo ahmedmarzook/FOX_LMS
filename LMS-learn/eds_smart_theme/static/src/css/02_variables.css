@@ -1,0 +1,101 @@
+/* ═══════════════════════════════════════
+   02_variables.css — Design Tokens
+   Single source of truth for all styling
+   ═══════════════════════════════════════ */
+
+:root {
+    /* ── Font ── */
+    --pt-font: 'Alexandria', 'Segoe UI', system-ui, sans-serif;
+
+    /* ── Page Backgrounds ── */
+    --pt-bg:           #F3F5F9;   /* very light cool grey — easy on the eye */
+    --pt-surface:      #FFFFFF;   /* white cards */
+    --pt-surface-2:    #F8FAFC;   /* off-white hover / inactive */
+    --pt-surface-3:    #EEF1F7;   /* deep surface for selected states */
+
+    /* ── Borders ── */
+    --pt-border:       #DDE3EC;
+    --pt-border-light: #E8EDF5;
+
+    /* ── Text Hierarchy ── */
+    --pt-text:         #1A2235;   /* primary — near-black, blue-tinted */
+    --pt-text-2:       #445166;   /* secondary */
+    --pt-text-muted:   #6E7F9A;   /* labels, captions */
+    --pt-text-dim:     #9AABBE;   /* placeholders, very muted */
+
+    /* ── Primary Accent (Professional Indigo-Blue) ── */
+    --pt-primary:      #4361EE;
+    --pt-primary-lt:   #7B97FF;
+    --pt-primary-dk:   #3451D1;
+    --pt-primary-bg:   rgba(67, 97, 238, 0.08);
+    --pt-primary-bg-md:rgba(67, 97, 238, 0.14);
+
+    /* Backwards-compat aliases used in 04_odoo_components.css */
+    --pt-purple:       #4361EE;
+    --pt-purple-light: #7B97FF;
+    --pt-purple-bg:    rgba(67, 97, 238, 0.08);
+    --pt-teal:         #14B8A6;
+    --pt-teal-light:   #34D399;
+    --pt-teal-bg:      rgba(20, 184, 166, 0.08);
+
+    /* ── Semantic Colors ── */
+    --pt-green:        #10B981;
+    --pt-green-bg:     rgba(16, 185, 129, 0.1);
+    --pt-orange:       #F59E0B;
+    --pt-orange-bg:    rgba(245, 158, 11, 0.1);
+    --pt-red:          #EF4444;
+    --pt-red-bg:       rgba(239, 68, 68, 0.1);
+    --pt-blue:         #3B82F6;
+    --pt-blue-bg:      rgba(59, 130, 246, 0.1);
+
+    /* ── Topbar / Drawer (Dark Surface) ──
+       Matches real Odoo Enterprise's navbar hue ($o-enterprise-color:
+       #714B67, a deep plum-purple) blended with this theme's own brand
+       purple (#6D299A) rather than the generic blue used elsewhere. */
+    --pt-topbar-bg:      #5A2170;   /* deep brand purple — Enterprise-style navbar */
+    --pt-topbar-surface: #4A1B5C;   /* darker, for dropdown/panel depth */
+    --pt-topbar-border:  rgba(255, 255, 255, 0.10);
+    --pt-topbar-text:    #F3EAF7;   /* primary text on dark */
+    --pt-topbar-muted:   #C6ACD3;   /* secondary text on dark, purple-tinted */
+    --pt-topbar-dim:     rgba(255, 255, 255, 0.32);
+    --pt-topbar-hover:   rgba(255, 255, 255, 0.10);
+    --pt-topbar-accent:  rgba(255, 255, 255, 0.14);
+    --pt-topbar-accent-border: rgba(255, 255, 255, 0.26);
+    /* Active-state accent — this theme's own brand teal, used on the purple
+       navbar instead of the app-wide blue so it doesn't clash. */
+    --pt-topbar-active:  #1FE4C4;
+
+    /* Overlay tint channel used by the full-screen apps drawer for hover/
+       border washes — swapped from white-on-dark to black-on-light there. */
+    --pt-ov-rgb:      255, 255, 255;
+    --pt-ov-text-rgb: 232, 239, 248;
+
+    /* ── Gradients ── */
+    --pt-grad-main:    linear-gradient(135deg, #4361EE 0%, #7B97FF 100%);
+    --pt-grad-purple:  linear-gradient(135deg, #4361EE 0%, #7B97FF 100%);
+    --pt-grad-teal:    linear-gradient(135deg, #14B8A6 0%, #34D399 100%);
+    --pt-grad-blue:    linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+    --pt-grad-green:   linear-gradient(135deg, #10B981 0%, #34D399 100%);
+    --pt-grad-orange:  linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);
+    --pt-grad-red:     linear-gradient(135deg, #EF4444 0%, #F87171 100%);
+    --pt-grad-dark:    linear-gradient(135deg, #1D2B3A 0%, #2D4057 100%);
+    --pt-grad-navy:    linear-gradient(135deg, #1D2B3A 0%, #243447 100%);
+
+    /* ── Border Radius — Consistent scale ── */
+    --pt-radius-xs:    6px;
+    --pt-radius-sm:    8px;
+    --pt-radius:       12px;
+    --pt-radius-lg:    16px;
+    --pt-radius-pill:  100px;
+
+    /* ── Shadows — Natural, not color-tinted ── */
+    --pt-shadow-xs:    0 1px 3px  rgba(15, 23, 42, 0.06);
+    --pt-shadow-sm:    0 2px 8px  rgba(15, 23, 42, 0.07);
+    --pt-shadow:       0 4px 16px rgba(15, 23, 42, 0.08);
+    --pt-shadow-md:    0 8px 24px rgba(15, 23, 42, 0.10);
+    --pt-shadow-lg:    0 16px 48px rgba(15, 23, 42, 0.12);
+
+    /* ── Transitions ── */
+    --pt-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+    --pt-duration: 0.18s;
+}

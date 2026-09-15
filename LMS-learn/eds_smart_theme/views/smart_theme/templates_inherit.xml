@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- # Part of Odoo Module Developed by Bizople Solutions Pvt. Ltd.
+# See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <template id="biz_responsive_web_layout_template" inherit_id="web.layout" name="Bizople Responsive Web Layout">
+        <xpath expr="//meta[last()]" position="after">
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<!--            <link rel="stylesheet" type="text/css" href="/eds_smart_theme/static/src/smart/lib/RemixIcon/remixicon.css" />-->
+        </xpath>
+    </template>
+
+    <template id="biz_webclient_bootstrap_enterprise_inherit" inherit_id="web.webclient_bootstrap" name="eds_smart_theme webclient bootstrap company branding">
+        <xpath expr="//meta[@name='theme-color']" position="before">
+            <t t-set="eds_smart_theme_company" t-value="request.env.company.sudo()"/>
+            <t t-set="eds_smart_theme_toolbar_color" t-value="eds_smart_theme_company.spiffy_toobar_color or '#3a2e66'"/>
+        </xpath>
+        <xpath expr="//meta[@name='theme-color']" position="attributes">
+            <attribute name="t-att-content">eds_smart_theme_toolbar_color</attribute>
+        </xpath>
+        <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
+            <attribute name="t-attf-href">/web/image/res.company/#{eds_smart_theme_company.id}/spiffy_favicon</attribute>
+        </xpath>
+    </template>
+</odoo>

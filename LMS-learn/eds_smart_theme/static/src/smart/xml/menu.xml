@@ -1,0 +1,232 @@
+<!-- # Part of Odoo Module Developed by Bizople Solutions Pvt. Ltd.
+# See LICENSE file for full copyright and licensing details. -->
+<templates id="template" xml:space="preserve">
+	<t t-name="SearchModalPopup" >
+		<div class="modal" id="search_bar_modal">
+			<div class="spiffy-dialog modal-dialog-scrollable">
+				<div class="modal-content p-0">
+					<!-- Modal Header -->
+					<div class="modal-header d-block">
+						<div class="d-flex px-3 align-items-center justify-content-between">
+							<h4 class="modal-title">Search..</h4>
+							<button type="button" class="btn-close">
+								<!-- <span class="ri ri-close-line align-middle"></span> -->
+							</button>
+						</div>
+					</div>
+					<div class="modal-body px-0">
+						<!-- T10416 start -->
+						<!-- Radio buttons for Menu and Records options -->
+						<div class="d-flex align-items-center mb-4 px-3">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="searchOption" id="searchMenu" value="menu" checked="checked"/>
+								<label class="form-check-label" for="searchMenu" style="padding-top: 1px;">Menu</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="searchOption" id="searchRecords" value="records"/>
+								<label class="form-check-label" for="searchRecords" style="padding-top: 1px;">Records</label>
+							</div>
+						</div>
+						<!-- T10416 end -->
+						<div class="d-flex align-items-center mb-4 px-3">
+							<div class="load-active-menu-selector w-25">
+								<t t-call="seletor-acvtive-menu-items"/>
+								<!-- T10416 start -->
+								<t t-call="seletor-acvtive-records-global-search"/>
+								<!-- T10416 end -->
+							</div>
+							<input type="text" id="searchPagesInput" 
+								class="form-control form-control-size borderless auto-complete" autocomplete="off" 
+								placeholder="Search in Menu..." value="" style="font-size: 16px; padding-left: 1px !important;"/>
+						</div>
+						<ul id="searchPagesResults" class="auto-complete-result mb-0 px-3">
+						</ul>
+						<div class="searchNoResult px-3 d-none">
+							<h3>No Results Found!</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</t>
+
+	<t t-name="seletor-acvtive-menu-items" >
+		<div class="form-group mb-0">
+		  <select class="form-control border-0 border-bottom p-0 text-truncate" id="active-menu-categories" style="font-size: 16px; padding-left: 1px !important;">
+			<option id="0" value="all">All</option>
+			<t t-foreach="menuService.getApps()" t-as="menu" t-key="menu.id">
+				<option t-att-id="menu.id" t-att-value="menu.name"><t t-esc="menu.name"/></option>
+			</t>
+		  </select>
+		</div>
+	</t>
+
+	<!-- T10416 start -->
+	<t t-name="seletor-acvtive-records-global-search">
+		<div class="form-group mb-0">
+			<select class="form-control border-0 border-bottom p-0 text-truncate d-none" id="active-records-global-search" style="font-size: 16px; padding-left: 1px !important;">
+			</select>
+		</div>
+	</t>
+	<!-- T10416 end -->
+
+	<!-- A Menu search result -->
+    <t t-name="eds_smart_theme.MenuSearchResults">
+        <t t-foreach="results" t-as="result" t-key="result.id">
+            <t t-set="menu" t-value="widget._menuInfo(result)" />
+			<li class="search_list_content list-unstyled">
+				<a
+					t-attf-class="autoComplete_highlighted text-small text-muted mb-0"
+					t-attf-href="#menu_id={{menu.id}}&amp;action={{menu.actionID}}"
+					t-att-data-menu-id="menu.id"
+					t-att-data-action-id="menu.actionID"
+					t-esc="result"
+					role="menuitem"
+				/>
+			</li>
+        </t>
+    </t>
+
+    <!-- T10416 start -->
+    <!-- A Records search result -->
+	<t t-name="eds_smart_theme.RecordSearchResults">
+		<t t-foreach="results" t-as="result" t-key="result.id">
+			<!-- <t t-set="menu" t-value="widget._menuInfo(result)" /> -->
+			<li class="search_list_content list-unstyled">
+				<a
+					t-attf-class="autoComplete_highlighted text-small text-muted mb-0"
+					t-attf-href="/web/#id={{result['id']}}&amp;model={{result['model']}}&amp;view_type=form"
+					t-att-data-rec-id="result['id']"
+					t-att-data-action-id="result['actionID']"
+					t-esc="result['display_name']"
+					role="button"
+				/>
+			</li>
+		</t>
+	</t>
+	<!-- T10416 end -->
+
+	<!-- Enterprise navbar chrome is supplied by smart_dashboard (backend_nav.xml). -->
+
+	<t t-name="spiffy.Mobile.SectionsMenu" >
+		<div class="o_menu_sections d-none">
+			<a id="mobileMenuclose" class="menu-button" style="display: none;">
+				<span class="ri ri-close-line align-middle"></span>
+			</a>
+			<t t-foreach="sections" t-as="first_level_menu" t-key="first_level_menu.id">
+				<t t-if="!first_level_menu.childrenTree.length">
+					<t t-call="spiffy.Menu.link">
+						<t t-set="inNavbar" t-value="true"/>
+						<t t-set="menu" t-value="first_level_menu"/>
+					</t>
+				</t>
+				<t t-else="">
+					<li class="list-unstyled">
+						<a href="#" class="dropdown-toggle o-no-caret o_menu_header_lvl_1" t-att-data-menu-xmlid="first_level_menu.xmlid" data-bs-toggle="dropdown" data-display="static" role="button" aria-expanded="false">
+							<t t-esc="first_level_menu.name"/>
+						</a>
+						<div class="dropdown-menu" role="menu">
+							<t t-foreach="first_level_menu.childrenTree" t-as="second_level_menu" t-key="second_level_menu.id">
+								<t t-call="spiffy.Menu.link">
+									<t t-set="depth" t-value="1"/>
+									<t t-set="menu" t-value="second_level_menu"/>
+								</t>
+							</t>
+						</div>
+					</li>
+				</t>
+			</t>
+		</div>
+	</t>
+
+	<t t-name="spiffy.Menu.link" >
+		<t t-set="depth" t-value="(depth || 0) + 1"/>
+	
+		<t t-if="!menu.childrenTree.length">
+			<a role="menuitem" t-attf-href="#menu_id={{menu.id}}&amp;action={{menu.actionID ? menu.actionID : ''}}"
+					t-att-data-menu="menu.id"
+					t-att-data-action-model="menu.actionModel"
+					t-att-data-action-id="menu.actionID"
+					t-att-data-menu-xmlid="menu.xmlid"
+					t-attf-class="{{inNavbar ? '' : 'dropdown-item '}}o_menu_entry_lvl_{{depth}}"
+					>
+					<span><t t-esc="menu.name"/></span>
+			</a>
+		</t>
+		<t t-else="">
+			<div t-attf-class="dropdown-header o_menu_header_lvl_{{depth}}">
+				<span><t t-esc="menu.name"/></span>
+			</div>
+			<t t-foreach="menu.childrenTree" t-as="menu" t-key="menu.id">
+				<t t-call="spiffy.Menu.link"/>
+			</t>
+		</t>
+	</t>
+
+
+
+	<!-- Apps dropdown: replaced by smart_dashboard (sidebar app list). -->
+
+	<t t-inherit="web.NavBar.SectionsMenu.Dropdown.MenuSlot" t-inherit-mode="extension" >
+		<!-- code commented for website module HTML editor and other link not working -->
+		<!-- <xpath expr="//t[@t-foreach='items']" position="replace">
+			<t t-foreach="items" t-as="item" t-key="item.id">
+				<a t-if="!item.childrenTree.length" role="menuitem" t-att-data-menu="item.id" t-att-data-action-id="item.actionID" t-attf-href="#menu_id={{item.id}}&amp;action_id={{item.actionID}}" t-att-data-menu-xmlid="item.xmlid" class="dropdown-item o_menu_entry_lvl_2" t-esc="item.name"/>
+
+				<t t-else="">
+					<div class="dropdown-header" t-esc="item.name" />
+					<a t-foreach="item.childrenTree" t-as="subItem" t-key="subItem.id" role="menuitem" t-att-data-menu="subItem.id" t-att-data-action-id="subItem.actionID" t-attf-href="#menu_id={{subItem.id}}&amp;action_id={{subItem.actionID}}" t-att-data-menu-xmlid="subItem.xmlid" class="dropdown-item o_menu_entry_lvl_2" t-esc="subItem.name"
+					/>
+				</t>
+			</t>
+		</xpath> -->
+	</t>
+
+	<t t-name="AllmenuRecursive" >
+		<li class="nav-item">
+			<t t-if="menu.childrenTree.length">
+				<p class="bg-muted">
+					<a class="d-flex align-items-center w-100" data-bs-toggle="collapse" t-attf-data-bs-target="#child_menu_{{menu.id}}" t-att-data-menu-xmlid="menu.xmlid">
+						<span><t t-esc="menu.name"/></span>
+						<span class="ri ri-arrow-right-s-line ms-auto"/>
+					</a>
+				</p>
+			</t>
+			<t t-else="">
+				<a t-att-data-menu="menu.id" t-attf-class="child_menus" t-attf-href="#menu_id={{menu.id}}&amp;action={{menu.actionID ? menu.actionID : ''}}" t-att-data-menu-xmlid="menu.xmlid" t-attf-data-action-id="{{menu.actionID ? menu.actionID : ''}}">
+					<span class="">
+						<t t-esc="menu.name" />
+					</span>
+				</a>
+			</t>
+			<div t-attf-id="child_menu_{{menu.id}}" class="collapse" >
+				<ul t-if="menu.childrenTree.length" class="show">
+					<t t-foreach="menu.children" t-as="menuid" t-key="menuid">
+						<t t-set="menu" t-value="menuService.getMenuAsTree(menuid)"/>
+						<t t-call="AllmenuRecursive" />
+					</t>
+				</ul>
+			</div>
+		</li>
+	</t>
+	
+	<t t-inherit="web.BurgerMenu" t-inherit-mode="extension" >
+		<xpath expr="//button[hasclass('o_mobile_menu_toggle')]" position="attributes">
+			<attribute name="class" add="d-lg-none px-2 me-1" remove="d-md-none pe-3" separator=" "/>
+		</xpath>
+		<!-- Odoo 19's o_mobile_menu_toggle button shows the user's avatar image now,
+		     not an <i class="oi ..."> icon, so there's nothing left to swap here. -->
+	</t>
+
+	<t t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+		<xpath expr="//nav[hasclass('o_main_navbar')]" position="before">
+			<div class="multi_tab_section"/>
+			<div class="dynamic_data"/>
+			<div class="navbar_to_do_list_data"/>
+		</xpath>
+		<xpath expr="//nav[hasclass('o_main_navbar')]" position="after">
+			<t t-call="SearchModalPopup"/>
+		</xpath>
+	</t>
+
+</templates>

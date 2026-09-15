@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_op_timing_user,op.timing.user,model_op_timing,base.group_user,1,1,1,0
+access_op_timing_timetable_user,op.timing.timetable.user,model_op_timing,openeducat_timetable.group_op_timetable_user,1,1,1,0
+access_op_timing_timetable_manager,op.timing.timetable.manager,model_op_timing,openeducat_timetable.group_op_timetable_manager,1,1,1,1
+access_op_session_user,op.session.user,model_op_session,base.group_user,1,1,1,0
+access_op_session_timetable_user,op.session.timetable.user,model_op_session,openeducat_timetable.group_op_timetable_user,1,1,1,0
+access_op_session_timetable_manager,op.session.timetable.manager,model_op_session,openeducat_timetable.group_op_timetable_manager,1,1,1,1
+access_generate_time_table_user,generate.time.table.user,model_generate_time_table,base.group_user,1,1,1,1
+access_generate_time_table_manager,generate.time.table.manager,model_generate_time_table,openeducat_timetable.group_op_timetable_manager,1,1,1,1
+access_gen_time_table_line_user,gen.time.table.line.user,model_gen_time_table_line,base.group_user,1,1,1,1
+access_gen_time_table_line_manager,gen.time.table.line.manager,model_gen_time_table_line,openeducat_timetable.group_op_timetable_manager,1,1,1,1
+access_session_confirmation_user,session.confirmation.user,model_session_confirmation,base.group_user,1,1,1,1
+access_session_confirmation_manager,session.confirmation.manager,model_session_confirmation,openeducat_timetable.group_op_timetable_manager,1,1,1,1
+access_time_table_report_user,time.table.report.user,model_time_table_report,base.group_user,1,1,1,1
+access_time_table_report_manager,time.table.report.manager,model_time_table_report,openeducat_timetable.group_op_timetable_manager,1,1,1,1

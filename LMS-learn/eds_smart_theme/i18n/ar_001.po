@@ -1,0 +1,1181 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* smart_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-18 00:28+0000\n"
+"PO-Revision-Date: 2026-05-18 00:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "%s days"
+msgstr "%s يوم"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "%s hours"
+msgstr "%s ساعة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "10 minutes ago"
+msgstr "منذ 10 دقائق"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Absence"
+msgstr "غياب"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__active
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__active
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: smart_dashboard
+#: model_terms:ir.actions.act_window,help:eds_smart_theme.action_smart_portal_quick_link
+msgid "Add links for the Smart Services Portal quick-links bar."
+msgstr "أضف روابط لشريط الروابط السريعة في بوابة الخدمات الذكية."
+
+#. module: smart_dashboard
+#: model_terms:ir.actions.act_window,help:eds_smart_theme.action_smart_portal_service_item
+msgid ""
+"Add services for each category tab. Set Open view to launch an Odoo screen, "
+"or Link for external URLs."
+msgstr "أضف خدمات لكل تبويب فئة. عيّن «فتح العرض» لفتح شاشة في Odoo، أو «الرابط» لعناوين URL خارجية."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid ""
+"Administrative decision: cancel institution-level employee issues request"
+msgstr "قرار إداري: إلغاء طلب إبلاغات الموظفين على مستوى المؤسسة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Administrative review • HR department"
+msgstr "مراجعة إدارية • إدارة الموارد البشرية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Annual leave request"
+msgstr "طلب إجازة سنوية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Annual performance review appointment"
+msgstr "موعد المراجعة السنوية للأداء"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Attendance and departure"
+msgstr "الحضور والانصراف"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Back to previous page"
+msgstr "العودة إلى الصفحة السابقة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Cannot open the request form right now."
+msgstr "لا يمكن فتح نموذج الطلب حاليًا."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Cannot open this page right now."
+msgstr "لا يمكن فتح هذه الصفحة حاليًا."
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__category_id
+msgid "Category"
+msgstr "الفئة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Circulars and decisions"
+msgstr "التعاميم والقرارات"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Could not change language."
+msgstr "تعذّر تغيير اللغة."
+
+#. module: smart_dashboard
+#: model_terms:ir.actions.act_window,help:eds_smart_theme.action_smart_portal_service_category
+msgid ""
+"Create categories (tabs) and services shown on the Smart Portal dashboard."
+msgstr "أنشئ الفئات (التبويبات) والخدمات المعروضة في لوحة البوابة الذكية."
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__create_uid
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__create_uid
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__create_date
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__create_date
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Dashboard"
+msgstr "لوحة المعلومات"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "December"
+msgstr "ديسمبر"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Department manager"
+msgstr "مدير القسم"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__display_name
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__display_name
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Emergency leave policy in the organization"
+msgstr "سياسة الإجازة الطارئة في المؤسسة"
+
+#. module: smart_dashboard
+#: model:smart.portal.quick.link,name:eds_smart_theme.smart_portal_quick_link_directory
+msgid "Employee directory"
+msgstr "دليل الموظفين"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Employee news"
+msgstr "أخبار الموظفين"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Employee no.: %s"
+msgstr "رقم الموظف: %s"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Employee photo"
+msgstr "صورة الموظف"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,help:eds_smart_theme.field_smart_portal_service_item__link_url
+msgid "External URL or internal path. Used only when Open view is empty."
+msgstr "عنوان URL خارجي أو مسار داخلي. يُستخدم فقط عندما يكون «فتح العرض» فارغًا."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Global search is not available on this screen."
+msgstr "البحث العام غير متاح على هذه الشاشة."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Grade: %s"
+msgstr "الدرجة: %s"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Help center is not available right now."
+msgstr "مركز المساعدة غير متاح حاليًا."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Human resources"
+msgstr "الموارد البشرية"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__id
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__id
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__item_count
+msgid "Item Count"
+msgstr "عدد العناصر"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Language"
+msgstr "اللغة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Language list could not be loaded."
+msgstr "تعذّر تحميل قائمة اللغات."
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__write_uid
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__write_uid
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__write_date
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__write_date
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__write_date
+msgid "Last Updated on"
+msgstr "تاريخ آخر تحديث"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Late"
+msgstr "متأخر"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Leadership skills development workshop"
+msgstr "ورشة تطوير مهارات القيادة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Leave balance update for year 2026"
+msgstr "تحديث رصيد الإجازات لعام 2026"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Leave balance update for year 2035"
+msgstr "تحديث رصيد الإجازات لعام 2035"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Leave request approved"
+msgstr "تمت الموافقة على طلب الإجازة"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__link_url
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__link_url
+msgid "Link"
+msgstr "الرابط"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Locked"
+msgstr "مقفل"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Log out"
+msgstr "تسجيل الخروج"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "My profile"
+msgstr "ملفي"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "My requests"
+msgstr "طلباتي"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "My tasks"
+msgstr "مهامي"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__name
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__name
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "New employee contract"
+msgstr "عقد موظف جديد"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "New employee welfare package for year 2026"
+msgstr "باقة رفاهية الموظفين الجدد لعام 2026"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "New task waiting for you"
+msgstr "مهمة جديدة بانتظارك"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "News"
+msgstr "الأخبار"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/quick_links_bar.js:0
+#, python-format
+msgid "Next"
+msgstr "التالي"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Next page"
+msgstr "الصفحة التالية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Next profile"
+msgstr "الملف التالي"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No fingerprint"
+msgstr "عدم وجود بصمة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No featured item right now."
+msgstr "لا يوجد عنصر مميز حاليًا."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No items match the current view."
+msgstr "لا توجد مهام."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No news match your search."
+msgstr "لا توجد أخبار تطابق بحثك."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No decisions match your search."
+msgstr "لا توجد تعاميم أو قرارات تطابق بحثك."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No decisions right now."
+msgstr "لا توجد تعاميم أو قرارات حاليًا."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No events match your search."
+msgstr "لا توجد فعاليات تطابق بحثك."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No services match your search."
+msgstr "لا توجد خدمات تطابق بحثك."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No upcoming events right now."
+msgstr "لا توجد فعاليات قادمة حاليًا."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "No published news in this section right now."
+msgstr "لا توجد أخبار منشورة في هذا القسم حاليًا."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "November 11, 2025"
+msgstr "11 نوفمبر 2025"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "October 14, 2025"
+msgstr "14 أكتوبر 2025"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "October 30, 2025"
+msgstr "30 أكتوبر 2025"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Only one language is available."
+msgstr "تتوفر لغة واحدة فقط."
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__view_id
+msgid "Open view"
+msgstr "فتح العرض"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Opened %s"
+msgstr "تم فتح %s"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Pending tasks"
+msgstr "مهامي المعلقة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Closed tasks"
+msgstr "مهامي المقفلة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Requests in progress"
+msgstr "طلباتي تحت التنفيذ"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Finished requests"
+msgstr "طلباتي المنتهية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Approved"
+msgstr "معتمد"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: smart_dashboard
+#. odoo-python
+#: code:addons/smart_dashboard/models/smart_portal_data.py:0
+#, python-format
+msgid "Activity not found or access denied."
+msgstr "النشاط غير موجود أو لا تملك صلاحية الوصول."
+
+#. module: smart_dashboard
+#. odoo-python
+#: code:addons/smart_dashboard/models/smart_portal_data.py:0
+#, python-format
+msgid "This activity cannot be approved."
+msgstr "لا يمكن اعتماد هذا النشاط."
+
+#. module: smart_dashboard
+#. odoo-python
+#: code:addons/smart_dashboard/models/smart_portal_data.py:0
+#, python-format
+msgid "The linked record no longer exists."
+msgstr "السجل المرتبط لم يعد موجودًا."
+
+#. module: smart_dashboard
+#. odoo-python
+#: code:addons/smart_dashboard/models/smart_portal_data.py:0
+#, python-format
+msgid "You are not allowed to approve this request."
+msgstr "غير مسموح لك باعتماد هذا الطلب."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#. odoo-python
+#: code:addons/smart_dashboard/models/smart_portal_data.py:0
+#, python-format
+msgid "Request approved successfully."
+msgstr "تم اعتماد الطلب بنجاح."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Could not approve this request."
+msgstr "تعذّر اعتماد هذا الطلب."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Done"
+msgstr "منجز"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Permission request"
+msgstr "طلب استئذان"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Leave balance update"
+msgstr "تحديث رصيد الإجازات"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Preferences"
+msgstr "التفضيلات"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Press news"
+msgstr "أخبار الصحافة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/quick_links_bar.js:0
+#, python-format
+msgid "Previous"
+msgstr "السابق"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Page %s of %s"
+msgstr "الصفحة %s من %s"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Previous page"
+msgstr "الصفحة السابقة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Previous profile"
+msgstr "الملف السابق"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Profile picture"
+msgstr "صورة الملف الشخصي"
+
+#. module: smart_dashboard
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_quick_link_form
+msgid "Quick link"
+msgstr "رابط سريع"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#: model:ir.actions.act_window,name:eds_smart_theme.action_smart_portal_quick_link
+#: model:ir.ui.menu,name:eds_smart_theme.menu_smart_portal_quick_links
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_quick_link_tree
+#, python-format
+msgid "Quick links"
+msgstr "روابط سريعة"
+
+#. module: smart_dashboard
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Recently joined"
+msgstr "انضم مؤخرًا"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Request link"
+msgstr "رابط الطلب"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Request link %s"
+msgstr "رابط الطلب %s"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Search for a service or topic..."
+msgstr "ابحث عن خدمة أو موضوع..."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "See all"
+msgstr "عرض الكل"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "View all"
+msgstr "عرض الكل"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Select all"
+msgstr "تحديد الكل"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Self services"
+msgstr "الخدمات الذاتية"
+
+#. module: smart_dashboard
+#: model:ir.actions.act_window,name:eds_smart_theme.action_smart_portal_service_category
+#: model:ir.ui.menu,name:eds_smart_theme.menu_smart_portal_service_categories
+msgid "Self-service categories"
+msgstr "فئات الخدمات الذاتية"
+
+#. module: smart_dashboard
+#: model:ir.actions.act_window,name:eds_smart_theme.action_smart_portal_service_item
+#: model:ir.ui.menu,name:eds_smart_theme.menu_smart_portal_service_items
+msgid "Self-service items"
+msgstr "عناصر الخدمات الذاتية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Semi-annual performance appraisal"
+msgstr "تقييم الأداء نصف السنوي"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "September 22, 2025"
+msgstr "22 سبتمبر 2025"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_quick_link__sequence
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__sequence
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_item__sequence
+msgid "Sequence"
+msgstr "الترتيب"
+
+#. module: smart_dashboard
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_service_item_form
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Service / system"
+msgstr "الخدمة"
+
+#. module: smart_dashboard
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_service_category_tree
+msgid "Service categories"
+msgstr "فئات الخدمات"
+
+#. module: smart_dashboard
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_service_category_form
+msgid "Service category"
+msgstr "فئة الخدمة"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__item_ids
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_service_category_form
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_service_item_tree
+msgid "Services"
+msgstr "الخدمات"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,help:eds_smart_theme.field_smart_portal_quick_link__icon
+msgid "Short label shown on the card (e.g. emoji or 1–2 characters)."
+msgstr "تسمية قصيرة تظهر على البطاقة (مثلًا رمز تعبيري أو حرف أو حرفين)."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#: model:ir.actions.client,name:eds_smart_theme.action_smart_dashboard
+#: model:ir.ui.menu,name:eds_smart_theme.menu_smart_dashboard
+#: model:ir.ui.menu,name:eds_smart_theme.menu_smart_portal_root
+#, python-format
+msgid "Smart Portal"
+msgstr "البوابة الذكية"
+
+#. module: smart_dashboard
+#: model:ir.model,name:eds_smart_theme.model_smart_portal_data
+msgid "Smart Portal Dashboard Data"
+msgstr "بيانات لوحة البوابة الذكية"
+
+#. module: smart_dashboard
+#: model:ir.model,name:eds_smart_theme.model_smart_portal_service_category
+msgid "Smart Portal Service Category"
+msgstr "فئة خدمة البوابة الذكية"
+
+#. module: smart_dashboard
+#: model:ir.model,name:eds_smart_theme.model_smart_portal_service_item
+msgid "Smart Portal Service Item"
+msgstr "عنصر خدمة البوابة الذكية"
+
+#. module: smart_dashboard
+#: model:ir.model,name:eds_smart_theme.model_smart_portal_quick_link
+msgid "Smart portal quick link"
+msgstr "رابط سريع للبوابة الذكية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Task no."
+msgstr "رقم المهمة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Task owner"
+msgstr "مقدم الطلب"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Task status"
+msgstr "حالة المهمة"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,field_description:eds_smart_theme.field_smart_portal_service_category__code
+msgid "Technical key"
+msgstr "المفتاح التقني"
+
+#. module: smart_dashboard
+#: model:smart.portal.quick.link,name:eds_smart_theme.smart_portal_quick_link_support
+msgid "Technical support"
+msgstr "الدعم الفني"
+
+#. module: smart_dashboard
+#: model:ir.model.constraint,message:eds_smart_theme.constraint_smart_portal_service_category_code_unique
+msgid "The technical key must be unique per category."
+msgstr "يجب أن يكون المفتاح التقني فريدًا لكل فئة."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Today 11:20"
+msgstr "اليوم 11:20"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Training • Main meeting hall"
+msgstr "تدريب • قاعة الاجتماعات الرئيسية"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,help:eds_smart_theme.field_smart_portal_quick_link__link_url
+msgid "URL or path: full https://… or internal paths such as /web#action=…"
+msgstr "عنوان URL أو مسار: https:// كامل أو مسارات داخلية مثل /web#action=…"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,help:eds_smart_theme.field_smart_portal_service_category__code
+msgid "Unique key used for the dashboard tab (e.g. hr, finance)."
+msgstr "مفتاح فريد يُستخدم لتبويب لوحة المعلومات (مثل hr، finance)."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Upcoming events"
+msgstr "الفعاليات القادمة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Update on HR circular"
+msgstr "تحديث بشأن تعميم الموارد البشرية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Welcome!"
+msgstr "أهلاً بك!"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Welcome, %s"
+msgstr "أهلاً بك، %s"
+
+#. module: smart_dashboard
+#: model:ir.model.fields,help:eds_smart_theme.field_smart_portal_service_item__view_id
+msgid "When set, opens this Odoo view in the backend (preferred over Link)."
+msgstr "عند التعيين، يفتح هذا العرض في Odoo (يُفضّل على الرابط)."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "Yesterday"
+msgstr "أمس"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "You have %s pending requests"
+msgstr "لديك %s طلبات قيد الانتظار"
+
+#. module: smart_dashboard
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_service_item_form
+msgid "https://example.com (optional when Open view is set)"
+msgstr "https://example.com (اختياري عند تعيين فتح العرض)"
+
+#. module: smart_dashboard
+#: model_terms:ir.ui.view,arch_db:eds_smart_theme.view_smart_portal_quick_link_form
+msgid "https://example.com or /web#action=..."
+msgstr "https://example.com أو /web#action=..."
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "إمكانية الوصول"
+msgstr "إمكانية الوصول"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "الادارات"
+msgstr "الادارات"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "البلاغات"
+msgstr "البلاغات"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "البوابة الداخلية للموظفين والخدمات الذاتية"
+msgstr "البوابة الداخلية للموظفين والخدمات الذاتية"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.category,name:eds_smart_theme.smart_portal_service_category_self
+msgid "الخدمات الداخلية"
+msgstr "الخدمات الداخلية"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.category,name:eds_smart_theme.smart_portal_service_category_finance
+msgid "الشؤون المالية والإدارية"
+msgstr "الشؤون المالية والإدارية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "الضوابط والسياسيات"
+msgstr "الضوابط والسياسيات"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "القائمة الرئيسية"
+msgstr "القائمة الرئيسية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "المقابلات التلفزيونية"
+msgstr "المقابلات التلفزيونية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "المكتبة الإلكترونية"
+msgstr "المكتبة الإلكترونية"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.category,name:eds_smart_theme.smart_portal_service_category_hr
+msgid "الموارد البشرية"
+msgstr "الموارد البشرية"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_self_1
+msgid "بياناتي الوظيفية"
+msgstr "بياناتي الوظيفية"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "تطبيقي والقوائم"
+msgstr "تطبيقي والقوائم"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_self_2
+msgid "رصيد الإجازات"
+msgstr "رصيد الإجازات"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_hr_4
+msgid "رفع مباشرة عمل"
+msgstr "رفع مباشرة عمل"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_self_3
+msgid "سجل الحضور والانصراف"
+msgstr "سجل الحضور والانصراف"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_hr_3
+msgid "طلب إجازة سنوية"
+msgstr "طلب إجازة سنوية"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_hr_2
+msgid "طلب تحديث بيانات الموظف"
+msgstr "طلب تحديث بيانات الموظف"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_hr_1
+msgid "طلب تعريف بالراتب"
+msgstr "طلب تعريف بالراتب"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_self_4
+msgid "طلب عمل عن بعد"
+msgstr "طلب عمل عن بعد"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_finance_2
+msgid "طلب عهدة مالية"
+msgstr "طلب عهدة مالية"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_finance_1
+msgid "طلب موظف"
+msgstr "طلب موظف"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/backend_nav.js:0
+#, python-format
+msgid "مركز المساعدة"
+msgstr "مركز المساعدة"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Upcoming"
+msgstr "قادم"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Ongoing"
+msgstr "قائم"
+
+#. module: smart_dashboard
+#. odoo-javascript
+#: code:addons/smart_dashboard/static/src/js/eds_smart_theme.js:0
+#, python-format
+msgid "Past"
+msgstr "فائت"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_finance_3
+msgid "مواصلات مهام العمل الخارجية"
+msgstr "مواصلات مهام العمل الخارجية"
+
+#. module: smart_dashboard
+#: model:smart.portal.service.item,name:eds_smart_theme.smart_portal_service_finance_4
+msgid "نموذج طلب استلام مفتاح"
+msgstr "نموذج طلب استلام مفتاح"
+
+#. module: eds_smart_theme
+#: model:ir.ui.menu,name:eds_smart_theme.back_config_main
+msgid "Backend Theme"
+msgstr "سمة الواجهة الخلفية"

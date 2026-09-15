@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="action_validation" model="ir.actions.act_window">
+		<field name="name">Validation</field>
+		<field name="res_model">validation</field>
+		<field name="view_id" ref="eds_validation.view_validation_tree"/>
+		<field name="view_mode">list,form</field>
+		<field name="context">{'active_test' : False, 'search_default_active' : 1}</field>
+	</record>
+
+	<record id="action_validation_group" model="ir.actions.act_window">
+		<field name="name">Validation Group</field>
+		<field name="res_model">validation.group</field>
+		<field name="view_id" ref="eds_validation.view_validation_group_tree"/>
+		<field name="view_mode">list,form</field>
+		<field name="context">{'active_test' : False, 'search_default_active' : 1}</field>
+	</record>
+
+	<record id="action_validation_log" model="ir.actions.act_window">
+		<field name="name">Validation Logs</field>
+		<field name="res_model">validation.log</field>
+		<field name="view_id" ref="eds_validation.view_validation_log_tree"/>
+		<field name="view_mode">list,form</field>
+	</record>	
+
+</odoo>

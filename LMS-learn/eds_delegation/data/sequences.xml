@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="sequence_delegation" model="ir.sequence">
+		<field name="name">Delegation</field>
+		<field name="code">delegation</field>
+		<field name="prefix"></field>
+		<field name="company_id" eval="False" />
+	</record>
+
+</odoo>

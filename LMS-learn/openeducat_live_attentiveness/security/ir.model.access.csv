@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_channel_logs_user,channel.logs user,model_channel_logs,base.group_user,1,0,0,0
+access_channel_logs_manager,channel.logs manager,model_channel_logs,base.group_system,1,1,1,1
+access_log_attentive_user,log.attentive user,model_log_attentive,base.group_user,1,0,0,0
+access_log_attentive_manager,log.attentive manager,model_log_attentive,base.group_system,1,1,1,1
+access_meeting_guest_user,meeting.guest user,model_meeting_guest,base.group_user,1,0,0,0
+access_meeting_guest_manager,meeting.guest manager,model_meeting_guest,base.group_system,1,1,1,1

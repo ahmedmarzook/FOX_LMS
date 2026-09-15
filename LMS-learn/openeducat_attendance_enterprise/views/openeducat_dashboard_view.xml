@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="openeducat_batch_attendance_dashboard_kanban_view" model="ir.ui.view">
+        <field name="name">op.batch.attendance.dashboard.kanban</field>
+        <field name="model">op.batch</field>
+        <field name="inherit_id" ref="openeducat_core_enterprise.openeducat_batch_dashboard_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[last()]" position="after">
+                <field name="total_present_student"/>
+                <field name="total_absent_student"/>
+                <field name="kanban_dashboard_graph"/>
+            </xpath>
+            <xpath expr="//t[@t-name='card']" position="inside">
+                <div class="mt-2 border-top pt-2">
+                    <strong>Attendance Details</strong>
+                    <div><field name="total_present_student"/> Present</div>
+                    <div><field name="total_absent_student"/> Absent</div>
+                    <div class="mt-1">
+                        <a type="action" name="%(openeducat_attendance_enterprise.act_dashboard_op_attendance_sheet_view)d">Attendance Sheets</a>
+                        <span> | </span>
+                        <a type="object" name="create_attendance_sheet">New Attendance Sheet</a>
+                    </div>
+                    <field name="kanban_dashboard_graph" t-att-graph_type="'bar'" widget="dashboard_graph"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

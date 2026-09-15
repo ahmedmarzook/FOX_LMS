@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <!-- openeducat_core module STEPS -->
+    <!-- quiz view starts -->
+    <template id="onboarding_quiz_layout_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Quiz Configuration</t>
+            <t t-set="description">See how to create a Quiz.</t>
+            <t t-set="done_icon" t-value="'fa-star'"/>
+            <t t-set="done_text">Looks great!</t>
+            <t t-set="btn_text">Customize</t>
+            <t t-set="method" t-value="'action_onboarding_quiz_layout'"/>
+            <t t-set="model" t-value="'res.company'"/>
+            <t t-set="state" t-value="state.get('onboarding_quiz_layout_state')"/>
+        </t>
+    </template>
+    <record id="view_op_quiz_form_onboard" model="ir.ui.view">
+            <field name="name">op.quiz.form</field>
+            <field name="model">op.quiz</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Quiz">
+                    <header>
+                        <button name="view_quiz" type="object" string="View Exam" invisible="state != 'open'"/>
+                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_done" string="Done" type="object" class="oe_highlight" invisible="state != 'open'"/>
+                        <button name="action_draft" string="Re-open" type="object" class="oe_highlight" invisible="state != 'cancel'"/>
+                        <button name="action_cancel" string="Closed" type="object" invisible="state != 'open'"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group col="2">
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="quiz_config" required="1"/>
+                            </group>
+                            <group>
+                                <field name="categ_id" required="1"/>
+                                <field name="total_marks" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <button name="%(act_open_op_question_wizard_view)d" string="Fetch Questions" type="action" class="oe_highlight"/>
+                        </group>
+                        <group string="Questions Configuration">
+                            <field name="config_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="bank_id" required="1"/>
+                                    <field name="no_of_question" required="1"/>
+                                </list>
+                            </field>
+                        </group>
+
+                        <notebook>
+                            <page string="Questions">
+                                <field name="line_ids" nolabel="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="que_type"/>
+                                        <field name="mark"/>
+                                    </list>
+                                    <form string="questions">
+                                        <group colspan="4">
+                                            <field name="name" required="1"/>
+                                            <field name="mark" required="1"/>
+                                            <field name="que_type" required="1"/>
+                                            <field name="case_sensitive"/>
+                                            <field name="answer"/>
+                                            <field name="grade_true_id"/>
+                                            <field name="grade_false_id"/>
+                                        </group>
+                                        <group name="answers" string="Answers">
+                                            <field name="line_ids" nolabel="1">
+                                                <list editable="bottom">
+                                                    <field name="name" required="1"/>
+                                                    <field name="grade_id" options="{'no_create': True}"/>
+                                                </list>
+                                                <form string="Answers">
+                                                    <group>
+                                                        <field name="name" required="1"/>
+                                                        <field name="grade_id" options="{'no_create': True}"/>
+                                                    </group>
+                                                </form>
+                                            </field>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Result Message">
+                                <field name="quiz_message_ids">
+                                    <list>
+                                        <field name="result_from"/>
+                                        <field name="result_to"/>
+                                    </list>
+                                    <form string="Result Message">
+                                        <group>
+                                            <field name="result_from" required="1"/>
+                                            <field name="result_to" required="1"/>
+                                        </group>
+                                        <separator string="Message"/>
+                                        <field name="message"/>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Configuration">
+                                <group col="2">
+                                    <group>
+                                        <field name="single_que"/>
+                                        <field name="prev_allow"/>
+                                        <field name="prev_readonly"/>
+                                    </group>
+                                    <group>
+                                        <field name="no_of_attempt"/>
+                                        <field name="que_required"/>
+                                    </group>
+                                </group>
+                                <group col="2">
+                                    <group string="Result Configuration">
+                                        <field name="show_result" help="Result won't display if descriptive Questions."/>
+                                        <field name="right_ans"/>
+                                        <field name="wrong_ans"/>
+                                        <field name="not_attempt_ans"/>
+                                    </group>
+                                    <group string="Timing Configuration">
+                                        <field name="time_config"/>
+                                        <label for="time_config" string="Time Limit"/>
+                                        <div>
+                                            <field name="time_limit_hr" style="width: 30%;"/>
+                                            <label string="Hr" style="width: 8%;" for="time_limit_hr"/>
+                                            <field name="time_limit_minute" style="width: 30%;"/>
+                                            <label string="Min" style="width: 20%;" for="time_limit_minute"/>
+                                        </div>
+                                        <field name="time_expire" invisible="1"/>
+                                        <field name="grace_period"/>
+                                        <label for="grace_period" string="Grace Period"/>
+                                        <div>
+                                            <field name="grace_period_hr" style="width: 30%;"/>
+                                            <label for="grace_period_hr" string="Hr" style="width: 8%;"/>
+                                            <field name="grace_period_minute" style="width: 30%;"/>
+                                            <label for="grace_period_minute" string="Min" style="width: 20%;"/>
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Starting Page">
+                                <group>
+                                    <field name="start_view" required="1"/>
+                                </group>
+                                <field name="quiz_audio"/>
+                                <field name="quiz_video"/>
+                                <field name="quiz_html"/>
+                            </page>
+                            <page string="Description">
+                                <field name="description" placeholder="Description..."/>
+                            </page>
+                            <page string="Challenges">
+                                <group>
+                                    <field name="challenge_ids" widget="many2many_tags"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <footer>
+                        <button string="Apply" class="btn btn-primary" type="object" name="action_onboarding_quiz_layout"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+    <record id="action_onboarding_quiz_layout" model="ir.actions.act_window">
+        <field name="name">Quiz Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">op.quiz</field>
+        <field name="view_mode">form</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_id" ref="view_op_quiz_form_onboard"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- question bank view starts -->
+    <template id="onboarding_question_bank_layout_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Question Bank Configuration</t>
+            <t t-set="description">See how to create a Question Bank.</t>
+            <t t-set="done_icon" t-value="'fa-star'"/>
+            <t t-set="done_text">Looks great!</t>
+            <t t-set="btn_text">Customize</t>
+            <t t-set="method" t-value="'action_onboarding_question_bank_layout'"/>
+            <t t-set="model" t-value="'res.company'"/>
+            <t t-set="state" t-value="state.get('onboarding_question_bank_layout_state')"/>
+        </t>
+    </template>
+    <record id="view_op_question_bank_form_onboard" model="ir.ui.view">
+            <field name="name">op.question.bank.form</field>
+            <field name="model">op.question.bank</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Question Bank">
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="bank_type_id" required="1"/>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Questions">
+                                <field name="line_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="que_type"/>
+                                        <field name="mark"/>
+                                    </list>
+                                    <form string="Questions">
+                                        <group>
+                                            <field name="name" required="1"/>
+                                            <field name="mark" required="1"/>
+                                            <field name="que_type" required="1"/>
+                                            <field name="case_sensitive"/>
+                                            <field name="answer"/>
+                                            <field name="grade_true_id"/>
+                                            <field name="grade_false_id"/>
+                                        </group>
+                                        <notebook colspan="4">
+                                            <page string="Answers">
+                                                <field name="line_ids">
+                                                    <list editable="bottom">
+                                                        <field name="name" required="1"/>
+                                                        <field name="grade_id" required="1" options="{'no_create': True}"/>
+                                                    </list>
+                                                    <form string="Answers">
+                                                        <group>
+                                                            <field name="name"/>
+                                                            <field name="grade_id" options="{'no_create': True}"/>
+                                                        </group>
+                                                    </form>
+                                                </field>
+                                            </page>
+                                        </notebook>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Description">
+                                <field name="description" placeholder="Description..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <footer>
+                        <button string="Apply" class="btn btn-primary" type="object" name="action_onboarding_question_bank_layout"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+    <record id="action_onboarding_question_bank_layout" model="ir.actions.act_window">
+        <field name="name">Question Bank Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">op.question.bank</field>
+        <field name="view_mode">form</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_id" ref="view_op_question_bank_form_onboard"/>
+        <field name="target">new</field>
+    </record>
+
+
+    <!-- ONBOARDING PANEL-->
+    <template id="openeducat_quiz_onboarding_panel" name="openeducat_discpline.quotation.onboarding.panel">
+        <t t-call="base.onboarding_container">
+            <t t-set="classes" t-value="'o_onboarding_violet'"/>
+            <t t-set="bg_image" t-value="'/sale/static/src/img/sale_quotation_onboarding_bg.jpg'"/>
+            <t t-set="close_method" t-value="'action_close_quiz_panel_onboarding'"/>
+            <t t-set="close_model" t-value="'res.company'"/>
+            <t t-call="openeducat_quiz.onboarding_quiz_layout_step" name="quiz_step"/>
+            <t t-call="openeducat_quiz.onboarding_question_bank_layout_step" name="question_bank_step"/>
+
+
+        </t>
+    </template>
+</odoo>

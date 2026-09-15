@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="msteams_api_config" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.msteams</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Microsoft Teams"
+                     name="openeducat_teams"
+                     groups="base.group_system">
+                    <block title="Microsoft Teams API">
+                        <setting string="Application ID">
+                            <field name="application_id"/>
+                        </setting>
+                        <setting string="Client Secret">
+                            <field name="client_secret" password="True"/>
+                        </setting>
+                        <setting string="Redirect URL">
+                            <field name="redirect_url" readonly="1"/>
+                        </setting>
+                        <setting string="Access Token">
+                            <field name="access_token" readonly="1"/>
+                        </setting>
+                    </block>
+                    <block title="Teams Cards">
+                        <setting string="Send card globally">
+                            <field name="send_card_globally"/>
+                        </setting>
+                        <setting string="Global Webhook URL"
+                                 invisible="not send_card_globally">
+                            <field name="webhook_url"/>
+                        </setting>
+                        <setting string="Send card by course">
+                            <field name="send_card_course"/>
+                        </setting>
+                    </block>
+                    <block title="Authentication">
+                        <button string="Authenticate"
+                                type="object"
+                                name="auth_token"
+                                class="btn-primary"/>
+                        <button string="Refresh Token"
+                                type="object"
+                                name="do_refresh_token"
+                                class="btn-secondary ms-2"/>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

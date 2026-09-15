@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <record id="view_search_approval_request" model="ir.ui.view">
+        <field name="name">Approval Request search</field>
+        <field name="model">multi.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="My Request" name="filter_my_request" domain="[('user_id', '=', uid)]"/>
+                <filter string="To Review" name="filter_approvals_to_review" domain="[('line_ids.user_id', '=', uid), ('request_status', '=', 'pending')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="multi_approval_product_line_view_tree">
+        <field name="name">Approval Product Line</field>
+        <field name="model">multi.product.line</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="product_uom_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_from_approval_request">
+        <field name="name">Approval Request</field>
+        <field name="model">multi.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="user_status" invisible="1"/>
+                    <button name="action_confirm" string="Submit" type="object" class="btn-primary" invisible="request_status != 'new'"/>
+                    <button name="action_approve" string="Approve" type="object" class="btn-primary" invisible="request_status != 'pending'"/>
+                    <button name="action_refuse" string="Refuse" type="object" invisible="request_status != 'pending'"/>
+                    <button name="action_draft" string="Back To Draft" type="object" invisible="request_status != 'cancel'"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="request_status in ['new', 'cancel']"/>
+                    <widget name="attach_document" string="Attach Document" action="message_post" invisible="attachment_number &lt; 1"/>
+                    <widget name="attach_document" string="Attach Receipt" action="message_post" highlight="1" invisible="(attachment_number &gt;= 1 or id == False)"/>
+                    <field name="request_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="o_not_full oe_button_box">
+                        <button name="action_get_attachment_view" class="oe_stat_button" icon="fa-book" type="object" invisible="attachment_number == 0">
+                            <field name="attachment_number" widget="statinfo" string="Documents" options="{'reload_on_button': true}"/>
+                        </button>
+                    </div>
+                    <field name="document_opt" invisible="1"/>
+                    <field name="partner_opt" invisible="1"/>
+                    <field name="date_opt" invisible="1"/>
+                    <field name="period_opt" invisible="1"/>
+                    <field name="product_opt" invisible="1"/>
+                    <field name="quantity_opt" invisible="1"/>
+                    <field name="amount_opt" invisible="1"/>
+                    <field name="payment_opt" invisible="1"/>
+                    <field name="reference_opt" invisible="1"/>
+                    <field name="location_opt" invisible="1"/>
+
+                    <div class="oe_title">
+                        <label for="name" string="Approval Request"/>
+                        <h1>
+                            <field name="name" placeholder="E.g: Expenses Paris business trip" readonly="request_status != 'new'"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id" readonly="request_status != 'new'"/>
+                            <field name="approval_type_id" readonly="request_status != 'new'"/>
+                            <field name="date_confirmed" readonly="1"/>
+                            <label for="date" string="Date" invisible="date_opt == 'none'" readonly="request_status != 'new'"/>
+                            <div invisible="date_opt == 'none'" readonly="request_status != 'new'">
+                                <div>
+                                    <field name="date" class="oe_inline" required="date_opt == 'required'" readonly="request_status != 'new'"/>
+                                </div>
+                            </div>
+                            <label for="date_start" string="Period" invisible="period_opt == 'none'" readonly="request_status != 'new'"/>
+                            <div invisible="period_opt == 'none'" readonly="request_status != 'new'">
+                                <div>
+                                    <span>From:</span>
+                                    <field name="date_start" class="oe_inline" required="period_opt == 'required'" readonly="request_status != 'new'"/>
+                                </div>
+                                <div>
+                                    <span>to:</span>
+                                    <field name="date_end" class="oe_inline ml-4" required="period_opt == 'required'" readonly="request_status != 'new'"/>
+                                </div>
+                            </div>
+                            <field name="location" placeholder="e.g. Brussels" invisible="location_opt == 'none'" required="location_opt == 'required'" readonly="request_status != 'new'"/>
+                            <field name="partner_id" invisible="partner_opt == 'none'" required="partner_opt == 'required'" readonly="request_status != 'new'"/>
+                        </group>
+                        <group name="request_details">
+                            <field name="quantity" invisible="(quantity_opt == 'none' or product_opt != 'none')" required="quantity_opt == 'required' and product_opt == 'none'" readonly="request_status != 'new'"/>
+                            <field name="amount" invisible="amount_opt == 'none'" required="amount_opt == 'required'" readonly="request_status != 'new'"/>
+                            <field name="reference" invisible="reference_opt == 'none'" required="reference_opt == 'required'" readonly="request_status != 'new'"/>
+                            <field name="source_document_label" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Products" name="products" invisible="product_opt == 'none'" readonly="request_status != 'new'">
+                            <field name="product_line_ids" context="{'tree_view_ref': 'openeducat_multi_approval.multi_approval_product_line_view_tree'}" readonly="request_status != 'new'"/>
+                        </page>
+                        <page string="Description" name="reason">
+                            <field name="reason" readonly="request_status not in ('new', 'pending')"/>
+                        </page>
+                        <page string="Approver(s)">
+                            <field name="line_ids" readonly="request_status != 'new'">
+                                <list editable="bottom" decoration-success="status=='approved'" decoration-warning="status=='pending'" decoration-danger="status=='refused'">
+                                    <field name="user_id"/>
+                                    <field name="require_opt"/>
+                                    <field name="status"/>
+                                    <field name="approve_tmpl_id"/>
+                                    <field name="reject_tmpl_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" options="{'post_refresh': 'always'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_tree_approval_request">
+        <field name="name">Approval Request</field>
+        <field name="model">multi.request</field>
+        <field name="arch" type="xml">
+            <list create="false" sample="1" decoration-info="request_status == 'new'">
+                <field name="name"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="approval_type_id"/>
+                <field name="request_status" decoration-info="request_status == 'new'" decoration-warning="request_status == 'pending'" decoration-success="request_status == 'approved'" decoration-danger="request_status == 'refused'" widget="badge"/>
+            </list>
+        </field>
+    </record>
+</odoo>

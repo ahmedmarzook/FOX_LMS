@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="openeducat_backend_theme.BackendThemeCustomizer">
+        <div class="o_openeducat_theme_customizer">
+            <button type="button"
+                    class="btn btn-link o_openeducat_theme_button"
+                    title="Theme Settings"
+                    t-on-click="toggle">
+                <i class="fa fa-paint-brush"/>
+            </button>
+
+            <t t-if="state.open">
+                <div class="o_openeducat_theme_backdrop"
+                     t-on-click="close"/>
+                <aside class="o_openeducat_theme_panel">
+                    <header>
+                        <h4>Theme Settings</h4>
+                        <button type="button"
+                                class="btn-close"
+                                t-on-click="close"/>
+                    </header>
+
+                    <div class="o_openeducat_theme_body">
+                        <label class="form-check form-switch">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   t-model="state.user.dark_mode"
+                                   t-on-change="preview"/>
+                            <span>Dark mode</span>
+                        </label>
+
+                        <label>Chatter position</label>
+                        <select class="form-select"
+                                t-model="state.user.chatter_position"
+                                t-on-change="preview">
+                            <option value="sided">Side</option>
+                            <option value="bottom">Bottom</option>
+                        </select>
+
+                        <t t-if="state.canManageCompany">
+                            <label>Menu style</label>
+                            <select class="form-select"
+                                    t-model="state.company.theme_menu_style"
+                                    t-on-change="preview">
+                                <option value="apps">Top Menu</option>
+                                <option value="sidemenu">Side Menu</option>
+                            </select>
+
+                            <label>Brand color</label>
+                            <input type="color"
+                                   class="form-control form-control-color"
+                                   t-model="state.company.theme_color_brand"
+                                   t-on-input="preview"/>
+
+                            <label>Background color</label>
+                            <input type="color"
+                                   class="form-control form-control-color"
+                                   t-model="state.company.theme_background_color"
+                                   t-on-input="preview"/>
+
+                            <label>Sidebar color</label>
+                            <input type="color"
+                                   class="form-control form-control-color"
+                                   t-model="state.company.theme_sidebar_color"
+                                   t-on-input="preview"/>
+
+                            <label>Font</label>
+                            <select class="form-select"
+                                    t-model="state.company.theme_font_name"
+                                    t-on-change="preview">
+                                <option value="Rubik">Rubik</option>
+                                <option value="poppins">Poppins</option>
+                                <option value="lato">Lato</option>
+                                <option value="merriweather">Merriweather</option>
+                                <option value="montserrat">Montserrat</option>
+                                <option value="opensans">Open Sans</option>
+                                <option value="playfairdisplay">Playfair Display</option>
+                                <option value="sans-serif">Sans Serif</option>
+                            </select>
+                        </t>
+                    </div>
+
+                    <footer>
+                        <button type="button"
+                                class="btn btn-secondary"
+                                t-on-click="close">
+                            Cancel
+                        </button>
+                        <button type="button"
+                                class="btn btn-primary"
+                                t-att-disabled="state.saving"
+                                t-on-click="save">
+                            Save
+                        </button>
+                    </footer>
+                </aside>
+            </t>
+        </div>
+    </t>
+</templates>

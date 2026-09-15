@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="openeducat_dashboard_kpi.DashboardChartCanvas">
+        <div class="o_dashboard_chart_canvas">
+            <canvas t-ref="canvas"/>
+        </div>
+    </t>
+
+    <t t-name="openeducat_dashboard_kpi.Dashboard">
+        <div t-ref="root"
+             class="o_openeducat_dashboard"
+             t-att-style="themeStyle">
+            <header class="o_dashboard_toolbar">
+                <div>
+                    <h2 t-esc="state.dashboard?.name || 'Dashboard'"/>
+                    <small>OpenEduCat KPI Dashboard</small>
+                </div>
+
+                <div class="o_dashboard_toolbar_actions">
+                    <input type="search"
+                           class="form-control"
+                           placeholder="Search dashboard elements..."
+                           t-model="state.query"/>
+
+                    <select t-if="dashboards.length"
+                            class="form-select"
+                            t-att-value="state.selectedDashboardId"
+                            t-on-change="changeDashboard">
+                        <option t-foreach="dashboards"
+                                t-as="dashboard"
+                                t-key="dashboard.id"
+                                t-att-value="dashboard.id"
+                                t-att-selected="dashboard.id === state.selectedDashboardId"
+                                t-esc="dashboard.name"/>
+                    </select>
+
+                    <button type="button"
+                            class="btn btn-outline-primary"
+                            title="Refresh"
+                            t-on-click="refresh">
+                        <i class="fa fa-refresh"/>
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-outline-primary"
+                            title="Full screen"
+                            t-on-click="toggleFullscreen">
+                        <i t-att-class="state.fullscreen ? 'fa fa-compress' : 'fa fa-expand'"/>
+                    </button>
+
+                    <button t-if="state.dashboard?.dashboard_manager"
+                            type="button"
+                            class="btn btn-primary"
+                            t-on-click="createElement">
+                        <i class="fa fa-plus me-1"/>
+                        Add Element
+                    </button>
+
+                    <button t-if="state.dashboard?.dashboard_manager"
+                            type="button"
+                            class="btn btn-secondary"
+                            t-on-click="openDashboardConfiguration">
+                        <i class="fa fa-cog me-1"/>
+                        Settings
+                    </button>
+                </div>
+            </header>
+
+            <div t-if="state.loading"
+                 class="o_dashboard_state">
+                <i class="fa fa-spinner fa-spin fa-2x"/>
+                <span>Loading dashboard...</span>
+            </div>
+
+            <div t-elif="state.error"
+                 class="alert alert-danger m-3">
+                <strong>Dashboard error:</strong>
+                <span t-esc="state.error"/>
+            </div>
+
+            <div t-elif="!elements.length"
+                 class="o_dashboard_state">
+                <i class="fa fa-dashboard fa-3x"/>
+                <h4>No dashboard elements</h4>
+                <p>Create an element or change the selected dashboard.</p>
+            </div>
+
+            <main t-else=""
+                  class="o_dashboard_grid">
+                <article t-foreach="elements"
+                         t-as="item"
+                         t-key="item.id"
+                         class="o_dashboard_card"
+                         t-att-class="'o_dashboard_type_' + item.type_of_element"
+                         t-att-style="'background:' + color(item.background_color, '#ffffff') + ';color:' + color(item.font_color, '#212529')"
+                         t-on-click="() => this.openElement(item)">
+                    <header class="o_dashboard_card_header">
+                        <div>
+                            <i t-if="item.default_icon"
+                               t-att-class="'fa fa-' + item.default_icon"/>
+                            <span t-esc="item.name"/>
+                        </div>
+                        <small t-esc="item.model_display_name || ''"/>
+                    </header>
+
+                    <section t-if="item.type_of_element === 'tile'"
+                             class="o_dashboard_metric">
+                        <strong t-esc="formatValue(item.data_calculation_value)"/>
+                    </section>
+
+                    <section t-elif="item.type_of_element === 'kpi'"
+                             class="o_dashboard_metric">
+                        <strong t-esc="formatValue(parseJSON(item.kpi_data, [])[0]?.record_data || item.data_calculation_value)"/>
+                        <small t-if="item.is_goal_enable">Target enabled</small>
+                    </section>
+
+                    <section t-elif="item.type_of_element === 'add_text'"
+                             class="o_dashboard_text"
+                             t-att-style="'text-align:' + (item.add_text_align || 'left')">
+                        <div t-esc="item.add_text_main_content || ''"/>
+                    </section>
+
+                    <section t-elif="item.type_of_element === 'add_link'"
+                             class="o_dashboard_link">
+                        <a t-att-href="item.add_link_content || '#'"
+                           target="_blank"
+                           t-on-click.stop="">
+                            <i class="fa fa-external-link me-2"/>
+                            <t t-esc="item.add_link_title || item.name"/>
+                        </a>
+                    </section>
+
+                    <section t-elif="item.type_of_element === 'add_image'"
+                             class="o_dashboard_image">
+                        <img t-if="item.add_image_image"
+                             t-att-src="'data:image/png;base64,' + item.add_image_image"
+                             t-att-alt="item.name"/>
+                    </section>
+
+                    <section t-elif="item.type_of_element === 'add_divider'"
+                             class="o_dashboard_divider">
+                        <hr/>
+                    </section>
+
+                    <section t-elif="item.type_of_element === 'list_view'"
+                             class="o_dashboard_list table-responsive">
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th t-foreach="getListLabels(item)"
+                                        t-as="label"
+                                        t-key="label_index"
+                                        t-esc="label"/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="getListRows(item).slice(0, 10)"
+                                    t-as="row"
+                                    t-key="row.id || row_index">
+                                    <td t-foreach="row.data || []"
+                                        t-as="cell"
+                                        t-key="cell_index"
+                                        t-esc="cell"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section t-elif="item.type_of_element === 'to_do'"
+                             class="o_dashboard_todo">
+                        <div t-foreach="getTodoRows(item).slice(0, 10)"
+                             t-as="row"
+                             t-key="row.id || row_index"
+                             class="o_dashboard_todo_row">
+                            <i t-att-class="row.state === 'done' ? 'fa fa-check-circle text-success' : 'fa fa-circle-o'"/>
+                            <span t-esc="row.data?.[0] || ''"/>
+                        </div>
+                    </section>
+
+                    <section t-else=""
+                             class="o_dashboard_chart">
+                        <DashboardChartCanvas t-if="getChartValues(item).length"
+                                               item="item"/>
+                        <div t-else=""
+                             class="text-muted">
+                            No chart data
+                        </div>
+                    </section>
+                </article>
+            </main>
+        </div>
+    </t>
+</templates>

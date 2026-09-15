@@ -1,0 +1,174 @@
+/* ─────────────────────────────────────────────
+   Overlay Side Menu (Odoo 19) - Property Theme
+   ───────────────────────────────────────────── */
+
+.pt-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s ease;
+}
+
+.pt-overlay.is-open{
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.pt-overlay-backdrop{
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 12, 20, .45);
+    backdrop-filter: blur(6px);
+}
+
+.pt-overlay-panel{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0; /* RTL: يسحب من اليمين */
+    width: min(360px, 90vw);
+    background: #ffffff;
+    box-shadow: -18px 0 40px rgba(0,0,0,.18);
+    transform: translateX(105%);
+    transition: transform .22s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.pt-overlay.is-open .pt-overlay-panel{
+    transform: translateX(0);
+}
+
+.pt-overlay-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 14px 10px 14px;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.pt-overlay-title{
+    font-weight: 700;
+    font-size: 15px;
+    color: #1A1D3B;
+}
+
+.pt-overlay-close{
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    border: 0;
+    background: #F2F4FA;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #1A1D3B;
+}
+
+.pt-overlay-body{
+    padding: 14px;
+    overflow: auto;
+}
+
+.pt-overlay-primary{
+    width: 100%;
+    border: 0;
+    border-radius: 16px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #6C5CE7, #4A90D9);
+    color: #fff;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.pt-overlay-section{
+    margin-top: 16px;
+}
+
+.pt-overlay-section-title{
+    font-weight: 700;
+    color: #5A5F87;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.pt-overlay-links{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.pt-overlay-link{
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.06);
+    background: #fff;
+    border-radius: 16px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1A1D3B;
+    box-shadow: 0 8px 18px rgba(0,0,0,.06);
+}
+
+.pt-overlay-link i{
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    background: #F2F4FA;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Apps tree inside drawer */
+.pt_apps_tree { display: flex; flex-direction: column; gap: 10px; }
+.pt_app_group { display: flex; flex-direction: column; gap: 8px; }
+
+.pt_tree_children { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.pt_tree_empty { opacity: 0.8; font-size: 13px; padding: 8px 10px; }
+
+.pt_tree_item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 0;
+    border-radius: 14px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    cursor: pointer;
+    text-align: right;
+}
+.pt_tree_item:hover { background: rgba(255,255,255,0.10); }
+
+.pt_tree_label { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.pt_tree_node_chev { opacity: 0.8; }
+.pt_tree_chev { opacity: 0.8; }
+
+/* Leaf node: no children, navigates directly */
+.pt_tree_item--leaf {
+    gap: 8px;
+    padding-inline-start: 10px;
+}
+.pt_tree_leaf_dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    transition: background 0.15s;
+}
+.pt_tree_item--leaf:hover .pt_tree_leaf_dot,
+.pt_tree_item--leaf.pt_tree_item--active .pt_tree_leaf_dot {
+    background: var(--pt-purple, #6C5CE7);
+}

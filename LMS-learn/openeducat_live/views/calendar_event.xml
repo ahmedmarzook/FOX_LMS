@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_calendar_online_meeting_form_view" model="ir.ui.view">
+        <field name="name">calendar.online.meeting.form</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='videocall_location']" position="after">
+                <field name="is_meeting"/>
+                <field name="is_password"
+                       invisible="not is_meeting"
+                       required="is_meeting"/>
+                <field name="channel_id"
+                       invisible="1"
+                       readonly="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Live Meeting"
+                      name="openeducat_live_meeting"
+                      invisible="not is_meeting">
+                    <group>
+                        <group>
+                            <field name="course_id"/>
+                            <field name="batch_id"
+                                   domain="[('course_id', '=', course_id)]"/>
+                            <field name="subject_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_create_meet"
+                        type="object"
+                        string="Start Live Meeting"
+                        class="oe_highlight"
+                        invisible="not is_meeting"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

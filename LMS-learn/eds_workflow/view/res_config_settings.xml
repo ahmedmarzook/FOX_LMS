@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="res_config_settings_view_form" model="ir.ui.view">
+		<field name="name">res.config.settings.view.form.workflow</field>
+		<field name="model">res.config.settings</field>
+		<field name="priority" eval="100" />
+		<field name="inherit_id" ref="base.res_config_settings_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//form" position="inside">
+				<app name="eds_workflow" data-string="Workflow" string="Workflow" groups="base.group_system">
+					<block title="Activate Workflow on" name="eds_workflow_setting_container">
+						<setting>
+							<field name="module_eds_workflow_expense" />
+						</setting>
+						<setting>
+							<field name="module_eds_workflow_hr_contract" />
+						</setting>
+						<setting>
+							<field name="module_eds_workflow_hr_holidays" />
+						</setting>
+						<setting>
+							<field name="module_eds_workflow_hr_holidays_manager" />
+							<div class="text-muted">
+								Add employee manager approval status
+							</div>
+						</setting>
+						<setting>
+							<field name="module_eds_workflow_purchase_order" />
+						</setting>
+						<setting>
+							<field name="module_eds_workflow_purchase_requisition" />
+						</setting>
+						<setting>
+							<field name="module_eds_workflow_sale_order" />
+						</setting>
+						<setting>
+							<field name="module_eds_workflow_doc" />
+							<div class="text-muted">
+								Add workflow to custom model
+							</div>
+						</setting>
+						<setting>
+							<field name="module_eds_workflow_hr_payslip_run_e" widget="upgrade_boolean" />
+						</setting>
+					</block>
+				</app>
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

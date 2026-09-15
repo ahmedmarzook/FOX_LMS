@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Legacy JS files removed: ajax.js and crash_manager.js used the old widget system
+         and are not compatible with Odoo 19. The ConfirmWarning functionality
+         is now handled server-side via bus notifications. -->
+</odoo>

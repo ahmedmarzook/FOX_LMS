@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="email_template_delegation" model="mail.template">
+            <field name="name">Delegation Assigned</field>
+            <field name="model_id" ref="model_delegation"/>
+            <field name="email_from">{{object.employee_id.work_email}}</field>
+            <field name="email_to">{{ctx.get('delegator_email')}}</field>
+            <field name="email_cc">{{ctx.get('delegator_mngr_email')}}</field>
+            <field name="subject">Delegation Assigned</field>
+            <field name="body_html"><![CDATA[
+                <p>
+                    اسم مقدم الطلب  <t t-out="object.employee_id.name"/>
+                    <br>
+                    <b>Dear {{ctx.get('delegator')}}</b>,
+                </p>
+                <br>
+                <p>
+                    This email is to inform you that during this period 
+                    {{object.date_from}} to {{object.date_to}},
+                    you have been delegated the following role/s: {{ctx.get('roles')}}.
+                </p>    
+                <p>
+                    <b>Best regards,</b>
+                </p>
+            ]]>
+            </field>
+        </record>
+</odoo>

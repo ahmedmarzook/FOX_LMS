@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+
+	<record model="ir.ui.view" id="view_mail_tracking_value_tree">
+		<field name="name">mail.tracking.value.tree</field>
+		<field name="model">mail.tracking.value</field>
+		<field name="priority">999</field>
+		<field name="arch" type="xml">
+			<list string="Tracking Value" create="false" edit="false" delete="false" default_order="id desc">
+				<field name="id" invisible="1" />
+				<field name="field_info" />
+				<field name="old_value" />
+				<field name="new_value" />
+				<field name="write_uid" />
+				<field name="write_date" />
+			</list>
+		</field>
+	</record>
+	
+</odoo>

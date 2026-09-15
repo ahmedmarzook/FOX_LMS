@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_op_lesson_manager,op.lesson.manager,model_op_lesson,openeducat_timetable.group_op_timetable_manager,1,1,1,1
+access_op_lesson_timetable_user,op.lesson.timetable.user,model_op_lesson,openeducat_timetable.group_op_timetable_user,1,1,1,1
+access_op_lesson_parent,op.lesson.parent,model_op_lesson,openeducat_parent.group_op_parent,1,0,0,0
+access_op_lesson_system,op.lesson.system,model_op_lesson,base.group_system,1,1,1,1

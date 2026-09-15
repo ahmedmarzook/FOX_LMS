@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_validation_root" parent="base.menu_administration" name="Validation"/>
+
+    <menuitem id="menu_validation_group" parent="menu_validation_root" action="eds_validation.action_validation_group"
+              sequence="10"/>
+
+    <menuitem id="menu_validation" parent="menu_validation_root" action="eds_validation.action_validation"
+              sequence="20"/>
+
+    <menuitem id="menu_validation_log" parent="menu_validation_root" action="eds_validation.action_validation_log"
+              sequence="30"/>
+
+</odoo>

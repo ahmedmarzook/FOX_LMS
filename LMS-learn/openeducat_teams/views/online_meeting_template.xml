@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="calendar_template_meeting_invitation_teams"
+            model="mail.template">
+        <field name="name">Calendar: Microsoft Teams Invitation</field>
+        <field name="model_id" ref="calendar.model_calendar_attendee"/>
+        <field name="subject">
+            {{ object.event_id.name or 'Meeting Invitation' }}
+        </field>
+        <field name="email_from">
+            {{ object.event_id.user_id.email_formatted or user.email_formatted or '' }}
+        </field>
+        <field name="email_to">
+            {{ object.email or object.partner_id.email or '' }}
+        </field>
+        <field name="lang">
+            {{ object.partner_id.lang or user.lang }}
+        </field>
+        <field name="body_html" type="html">
+            <div style="font-family: Arial, sans-serif; color: #333;">
+                <p>
+                    Hello
+                    <t t-out="object.common_name or object.partner_id.name or ''"/>,
+                </p>
+
+                <p>
+                    You have been invited to the following meeting:
+                </p>
+
+                <table style="border-collapse: collapse; width: 100%; max-width: 650px;">
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px; font-weight: bold; width: 140px;">
+                                Meeting
+                            </td>
+                            <td style="padding: 8px;">
+                                <t t-out="object.event_id.name or ''"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="object.event_id.start">
+                            <td style="padding: 8px; font-weight: bold;">
+                                Start
+                            </td>
+                            <td style="padding: 8px;">
+                                <t t-out="format_datetime(
+                                    dt=object.event_id.start,
+                                    tz=object.mail_tz,
+                                    lang_code=object.env.lang
+                                )"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="object.event_id.stop">
+                            <td style="padding: 8px; font-weight: bold;">
+                                End
+                            </td>
+                            <td style="padding: 8px;">
+                                <t t-out="format_datetime(
+                                    dt=object.event_id.stop,
+                                    tz=object.mail_tz,
+                                    lang_code=object.env.lang
+                                )"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="object.event_id.location">
+                            <td style="padding: 8px; font-weight: bold;">
+                                Location
+                            </td>
+                            <td style="padding: 8px;">
+                                <t t-out="object.event_id.location"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="object.event_id.description">
+                            <td style="padding: 8px; font-weight: bold;">
+                                Description
+                            </td>
+                            <td style="padding: 8px;">
+                                <t t-out="object.event_id.description"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div t-if="object.attendee_meeting_url"
+                     style="margin-top: 20px;">
+                    <a t-att-href="object.attendee_meeting_url"
+                       style="display: inline-block;
+                              padding: 10px 18px;
+                              color: #ffffff;
+                              background-color: #6264A7;
+                              text-decoration: none;
+                              border-radius: 4px;">
+                        Join Microsoft Teams Meeting
+                    </a>
+                </div>
+
+                <p style="margin-top: 24px;">
+                    Thank you,
+                    <br/>
+                    <t t-out="object.event_id.user_id.name or ''"/>
+                </p>
+            </div>
+        </field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+
+    <record id="calendar_template_meeting_reminder_teams"
+            model="mail.template">
+        <field name="name">Calendar: Microsoft Teams Reminder</field>
+        <field name="model_id" ref="calendar.model_calendar_attendee"/>
+        <field name="subject">
+            Reminder: {{ object.event_id.name or 'Meeting' }}
+        </field>
+        <field name="email_from">
+            {{ object.event_id.user_id.email_formatted or user.email_formatted or '' }}
+        </field>
+        <field name="email_to">
+            {{ object.email or object.partner_id.email or '' }}
+        </field>
+        <field name="lang">
+            {{ object.partner_id.lang or user.lang }}
+        </field>
+        <field name="body_html" type="html">
+            <div style="font-family: Arial, sans-serif; color: #333;">
+                <p>
+                    Hello
+                    <t t-out="object.common_name or object.partner_id.name or ''"/>,
+                </p>
+
+                <p>
+                    This is a reminder for:
+                    <strong>
+                        <t t-out="object.event_id.name or ''"/>
+                    </strong>
+                </p>
+
+                <p t-if="object.event_id.start">
+                    <strong>Start:</strong>
+                    <t t-out="format_datetime(
+                        dt=object.event_id.start,
+                        tz=object.mail_tz,
+                        lang_code=object.env.lang
+                    )"/>
+                </p>
+
+                <p t-if="object.event_id.stop">
+                    <strong>End:</strong>
+                    <t t-out="format_datetime(
+                        dt=object.event_id.stop,
+                        tz=object.mail_tz,
+                        lang_code=object.env.lang
+                    )"/>
+                </p>
+
+                <div t-if="object.attendee_meeting_url"
+                     style="margin-top: 20px;">
+                    <a t-att-href="object.attendee_meeting_url"
+                       style="display: inline-block;
+                              padding: 10px 18px;
+                              color: #ffffff;
+                              background-color: #6264A7;
+                              text-decoration: none;
+                              border-radius: 4px;">
+                        Join Microsoft Teams Meeting
+                    </a>
+                </div>
+
+                <p style="margin-top: 24px;">
+                    Thank you,
+                    <br/>
+                    <t t-out="object.event_id.user_id.name or ''"/>
+                </p>
+            </div>
+        </field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Primary views used only from Smart Portal navbar (action_get_smart_portal_nav).
+        Standard systray Preferences keeps the original extension views unchanged.
+    -->
+    <!-- Odoo 17's hr.res_users_view_form_profile (a res.users-model view with
+         page_account_security/hr_settings/personal_information/public/skills_resume
+         tabs) no longer exists in Odoo 19; profile viewing moved to the hr.employee
+         form directly. Rather than guess at a hr.employee-model replacement (which
+         would require changing this record's model away from res.users, breaking the
+         action below), both "My Profile" and "My Preferences" fall back to the same
+         base preferences form; no page-hiding is attempted since none of those page
+         names exist in Odoo 19's composed res.users form. -->
+    <record id="res_users_view_form_profile_smart_portal" model="ir.ui.view">
+        <field name="name">res.users.preferences.form.smart.portal</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <data/>
+        </field>
+    </record>
+
+    <record id="view_users_form_simple_modif_smart_portal" model="ir.ui.view">
+        <field name="name">res.users.preferences.form.simple.smart.portal</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <data/>
+        </field>
+    </record>
+
+    <record id="action_res_users_smart_portal_profile" model="ir.actions.act_window">
+        <field name="name">My Profile</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'smart_portal_profile': True, 'from_my_profile': True}</field>
+        <field name="view_id" ref="res_users_view_form_profile_smart_portal"/>
+    </record>
+
+    <record id="action_res_users_smart_portal_simple" model="ir.actions.act_window">
+        <field name="name">My Preferences</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'smart_portal_profile': True}</field>
+        <field name="view_id" ref="view_users_form_simple_modif_smart_portal"/>
+    </record>
+</odoo>

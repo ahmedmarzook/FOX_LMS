@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_student_fees_details_list" model="ir.ui.view">
+            <field name="name">op.student.fees.details.list</field>
+            <field name="model">op.student.fees.details</field>
+            <field name="arch" type="xml">
+                <list string="Fees Details">
+                    <field name="student_id"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="product_id"/>
+                    <field name="amount"/>
+                    <field name="discount"/>
+                    <field name="after_discount_amount"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                    <field name="invoice_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_student_fees_details_form" model="ir.ui.view">
+            <field name="name">op.student.fees.details.form</field>
+            <field name="model">op.student.fees.details</field>
+            <field name="arch" type="xml">
+                <form string="Fees Details">
+                    <header>
+                        <button name="get_invoice" type="object" string="Create Invoice"
+                                class="oe_highlight" invisible="state == 'invoice'"/>
+                        <button name="action_get_invoice" type="object" string="View Invoice"
+                                class="oe_highlight" invisible="not invoice_id"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,invoice,cancel"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="student_id"/>
+                                <field name="course_id"/>
+                                <field name="batch_id"/>
+                                <field name="fees_line_id"/>
+                                <field name="product_id"/>
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="discount"/>
+                                <field name="after_discount_amount"/>
+                                <field name="date"/>
+                                <field name="invoice_id" readonly="1"/>
+                                <field name="invoice_state" readonly="1"/>
+                                <field name="company_id"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_student_fees_details_search" model="ir.ui.view">
+            <field name="name">op.student.fees.details.search</field>
+            <field name="model">op.student.fees.details</field>
+            <field name="arch" type="xml">
+                <search string="Fees Details">
+                    <field name="student_id"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="product_id"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_op_student_form_fees_inherit" model="ir.ui.view">
+            <field name="name">op.student.form.fees.inherit</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="btn oe_stat_button"
+                            type="object"
+                            name="count_fees_details"
+                            icon="fa-file">
+                        <field string="Fees Details" name="fees_details_count" widget="statinfo"/>
+                    </button>
+                    <button class="btn oe_stat_button"
+                            type="object"
+                            name="action_view_invoice"
+                            icon="fa-pencil-square-o">
+                        <field string="Invoiced" name="total_invoiced" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

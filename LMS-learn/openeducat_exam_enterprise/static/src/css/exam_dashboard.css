@@ -1,0 +1,12 @@
+.o_exam_dashboard { min-height: 100%; background: #f5f7fa; }
+.o_exam_dashboard_cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1rem; }
+.o_exam_dashboard_card { border:0; border-radius:14px; background:#fff; padding:1.25rem; display:grid; gap:.5rem; text-align:left; box-shadow:0 4px 18px rgba(0,0,0,.08); }
+.o_exam_dashboard_card:hover { transform:translateY(-2px); box-shadow:0 7px 22px rgba(0,0,0,.12); }
+.o_exam_dashboard_card i { font-size:2rem; }
+.o_exam_dashboard_card strong { font-size:2.25rem; }
+.o_exam_dashboard_panel { margin-top:1rem; padding:1rem; border-radius:14px; background:#fff; box-shadow:0 4px 18px rgba(0,0,0,.08); }
+.o_exam_dashboard_chart { height:260px; display:flex; align-items:end; gap:.75rem; overflow-x:auto; padding-top:1rem; }
+.o_exam_dashboard_bar_column { min-width:70px; flex:1; height:100%; display:flex; flex-direction:column; justify-content:end; text-align:center; }
+.o_exam_dashboard_bar { width:100%; min-height:4px; border-radius:6px 6px 0 0; background:#714b67; }
+.o_exam_dashboard_state { min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.75rem; }
+@media (max-width:767.98px) { .o_exam_dashboard { padding:.5rem!important; } }

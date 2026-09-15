@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Odoo 19: custom KanbanRenderer template inheritance removed to avoid fragile xpath errors. -->
+</templates>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_smart_dashboard" model="ir.actions.client">
+        <field name="name">Smart Portal</field>
+        <field name="tag">eds_smart_theme_smart_dashboard</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem
+        id="menu_smart_dashboard"
+        name="Smart Portal"
+        action="action_smart_dashboard"
+        sequence="-100"
+    />
+</odoo>

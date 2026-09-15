@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="eds_smart_theme.HomeMenu">
+        <t t-if="state.open">
+            <div class="o_eds_home_menu_backdrop" t-on-click="close" t-on-keydown="onKeydown" tabindex="-1">
+                <div class="o_eds_home_menu" t-on-click.stop="">
+                    <div class="o_eds_home_menu_search">
+                        <i class="fa fa-search" aria-hidden="true"/>
+                        <input type="text"
+                            class="o_eds_home_menu_search_input"
+                            placeholder="Search apps..."
+                            t-att-value="state.query"
+                            t-on-input="onQueryInput"
+                            autofocus="autofocus"/>
+                        <button type="button" class="o_eds_home_menu_close btn-close" t-on-click="close" aria-label="Close"/>
+                    </div>
+                    <div class="o_eds_home_menu_grid">
+                        <button t-foreach="apps" t-as="app" t-key="app.id"
+                            type="button"
+                            class="o_eds_home_menu_app"
+                            t-on-click="() => this.onSelectApp(app)">
+                            <img t-if="app.webIconData" t-att-src="app.webIconData" t-att-alt="app.name"/>
+                            <span class="o_eds_home_menu_app_name" t-esc="app.name"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+</templates>

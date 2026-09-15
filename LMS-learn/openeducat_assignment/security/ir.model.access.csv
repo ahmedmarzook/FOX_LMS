@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_grading_assignment_type_assignment_manager,grading.assignment.type.manager,model_grading_assignment_type,openeducat_assignment.group_op_assignment_manager,1,1,1,1
+access_grading_assignment_type_user,grading.assignment.type.user,model_grading_assignment_type,openeducat_assignment.group_op_assignment_user,1,1,1,0
+access_op_assignment_sub_line_student,op.assignment.sub.line.manager,model_op_assignment_sub_line,openeducat_assignment.group_op_assignment_manager,1,1,1,1
+access_op_assignment_sub_line_user,op.assignment.sub.line.user,model_op_assignment_sub_line,openeducat_assignment.group_op_assignment_user,1,1,1,0
+access_op_assignment_sub_line_portal,op.assignment.sub.line.portal,model_op_assignment_sub_line,base.group_portal,1,1,1,0
+access_op_assignment_portal,op.assignment.portal,model_op_assignment,base.group_portal,1,1,1,0
+access_op_assignment_student,op.assignment.manager,model_op_assignment,openeducat_assignment.group_op_assignment_manager,1,1,1,1
+access_op_assignment_user,op.assignment.user,model_op_assignment,openeducat_assignment.group_op_assignment_user,1,1,1,0
+access_grading_assignment_manager,grading.assignment.manager,model_grading_assignment,openeducat_assignment.group_op_assignment_manager,1,1,1,1
+access_grading_assignment_user,grading.assignment.user,model_grading_assignment,openeducat_assignment.group_op_assignment_user,1,1,1,0
+access_grading_assignment_portal,grading.assignment.portal,model_grading_assignment,base.group_portal,1,1,1,0
