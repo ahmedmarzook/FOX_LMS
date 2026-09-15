@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_op_course_attach_url_wizard,op.course.attach.url.wizard,model_op_course_attach_url_wizard,base.group_user,1,1,1,1
+access_op_course_attach_url_wizard_user,op.course.attach.url.wizard.user,model_op_course_attach_url_wizard,base.group_user,1,0,0,0
+access_op_course_attach_url_wizard_admin,op.course.attach.url.wizard.admin,model_op_course_attach_url_wizard,base.group_system,1,1,1,1

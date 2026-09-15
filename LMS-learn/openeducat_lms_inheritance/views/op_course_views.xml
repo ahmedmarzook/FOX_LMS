@@ -18,9 +18,13 @@
         <field name="model">op.course</field>
         <field name="inherit_id" ref="openeducat_lms.view_op_lms_course_form"/>
         <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="doctor_name" placeholder="Doctor Name"/>
-            </field>
+
+            <xpath expr="//div[contains(@class, 'oe_title')]" position="after">
+                <group col="2">
+                    <field name="doctor_name" string="Doctor Name"/>
+                </group>
+            </xpath>
+
         </field>
     </record>
 
@@ -36,11 +40,23 @@
 
             <!-- Add Attach Course Files as a single button -->
             <xpath expr="//notebook" position="before">
+
                 <button name="action_add_attachment_url"
                         string="Attach Course Files"
                         type="object"
                         icon="fa-paperclip"
                         class="btn-primary"/>
+
+                <field name="course_attachment_ids"
+                       string="Course Files"
+                       nolabel="1">
+                    <list>
+                        <field name="name" string="File"/>
+                        <field name="description" string="Title"/>
+                        <field name="type" string="Type"/>
+                    </list>
+                </field>
+
             </xpath>
 
         </field>

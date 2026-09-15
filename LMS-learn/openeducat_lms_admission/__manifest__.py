@@ -15,6 +15,9 @@
     'data': [
         'views/course_view.xml',
     ],
+'images': [
+        '',
+    ],
     'license': 'Other proprietary',
     'installable': True,
     'application': False,

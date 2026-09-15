@@ -64,10 +64,14 @@ class OpCourseAttachUrlWizard(models.TransientModel):
 
             filename = self.filename or self.name or 'course_attachment'
 
-            mimetype = mimetypes.guess_type(filename)[0] or 'application/octet-stream'
+            mimetype = (
+                    mimetypes.guess_type(filename)[0]
+                    or 'application/octet-stream'
+            )
 
             attachment = self.env['ir.attachment'].create({
                 'name': filename,
+                'description': self.name,
                 'type': 'binary',
                 'datas': self.datas,
                 'mimetype': mimetype,
@@ -97,6 +101,7 @@ class OpCourseAttachUrlWizard(models.TransientModel):
 
             attachment = self.env['ir.attachment'].create({
                 'name': self.name,
+                'description': self.name,
                 'type': 'url',
                 'url': url,
                 'res_model': 'op.course',
