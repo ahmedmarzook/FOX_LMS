@@ -23,4 +23,27 @@
             </field>
         </field>
     </record>
+
+    <!-- Form view: remove Thumbnail and show Attach Course Files as one button -->
+    <record id="view_op_lms_course_form_attachments" model="ir.ui.view">
+        <field name="name">op.course.form.lms.attachments</field>
+        <field name="model">op.course</field>
+        <field name="inherit_id" ref="openeducat_lms.view_op_lms_course_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Remove Thumbnail completely -->
+            <xpath expr="//group[field[@name='thumbnail_type']]" position="replace"/>
+
+            <!-- Add Attach Course Files as a single button -->
+            <xpath expr="//notebook" position="before">
+                <button name="action_add_attachment_url"
+                        string="Attach Course Files"
+                        type="object"
+                        icon="fa-paperclip"
+                        class="btn-primary"/>
+            </xpath>
+
+        </field>
+    </record>
+
 </odoo>
