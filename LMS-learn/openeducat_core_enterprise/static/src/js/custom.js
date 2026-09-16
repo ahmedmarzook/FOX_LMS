@@ -1,50 +1,47 @@
-odoo.define('openeducat_core_enterprise.batch_on_courses', function (require) {
-    "use strict";
+/** @odoo-module **/
 
-    var core = require('web.core');
-    var Dialog = require("web.Dialog");
-    var session = require('web.session');
-    var ajax = require('web.ajax');
-    var Widget = require('web.Widget');
-    var publicWidget = require('web.public.widget');
-    var utils = require('web.utils');
-    var _t = core._t;
-    var qweb = core.qweb;
+import publicWidget from "@web/legacy/js/public/public_widget";
+import { rpc } from "@web/core/network/rpc";
+import { renderToElement } from "@web/core/utils/render";
 
-    var SubjectRegister = publicWidget.Widget.extend({
-        selector: '.js_get_data',
-        events:{'change #course_dropdown': '_onchangedropdown'},
-        xmlDependencies: ['/openeducat_core_enterprise/static/src/xml/custom.xml'],
+publicWidget.registry.SubjectRegister = publicWidget.Widget.extend({
+    selector: ".js_get_data",
 
-        init: function(){
-            this._super.apply(this,arguments);
-        },
-        start: function () {
-            return this._super();
-        },
-        _onchangedropdown: function(ev){
-            var course_id = $(ev.currentTarget).val();
-            ajax.jsonRpc('/get/course_data', 'call',{
-                'course_id': course_id,
-            }).then(function (data) {
-                if (data){
-                    var batch_data = qweb.render('openeducat_core_enterprise.GetBatchData',{
-                        batches: data['batch_list'],
-                    });
-                    $('.batches').html(batch_data);
+    events: {
+        "change #course_dropdown": "_onchangedropdown",
+    },
 
-                    if(data){
-                        var subject_data = qweb.render('GetSubjectData',{
-                            subjects: data['subject_list']
-                        });
-                        $('.subjects').html(subject_data);
-                    }
-                }
+    _onchangedropdown: async function (ev) {
+        const course_id = $(ev.currentTarget).val();
+
+        try {
+            const data = await rpc("/get/course_data", {
+                course_id: course_id,
             });
+
+            if (data) {
+                const batch_data = renderToElement(
+                    "openeducat_core_enterprise.GetBatchData",
+                    {
+                        batches: data.batch_list,
+                    }
+                );
+
+                $(".batches").html(batch_data);
+
+                if (data) {
+                    const subject_data = renderToElement(
+                        "GetSubjectData",
+                        {
+                            subjects: data.subject_list,
+                        }
+                    );
+
+                    $(".subjects").html(subject_data);
+                }
+            }
+        } catch (error) {
+            console.error("Error loading course data:", error);
         }
-
-    });
-    publicWidget.registry.SubjectRegister = SubjectRegister;
-
-    return SubjectRegister;
+    },
 });

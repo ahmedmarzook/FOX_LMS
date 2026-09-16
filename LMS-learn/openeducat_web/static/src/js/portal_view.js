@@ -1,31 +1,38 @@
-odoo.define('openeducat_web.portal_view', function (require) {
-    "use strict";
-    var core = require('web.core');
-    var Dialog = require("web.Dialog");
-    var session = require('web.session');
-    var ajax = require('web.ajax');
-    var Widget = require('web.Widget');
-    var publicWidget = require('web.public.widget');
-    var utils = require('web.utils');
-    var _t = core._t;
-    var qweb = core.qweb;
-    var wUtils = require('website.utils');
+```javascript
+/** @odoo-module **/
 
-var PortalViewWidget = publicWidget.Widget.extend({
-        selector: '.student_portal_view',
-        init: function(){
-            $('.list-group-item').addClass('dashboard_element_main_body');
-            var $portalList = $('.o_portal_docs .list-group-item');
-            for(var tile = 0; tile < $portalList.length; tile++){
-                $($portalList[tile]).wrap("<div class='col-12 col-sm-12 col-md-6 col-lg-4 p-2' ></div>");
+import publicWidget from "@web/legacy/js/public/public_widget";
+
+publicWidget.registry.PortalViewWidget = publicWidget.Widget.extend({
+    selector: ".student_portal_view",
+
+    start() {
+        this._applyPortalLayout();
+        return this._super(...arguments);
+    },
+
+    _applyPortalLayout() {
+        const portalItems = document.querySelectorAll(
+            ".o_portal_docs .list-group-item"
+        );
+
+        document.querySelectorAll(".list-group-item").forEach((item) => {
+            item.classList.add("dashboard_element_main_body");
+        });
+
+        portalItems.forEach((item) => {
+            // Prevent wrapping the same element more than once.
+            if (item.parentElement?.classList.contains("portal-view-wrapper")) {
+                return;
             }
-            this._super.apply(this,arguments);
-        },
-        start: function () {
-            return this._super();
-        },
-    });
 
-    return PortalViewWidget;
-    //websiteRootData.websiteRootRegistry.add(PortalViewWidget, '.student_portal_view');
+            const wrapper = document.createElement("div");
+            wrapper.className =
+                "portal-view-wrapper col-12 col-sm-12 col-md-6 col-lg-4 p-2";
+
+            item.parentNode.insertBefore(wrapper, item);
+            wrapper.appendChild(item);
+        });
+    },
 });
+```

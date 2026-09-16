@@ -77,6 +77,7 @@
     'auto_install': False,
     'assets': {
         'web.assets_backend': [
+            'openeducat_grading/static/src/js/handsontable.full.min.js',
             '/openeducat_grading/static/src/css/handsontable.full.min.css',
             '/openeducat_grading/static/src/css/grid_view.css',
             '/openeducat_grading/static/src/js/handsontable.full.min.js',

@@ -1,83 +1,413 @@
-odoo.define('openeducat_lms.open-modal', function (require) {
-    "use strict";
+/** @odoo-module **/
 
-    var core = require('web.core');
-    var Dialog = require("web.Dialog");
-    var session = require('web.session');
-    var ajax = require('web.ajax');
-    var Widget = require('web.Widget');
-    var publicWidget = require('web.public.widget');
-    //var websiteRootData = require('website.root');
-    var utils = require('web.utils');
-    var _t = core._t;
-    var qweb = core.qweb;
+import publicWidget from "@web/legacy/js/public/public_widget";
 
-    var OpenModalWidget = publicWidget.Widget.extend({
-    selector:'.card-body',
-    events: {
+import { rpc } from "@web/core/network/rpc";
 
-        'click .preview-btn': '_onClickPreviewButton',
-        'click .edit-btn': '_onClickEditButton',
-    },
+import { renderToElement } from "@web/core/utils/render";
 
-    xmlDependencies: ['/openeducat_lms/static/src/xml/openmodal.xml'],
-    init: function () {
-        this._super.apply(this, arguments);
-    },
+publicWidget.registry.OpenModalLms =
 
-    _onClickPreviewButton: function(e){
-        var material_id = $(e.currentTarget).data('material-id');
-        if (material_id != undefined)
-        {
-            ajax.jsonRpc('/get/material', 'call',
-            {
-                'material_id': material_id,
-            }).then(function (data) {
-                if (data['embed_code'])
+    publicWidget.Widget.extend({
+
+        selector: ".card-body",
+
+        events: {
+
+            "click .preview-btn":
+
+                "_onClickPreviewButton",
+
+            "click .edit-btn":
+
+                "_onClickEditButton",
+
+        },
+
+        xmlDependencies: [
+
+            "/openeducat_lms/static/src/xml/openmodal.xml",
+
+        ],
+
+        async _onClickPreviewButton(event) {
+
+            event.preventDefault();
+
+            const materialId = $(
+
+                event.currentTarget
+
+            ).data("material-id");
+
+            if (materialId === undefined) {
+
+                return;
+
+            }
+
+            const data = await rpc(
+
+                "/get/material",
+
                 {
-                    var embed_code = qweb.render('MaterialDetails',
-                    {
-                        data: data['embed_code']
-                    });
-                    $('.modal-title-lms').html(data['name'])
-                    $('.modal-body').html(embed_code);
-                    $('#preview-modal').modal("show")
+
+                    material_id: materialId,
 
                 }
-                if(data['material_type'] == 'webpage') {
-                    var embed_code = qweb.render('MaterialDetails',
+
+            );
+
+            let materialContent = null;
+
+            if (data.embed_code) {
+
+                materialContent =
+
+                    data.embed_code;
+
+            } else if (
+
+                data.material_type === "webpage"
+
+            ) {
+
+                materialContent =
+
+                    data.webpage_content;
+
+            }
+
+            if (!materialContent) {
+
+                return;
+
+            }
+
+            const embedElement =
+
+                renderToElement(
+
+                    "MaterialDetails",
+
                     {
-                        data: data['webpage_content']
-                    });
-                    $('.modal-title-lms').html(data['name'])
-                    $('.modal-body').html(embed_code);
-                    $('.embed-responsive').removeClass('embed-responsive');
-                    $('#preview-modal').modal("show")
+
+                        data: materialContent,
+
+                    }
+
+                );
+
+            $(".modal-title-lms").text(
+
+                data.name || ""
+
+            );
+
+            $(".modal-body")
+
+                .empty()
+
+                .append(embedElement);
+
+            if (
+
+                data.material_type === "webpage"
+
+            ) {
+
+                $(".modal-body")
+
+                    .find(".embed-responsive")
+
+                    .removeClass(
+
+                        "embed-responsive"
+
+                    );
+
+            }
+
+            this._showPreviewModal();
+
+        },
+
+        async _onClickEditButton(event) {
+
+            event.preventDefault();
+
+            const materialId = $(
+
+                event.currentTarget
+
+            ).data("material-id");
+
+            if (materialId === undefined) {
+
+                return;
+
+            }
+
+            const data = await rpc(
+
+                "/get/material",
+
+                {
+
+                    material_id: materialId,
+
                 }
-            });
-        }
-    },
-    _onClickEditButton: function(e){
-        var material_id = $(e.currentTarget).data('material-id');
-        var material_name = $(e.currentTarget).parent().parent();
-        var port_number = window.location.host;
-        var http = location.protocol;
-        var slashes = http.concat("//");
-        ajax.jsonRpc('/get/material', 'call',
-        {
-            'material_id': material_id,
-        }).then(function(res){
-            var name = res.name
-            var temp = name.replaceAll(' ', '-');
-            var url = slashes + port_number + '/material-edit/' + temp + '-'+material_id + '?fullscreen=0&enable_editor=1'
-            window.location.href = url;
-        })
-    }
 
-})
+            );
 
-//websiteRootData.websiteRootRegistry.add(OpenModalWidget, '.card-body');
-publicWidget.registry.OpenModalLms = OpenModalWidget;
-return OpenModalWidget;
+            const materialName =
 
-});
+                data.name || "material";
+
+            const slug = encodeURIComponent(
+
+                materialName
+
+                    .trim()
+
+                    .replace(/\s+/g, "-")
+
+            );
+
+            const editUrl = new URL(
+
+                `/material-edit/${slug}-${materialId}`,
+
+                window.location.origin
+
+            );
+
+            editUrl.searchParams.set(
+
+                "fullscreen",
+
+                "0"
+
+            );
+
+            editUrl.searchParams.set(
+
+                "enable_editor",
+
+                "1"
+
+            );
+
+            window.location.href =
+
+                editUrl.toString();
+
+        },
+
+        _showPreviewModal: function () {
+
+            const modalElement =
+
+                document.getElementById(
+
+                    "preview-modal"
+
+                );
+
+            if (!modalElement) {
+
+                return;
+
+            }
+
+            if (
+
+                window.bootstrap &&
+
+                window.bootstrap.Modal
+
+            ) {
+
+                const modal =
+
+                    window.bootstrap.Modal
+
+                        .getOrCreateInstance(
+
+                            modalElement
+
+                        );
+
+                modal.show();
+
+                return;
+
+            }
+
+            /*
+
+             * احتياطي في حالة عدم وجود Bootstrap
+
+             * ككائن عام في الصفحة.
+
+             */
+
+            modalElement.style.display = "block";
+
+            modalElement.classList.add("show");
+
+            modalElement.removeAttribute(
+
+                "aria-hidden"
+
+            );
+
+            modalElement.setAttribute(
+
+                "aria-modal",
+
+                "true"
+
+            );
+
+            modalElement.setAttribute(
+
+                "role",
+
+                "dialog"
+
+            );
+
+            document.body.classList.add(
+
+                "modal-open"
+
+            );
+
+            let backdrop =
+
+                document.querySelector(
+
+                    ".o_lms_modal_backdrop"
+
+                );
+
+            if (!backdrop) {
+
+                backdrop =
+
+                    document.createElement(
+
+                        "div"
+
+                    );
+
+                backdrop.className =
+
+                    "modal-backdrop fade show " +
+
+                    "o_lms_modal_backdrop";
+
+                document.body.appendChild(
+
+                    backdrop
+
+                );
+
+            }
+
+            const closeButtons =
+
+                modalElement.querySelectorAll(
+
+                    '[data-bs-dismiss="modal"],' +
+
+                    '[data-dismiss="modal"],' +
+
+                    ".btn-close," +
+
+                    ".close"
+
+                );
+
+            closeButtons.forEach(
+
+                (button) => {
+
+                    button.addEventListener(
+
+                        "click",
+
+                        () => {
+
+                            this._hidePreviewModal();
+
+                        },
+
+                        {
+
+                            once: true,
+
+                        }
+
+                    );
+
+                }
+
+            );
+
+        },
+
+        _hidePreviewModal: function () {
+
+            const modalElement =
+
+                document.getElementById(
+
+                    "preview-modal"
+
+                );
+
+            if (!modalElement) {
+
+                return;
+
+            }
+
+            modalElement.style.display = "none";
+
+            modalElement.classList.remove("show");
+
+            modalElement.setAttribute(
+
+                "aria-hidden",
+
+                "true"
+
+            );
+
+            modalElement.removeAttribute(
+
+                "aria-modal"
+
+            );
+
+            document.body.classList.remove(
+
+                "modal-open"
+
+            );
+
+            document
+
+                .querySelector(
+
+                    ".o_lms_modal_backdrop"
+
+                )
+
+                ?.remove();
+
+        },
+
+    });

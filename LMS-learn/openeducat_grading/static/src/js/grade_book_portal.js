@@ -1,51 +1,42 @@
-odoo.define('openeducat_grading.grade_book_portal', function (require) {
-    "use strict";
-    var core = require('web.core');
-    var Dialog = require("web.Dialog");
-    var session = require('web.session');
-    var ajax = require('web.ajax');
-    var Widget = require('web.Widget');
-    var websiteRootData = require('website.root');
-    var utils = require('web.utils');
-    var _t = core._t;
-    var qweb = core.qweb;
-    var publicWidget = require('web.public.widget');
+/** @odoo-module **/
 
-    publicWidget.registry.PortalGradeBookWidget = publicWidget.Widget.extend({
+import publicWidget from "@web/legacy/js/public/public_widget";
+import { rpc } from "@web/core/network/rpc";
+import { renderToElement } from "@web/core/utils/render";
+
+publicWidget.registry.PortalGradeBookWidget = publicWidget.Widget.extend({
         selector:'.grade_book_view_main',
         xmlDependencies: ['/openeducat_grading/static/src/xml/grid_book_widget.xml'],
-        jsLibs: [
-            '/openeducat_grading/static/src/js/handsontable.full.min.js',
-        ],
-        cssLibs: [
-            '/openeducat_grading/static/src/css/handsontable.full.min.css',
-        ],
         init: function(){
             this._super.apply(this,arguments);
         },
-        start: function () {
-            var self = this;
-            var progression_id = $('#grade_book_json_value').val();
+        async start() {
+            await this._super(...arguments);
+
+            const progressionId = this.el.querySelector('#grade_book_json_value')?.value;
+            this.student_progression_id = progressionId;
             this.assignmentDetails = true;
-            ajax.jsonRpc("/get-grade-book/data",'call',
-            {progression_id:progression_id}).then(function(data){
-            if(data != false){
-                self.grade_book_data = JSON.parse(data['data']);
-                self._renderAssignmentWise(self.grade_book_data, data['credit']);
-                self._renderCommentTable(self.grade_book_data);
-            }else{
-                self.$el.find('.grade_book_comment_table_div').append(qweb.render('grade_book_no_data_template'));
-            }
+
+            const data = await rpc('/get-grade-book/data', {
+                progression_id: progressionId,
             });
-            return this._super();
+
+            if (data !== false) {
+                this.grade_book_data = JSON.parse(data.data);
+                this._renderAssignmentWise(this.grade_book_data, data.credit);
+                this._renderCommentTable(this.grade_book_data);
+            } else {
+                this.$el.find('.grade_book_comment_table_div').append(
+                    renderToElement('grade_book_no_data_template')
+                );
+            }
         },
         _renderCommentTable: function(grade_data){
             var grid_data = grade_data;
             this.QuarterTermBool = false;
             var self = this;
-            var $CommentContainer = $(qweb.render('grade_book_comment_table_portal_template'));
+            var $CommentContainer = $(renderToElement('grade_book_comment_table_portal_template'));
             this.$CommentContainer = $CommentContainer;
-            console.log(this.$CommentContainer,">>>>>>>>>>>>>>>>>>>>>>")
             this.$el.find('.grade_book_comment_table_div').append($CommentContainer);
             var lastHeaders = [];
             var lastData = [];
@@ -393,7 +384,7 @@ odoo.define('openeducat_grading.grade_book_portal', function (require) {
             this.QuarterTermBool = false;
             this.creditAvailable = creditBool;
             this.attendanceAvailable = false;
-            var $GridBookContainer = $(qweb.render('grade_book_portal_template'));
+            var $GridBookContainer = $(renderToElement('grade_book_portal_template'));
             this.$GridBookContainer = $GridBookContainer;
             this.$el.find('.grade_book_assignment_table_div').append($GridBookContainer);
             var data = [];
@@ -789,12 +780,13 @@ odoo.define('openeducat_grading.grade_book_portal', function (require) {
                         searchArr.splice(searchArr.indexOf(currentArr), 1);
                     }
                     updatedData[changes[0][1]] = changes[0][3];
-                    self._rpc({
-                        model: "gradebook.gradebook",
-                        method: "update_student_override_data",
-                        args: [self.student_progression_id,updatedData],
-                    }).then(function(data){
-                        location.reload();
+                    rpc('/web/dataset/call_kw/gradebook.gradebook/update_student_override_data', {
+                        model: 'gradebook.gradebook',
+                        method: 'update_student_override_data',
+                        args: [self.student_progression_id, updatedData],
+                        kwargs: {},
+                    }).then(function () {
+                        window.location.reload();
                     });
                 },
                 afterChange: function(changes){
@@ -804,9 +796,4 @@ odoo.define('openeducat_grading.grade_book_portal', function (require) {
             var hotInstanceData = hotInstance.getColHeader();
             setTimeout(function(){ hotInstance.render(); },10);
         },
-    });
-//    websiteRootData.websiteRootRegistry.add(PortalGradeBookWidget, '.grade_book_view_main');
-//    console.log(PortalGradeBookWidget,"////////");
-    return publicWidget.registry.PortalGradeBookWidget;
-
 });

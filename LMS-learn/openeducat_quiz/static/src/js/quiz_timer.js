@@ -1,232 +1,161 @@
-/* js for ipad view */
-
-$(document).ready(function () {
-
-    var url = window.location.href;
-    var check_url = url.split("/")[3];
-    if($('#wrapwrap').find('.quiz_completed_no_back').length == 1){
-        if (history.pushState != undefined) {
-            history.pushState(null, null, window.location.href);
-        }
-        history.back();
-        history.forward();
-        window.onpopstate = function () {
-            history.go(1);
-        };
-    }
-
-    if(check_url !==''){
-
-        var pieces = url.split("/");
-
-        var result = url.split("/");
-        if(typeof pieces[5]!=='undefined'){
-            pieces = pieces[5].split("/");
-            result=result[4].split("/")
-        }
-        if(pieces == 'record'){
-            window.localStorage.removeItem("end1");
-        }
-        else if(result == "score"){
-            window.localStorage.removeItem("end1");
-        }
-        else{
-            if($('#divCounter')){
-
-                var hoursleft = parseInt($('#time_spent_hr').val());
-                var minutesleft = parseInt($('#time_spent_minute').val());
-                var secondsleft = parseInt($('#time_spent_second').val());
-                var finishedtext = "Countdown finished!";
-                var end1;
-                if(localStorage.getItem("end1")) {
-                    end1 = new Date(localStorage.getItem("end1"));
-                } else {
-                    end1 = new Date();
-                    end1.setHours(end1.getHours()+hoursleft);
-                    end1.setMinutes(end1.getMinutes()+minutesleft);
-                    end1.setSeconds(end1.getSeconds()+secondsleft);
-                }
-                var counter = function () {
-                        var now = new Date();
-                        var diff = end1 - now;
-                        diff = new Date(diff);
-
-                        var milliseconds = parseInt((diff%1000)/100)
-                        var sec = parseInt((diff/1000)%60)
-                        var mins = parseInt((diff/(1000*60))%60)
-                        var hours = parseInt((diff/(1000*60*60))%24);
-
-                        if (hours < 10) {
-                            hours = "0" + hours;
-                        }
-                        if (mins < 10) {
-                            mins = "0" + mins;
-                        }
-
-                        if (sec < 10) {
-                            sec = "0" + sec;
-                        }
-                        if(now >= end1) {
-                            clearTimeout(interval);
-                             localStorage.removeItem("end1");
-                             localStorage.clear();
-                            document.getElementById('divCounter').innerHTML = finishedtext;
-                            window.location.href = $('#submit_exam').attr('href');
-                        } else {
-                            var value = hours + ":" + mins + ":" + sec;
-                            localStorage.setItem("end1", end1);
-                            if (document.getElementById('all_time')){
-                            document.getElementById('all_time').innerHTML = value;}
-                            if (document.getElementById('spanHrone')){
-                            document.getElementById('spanHrone').innerHTML = hours;}
-                            if (document.getElementById('spanMtone')){
-                            document.getElementById('spanMtone').innerHTML = mins;}
-                            if (document.getElementById('spanSnone')){
-                            document.getElementById('spanSnone').innerHTML = sec;}
-                        }
-                    }
-                var url = window.location.href;
-                var pieces = url.split("/");
-                if(typeof pieces[5]!=='undefined'){
-                    pieces = pieces[4].split("/");
-                }
-                if(pieces == 'attempt'){
-                     var interval = setInterval(counter, 1000);
-                }
-                $('.quiz_finish').on('click',function(e){
-                    e.preventDefault();
-                    var spent_time = $('#all_time').html();
-                    $('#from_quiz_dynamic').append('<input type="hidden" name="t_spent_time" value="'+spent_time+'" />');
-                });
-
-                    $('#prev_timer').on('click',function(e){
-                        var spent_time = $('#all_time').html();
-                        var new_href = $(this).attr('href')+spent_time;
-                        window.location.href = new_href;
-                    });
-            }
-        }
-    }
-});
-
-/* js for desktop & phone view */
-
-$(document).ready(function () {
-
-    var url = window.location.href;
-    var check_url = url.split("/")[3];
-
-
-    if(check_url !==''){
-
-        var pieces = url.split("/");
-
-        var result = url.split("/");
-        if(typeof pieces[5]!=='undefined'){
-            pieces = pieces[5].split("/");
-            result=result[4].split("/")
-        }
-        if(pieces == 'record'){
-            window.localStorage.removeItem("end1");
-        }
-        else if(result == "score"){
-            window.localStorage.removeItem("end1");
-        }
-        else{
-            if($('#divCounterone')){
-
-                var hoursleft = parseInt($('#time_spent_hr').val());
-                var minutesleft = parseInt($('#time_spent_minute').val());
-                var secondsleft = parseInt($('#time_spent_second').val());
-                var finishedtext = "Countdown finished!";
-                var end1;
-                if(localStorage.getItem("end1")) {
-                    end1 = new Date(localStorage.getItem("end1"));
-                } else {
-                    end1 = new Date();
-                    end1.setHours(end1.getHours()+hoursleft);
-                    end1.setMinutes(end1.getMinutes()+minutesleft);
-                    end1.setSeconds(end1.getSeconds()+secondsleft);
-                }
-                var counter = function () {
-                        var now = new Date();
-                        var diff = end1 - now;
-                        diff = new Date(diff);
-
-                        var milliseconds = parseInt((diff%1000)/100)
-                        var sec = parseInt((diff/1000)%60)
-                        var mins = parseInt((diff/(1000*60))%60)
-                        var hours = parseInt((diff/(1000*60*60))%24);
-
-                        if (hours < 10) {
-                            hours = "0" + hours;
-                        }
-                        if (mins < 10) {
-                            mins = "0" + mins;
-                        }
-
-                        if (sec < 10) {
-                            sec = "0" + sec;
-                        }
-                        if(now >= end1) {
-                            clearTimeout(interval);
-                             localStorage.removeItem("end1");
-                             localStorage.clear();
-                            document.getElementById('divCounter').innerHTML = finishedtext;
-                            window.location.href = $('#submit_exam').attr('href');
-                        } else {
-                            var value = hours + ":" + mins + ":" + sec;
-                            localStorage.setItem("end1", end1);
-                            if (document.getElementById('all_time')){
-                            document.getElementById('all_time').innerHTML = value;}
-                            if (document.getElementById('spanHr')){
-                            document.getElementById('spanHr').innerHTML = hours;}
-                            if (document.getElementById('spanMt')){
-                            document.getElementById('spanMt').innerHTML = mins;}
-                            if (document.getElementById('spanSn')){
-                            document.getElementById('spanSn').innerHTML = sec;}
-                        }
-                    }
-                var url = window.location.href;
-                var pieces = url.split("/");
-                if(typeof pieces[5]!=='undefined'){
-                    pieces = pieces[4].split("/");
-                }
-                if(pieces == 'attempt'){
-                     var interval = setInterval(counter, 1000);
-                }
-                $('.quiz_finish').on('click',function(e){
-                    var spent_time = $('#all_time').html();
-                    $('#from_quiz_dynamic').append('<input type="hidden" name="t_spent_time" value="'+spent_time+'" />');
-                });
-
-                    $('#prev_timer').on('click',function(e){
-                        e.preventDefault();
-                        var spent_time = $('#all_time').html();
-                        var new_href = $(this).attr('href')+spent_time;
-                        window.location.href = new_href;
-                    });
-            }
-        }
-    }
-});
+/** @odoo-module **/
 
 /*
-$(document).ready(function () {
-    $("#from_quiz_dynamic").on("submit", function(e) {
-        var postData = $(this).serializeArray();
-        var formURL = $(this).attr("action");
-        $.ajax({
-            url: formURL,
-            type: "POST",
-            data: postData,
-            success: function(data, textStatus, jqXHR) {
-                console.info("Status",textStatus);
-            },
-            error: function(jqXHR, status, error) {
-                console.log(status + ": " + error);
+ * OpenEduCat Quiz timer - Odoo 19
+ *
+ * The old implementation duplicated the timer for different screen sizes,
+ * parsed URLs by numeric indexes, and used localStorage.clear(), which could
+ * remove unrelated website data. This version keeps the same DOM contract
+ * while using pathname segments and only removes the quiz timer key.
+ */
+
+const TIMER_KEY = "openeducat_quiz_end_time";
+
+function getPathSegments() {
+    return window.location.pathname.split("/").filter(Boolean);
+}
+
+function isQuizRecordOrScore() {
+    const segments = getPathSegments();
+    return segments.includes("record") || segments.includes("score");
+}
+
+function isQuizAttempt() {
+    return getPathSegments().includes("attempt");
+}
+
+function getCounterElement() {
+    return document.querySelector("#divCounter") || document.querySelector("#divCounterone");
+}
+
+function getTimeInputs() {
+    return {
+        hours: Number.parseInt(document.querySelector("#time_spent_hr")?.value, 10) || 0,
+        minutes: Number.parseInt(document.querySelector("#time_spent_minute")?.value, 10) || 0,
+        seconds: Number.parseInt(document.querySelector("#time_spent_second")?.value, 10) || 0,
+    };
+}
+
+function saveSpentTime() {
+    const timeElement = document.querySelector("#all_time");
+    const form = document.querySelector("#from_quiz_dynamic");
+
+    if (!timeElement || !form) {
+        return;
+    }
+
+    let input = form.querySelector("input[name='t_spent_time']");
+    if (!input) {
+        input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "t_spent_time";
+        form.appendChild(input);
+    }
+    input.value = timeElement.textContent || "";
+}
+
+function setupTimer() {
+    const counterElement = getCounterElement();
+    if (!counterElement || isQuizRecordOrScore()) {
+        localStorage.removeItem(TIMER_KEY);
+        return;
+    }
+
+    if (!isQuizAttempt()) {
+        return;
+    }
+
+    const { hours, minutes, seconds } = getTimeInputs();
+    const storedEnd = localStorage.getItem(TIMER_KEY);
+    let endTime = storedEnd ? Number(storedEnd) : NaN;
+
+    if (!Number.isFinite(endTime) || endTime <= Date.now()) {
+        endTime =
+            Date.now() +
+            ((hours * 60 * 60) + (minutes * 60) + seconds) * 1000;
+        localStorage.setItem(TIMER_KEY, String(endTime));
+    }
+
+    const submitExam = document.querySelector("#submit_exam");
+    let intervalId;
+
+    const update = () => {
+        const remaining = Math.max(0, endTime - Date.now());
+        const totalSeconds = Math.floor(remaining / 1000);
+
+        const hoursLeft = Math.floor(totalSeconds / 3600);
+        const minutesLeft = Math.floor((totalSeconds % 3600) / 60);
+        const secondsLeft = totalSeconds % 60;
+
+        const hoursText = String(hoursLeft).padStart(2, "0");
+        const minutesText = String(minutesLeft).padStart(2, "0");
+        const secondsText = String(secondsLeft).padStart(2, "0");
+
+        if (remaining <= 0) {
+            if (intervalId) {
+                clearInterval(intervalId);
             }
-        });
-        e.preventDefault();
+            localStorage.removeItem(TIMER_KEY);
+            counterElement.textContent = "Countdown finished!";
+
+            if (submitExam?.getAttribute("href")) {
+                window.location.href = submitExam.getAttribute("href");
+            }
+            return;
+        }
+
+        const value = `${hoursText}:${minutesText}:${secondsText}`;
+        const allTime = document.querySelector("#all_time");
+        if (allTime) {
+            allTime.textContent = value;
+        }
+
+        const ids = [
+            ["#spanHrone", hoursText],
+            ["#spanMtone", minutesText],
+            ["#spanSnone", secondsText],
+            ["#spanHr", hoursText],
+            ["#spanMt", minutesText],
+            ["#spanSn", secondsText],
+        ];
+
+        for (const [selector, text] of ids) {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.textContent = text;
+            }
+        }
+    };
+
+    update();
+    intervalId = window.setInterval(update, 1000);
+
+    document.querySelectorAll(".quiz_finish").forEach((button) => {
+        button.addEventListener("click", saveSpentTime);
     });
-});*/
+
+    document.querySelector("#prev_timer")?.addEventListener("click", (event) => {
+        event.preventDefault();
+        saveSpentTime();
+
+        const href = event.currentTarget.getAttribute("href");
+        const timeElement = document.querySelector("#all_time");
+        if (href) {
+            const separator = href.includes("?") ? "&" : "?";
+            const spentTime = encodeURIComponent(timeElement?.textContent || "");
+            window.location.href = `${href}${separator}t_spent_time=${spentTime}`;
+        }
+    });
+
+    window.addEventListener("beforeunload", () => {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+    }, { once: true });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupTimer, { once: true });
+} else {
+    setupTimer();
+}
